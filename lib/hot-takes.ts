@@ -105,9 +105,12 @@ export function getRandomHotTake(
   category: string,
   excludeIds: string[] = []
 ): HotTake | null {
-  const pool = (takesByCategory[category] || []).filter(
-    (t) => !excludeIds.includes(t.id)
-  )
+  const pool = (takesByCategory[category] || [])
+    .filter((t) => !excludeIds.includes(t.id))
+    // TEMPORARY FIX: Only serve enriched hot takes (with reason tags)
+    // Remove this filter after full enrichment
+    .filter((t) => t.agreeReasons && t.disagreeReasons)
+
   if (pool.length === 0) return null
 
   // Equal-weight random
@@ -148,6 +151,9 @@ export function getFilteredHotTakes(options: {
   limit?: number
 }): HotTake[] {
   let pool = allHotTakes
+    // TEMPORARY FIX: Only serve enriched hot takes (with reason tags)
+    // Remove this filter after full enrichment
+    .filter((t) => t.agreeReasons && t.disagreeReasons)
 
   if (options.category) {
     pool = pool.filter((t) => t.category === options.category)
@@ -181,7 +187,11 @@ export function getHotTakesByIntensity(
 }
 
 export function getIntensityDistribution(category?: string): Record<number, number> {
-  const takes = category ? getHotTakesByCategory(category) : getAllHotTakes()
+  const takes = (category ? getHotTakesByCategory(category) : getAllHotTakes())
+    // TEMPORARY FIX: Only count enriched hot takes
+    // Remove this filter after full enrichment
+    .filter((t) => t.agreeReasons && t.disagreeReasons)
+
   const distribution: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
 
   takes.forEach((t) => {
@@ -198,9 +208,12 @@ export function getRandomHotTakeWithIntensity(
   intensityMax: number,
   excludeIds: string[] = []
 ): HotTake | null {
-  const pool = getHotTakesByIntensity(category, intensityMin, intensityMax).filter(
-    (t) => !excludeIds.includes(t.id)
-  )
+  const pool = getHotTakesByIntensity(category, intensityMin, intensityMax)
+    .filter((t) => !excludeIds.includes(t.id))
+    // TEMPORARY FIX: Only serve enriched hot takes (with reason tags)
+    // Remove this filter after full enrichment
+    .filter((t) => t.agreeReasons && t.disagreeReasons)
+
   if (pool.length === 0) return null
 
   const index = Math.floor(Math.random() * pool.length)
