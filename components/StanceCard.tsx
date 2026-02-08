@@ -9,27 +9,28 @@ interface StanceCardProps {
 
 export default function StanceCard({ entries, onClose }: StanceCardProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ background: 'rgba(0,0,0,0.6)' }}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ background: 'rgba(0,0,0,0.65)' }}>
       <div
         className="w-full max-w-lg relative"
         style={{
           background: 'var(--bg-primary)',
           borderRadius: 'var(--radius-lg)',
           border: '2px solid var(--text-primary)',
+          boxShadow: '0 8px 40px rgba(0, 0, 0, 0.2)',
         }}
       >
         {/* Header */}
-        <div className="p-6 pb-4">
-          <div className="flex items-center justify-between mb-4">
+        <div className="p-7 pb-4">
+          <div className="flex items-center justify-between mb-5">
             <div>
               <h2
-                className="font-display text-xl font-bold"
-                style={{ color: 'var(--text-primary)' }}
+                className="font-display text-2xl font-semibold"
+                style={{ color: 'var(--text-primary)', letterSpacing: '-0.02em' }}
               >
                 My Stance Card
               </h2>
               <p
-                className="font-mono text-xs"
+                className="font-mono text-xs mt-1"
                 style={{ color: 'var(--text-muted)' }}
               >
                 6 hills I will die on
@@ -37,10 +38,10 @@ export default function StanceCard({ entries, onClose }: StanceCardProps) {
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 flex items-center justify-center"
+              className="w-8 h-8 flex items-center justify-center transition-colors duration-150"
               style={{
                 borderRadius: 'var(--radius-sm)',
-                border: '1px solid var(--border)',
+                border: '1.5px solid var(--border-strong)',
                 color: 'var(--text-tertiary)',
               }}
             >
@@ -52,35 +53,34 @@ export default function StanceCard({ entries, onClose }: StanceCardProps) {
         </div>
 
         {/* Stances list */}
-        <div className="px-6 pb-6 space-y-3" id="stance-card-content">
+        <div className="px-7 pb-7 space-y-3" id="stance-card-content">
           {entries.map((entry) => (
             <div
               key={entry.take.id}
-              className="flex items-start gap-3 p-3"
+              className="flex items-start gap-3 p-4"
               style={{
                 background: 'var(--bg-card)',
                 borderRadius: 'var(--radius-md)',
                 border: '1px solid var(--border)',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
               }}
             >
               <span
-                className="font-mono text-xs font-bold mt-0.5 px-1.5 py-0.5"
+                className="font-mono text-xs font-bold mt-0.5 px-2 py-1"
                 style={{
                   borderRadius: 'var(--radius-sm)',
                   background:
                     entry.stance === 'agree'
-                      ? 'var(--agree-subtle)'
-                      : 'var(--disagree-subtle)',
-                  color:
-                    entry.stance === 'agree'
                       ? 'var(--agree)'
                       : 'var(--disagree)',
+                  color: 'white',
+                  letterSpacing: '0.05em',
                 }}
               >
                 {entry.stance === 'agree' ? 'YES' : 'NO'}
               </span>
               <p
-                className="text-sm font-medium flex-1"
+                className="text-sm font-medium flex-1 leading-snug"
                 style={{ color: 'var(--text-primary)' }}
               >
                 {entry.take.statement}
@@ -91,11 +91,11 @@ export default function StanceCard({ entries, onClose }: StanceCardProps) {
 
         {/* Footer */}
         <div
-          className="px-6 py-4 flex items-center justify-between"
-          style={{ borderTop: '1px solid var(--border)' }}
+          className="px-7 py-4 flex items-center justify-between"
+          style={{ borderTop: '1.5px solid var(--border)' }}
         >
           <span
-            className="font-mono text-xs uppercase tracking-wider"
+            className="font-mono text-xs uppercase tracking-wider font-medium"
             style={{ color: 'var(--text-muted)' }}
           >
             stancemachine.com

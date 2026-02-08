@@ -5,7 +5,7 @@ export default function SiteHeader() {
     <header className="px-4 sm:px-6 pt-6 pb-4">
       <div className="max-w-6xl mx-auto">
         {/* Top bar */}
-        <div className="flex items-center justify-between mb-8 reveal-up delay-0">
+        <div className="flex items-center justify-between mb-10 reveal-up delay-0">
           <div className="flex items-center gap-3">
             {/* Logomark — bold flame grid */}
             <div
@@ -13,10 +13,10 @@ export default function SiteHeader() {
               style={{ background: 'var(--text-primary)' }}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect x="1" y="1" width="6" height="6" rx="1" fill="#D4400E" />
-                <rect x="9" y="1" width="6" height="6" rx="1" fill="#F5F3EF" opacity="0.5" />
-                <rect x="1" y="9" width="6" height="6" rx="1" fill="#F5F3EF" opacity="0.5" />
-                <rect x="9" y="9" width="6" height="6" rx="1" fill="#D4400E" />
+                <rect x="1" y="1" width="6" height="6" rx="1" fill="#E03E00" />
+                <rect x="9" y="1" width="6" height="6" rx="1" fill="#F7F5F0" opacity="0.5" />
+                <rect x="1" y="9" width="6" height="6" rx="1" fill="#F7F5F0" opacity="0.5" />
+                <rect x="9" y="9" width="6" height="6" rx="1" fill="#E03E00" />
               </svg>
             </div>
             <span
@@ -35,24 +35,42 @@ export default function SiteHeader() {
           </span>
         </div>
 
+        {/* Editorial divider — top */}
+        <hr className="rams-divider mb-8 reveal-up delay-0" />
+
         {/* Hero text */}
         <div className="max-w-3xl">
           <h1
-            className="font-display text-4xl sm:text-5xl md:text-6xl mb-4 reveal-up delay-1"
-            style={{ color: 'var(--text-primary)' }}
+            className="font-display text-5xl sm:text-6xl md:text-7xl font-semibold mb-5 reveal-up delay-1"
+            style={{
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.03em',
+              lineHeight: '1.05',
+            }}
           >
-            Pick your hills. Die on&nbsp;them.
+            Pick your hills.{' '}
+            <span
+              style={{
+                backgroundImage: 'linear-gradient(to right, var(--accent), var(--accent))',
+                backgroundPosition: '0 88%',
+                backgroundSize: '100% 0.12em',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              Die on&nbsp;them.
+            </span>
           </h1>
           <p
-            className="text-base sm:text-lg max-w-lg reveal-up delay-2"
-            style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}
+            className="text-lg sm:text-xl max-w-lg reveal-up delay-2"
+            style={{ color: 'var(--text-secondary)', lineHeight: '1.65' }}
           >
             Spin hot takes across 6 categories.
             Agree or disagree. Lock your position. Share your Stance Card.
           </p>
         </div>
 
-        <hr className="rams-divider mt-8" />
+        {/* Editorial divider — bottom */}
+        <hr className="rams-divider-thick mt-10" />
       </div>
     </header>
   )

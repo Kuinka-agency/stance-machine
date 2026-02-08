@@ -16,7 +16,6 @@ export default function IntensitySelector({
   const [distribution, setDistribution] = useState<Record<number, number> | null>(null)
 
   useEffect(() => {
-    // Fetch intensity distribution for current category
     const fetchDistribution = async () => {
       try {
         const url = currentCategory
@@ -65,16 +64,16 @@ export default function IntensitySelector({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="text-center space-y-2">
+    <div className="space-y-8">
+      <div className="text-center space-y-3">
         <h2
-          className="text-xl md:text-2xl font-bold"
-          style={{ color: 'var(--text-primary)' }}
+          className="font-display text-2xl md:text-3xl font-semibold"
+          style={{ color: 'var(--text-primary)', letterSpacing: '-0.02em' }}
         >
           What's your vibe today?
         </h2>
         <p
-          className="text-sm"
+          className="text-sm sm:text-base"
           style={{ color: 'var(--text-secondary)' }}
         >
           Choose your intensity level for all 6 categories
@@ -97,24 +96,35 @@ export default function IntensitySelector({
             <button
               key={`${preset.range[0]}-${preset.range[1]}`}
               onClick={() => onChange(preset.range)}
-              className="text-left p-4 rounded transition-all duration-200"
+              className="text-left p-5 rounded transition-all duration-200"
               style={{
-                borderWidth: '2px',
+                borderWidth: selected ? '3px' : '1.5px',
                 borderStyle: 'solid',
                 borderColor: selected ? 'var(--accent)' : 'var(--border)',
-                background: selected ? 'var(--bg-secondary)' : 'var(--bg-primary)',
+                background: selected ? 'var(--accent-subtle)' : 'var(--bg-primary)',
                 cursor: 'pointer',
+                transform: selected ? 'scale(1.01)' : 'scale(1)',
+              }}
+              onMouseEnter={(e) => {
+                if (!selected) {
+                  e.currentTarget.style.borderColor = 'var(--border-strong)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!selected) {
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                }
               }}
             >
-              <div className="flex items-start gap-3">
-                <span className="text-2xl">{preset.emoji}</span>
+              <div className="flex items-start gap-4">
+                <span className="text-3xl">{preset.emoji}</span>
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center justify-between">
                     <span
                       className="font-mono text-sm uppercase tracking-wider font-medium"
-                      style={{ color: 'var(--text-primary)' }}
+                      style={{ color: selected ? 'var(--accent)' : 'var(--text-primary)' }}
                     >
-                      {preset.label} (Intensity {preset.range[0]}-{preset.range[1]})
+                      {preset.label} ({preset.range[0]}-{preset.range[1]})
                     </span>
                     {count !== null && (
                       <span
@@ -126,7 +136,7 @@ export default function IntensitySelector({
                     )}
                   </div>
                   <p
-                    className="text-xs leading-relaxed"
+                    className="text-sm leading-relaxed"
                     style={{ color: 'var(--text-secondary)' }}
                   >
                     {preset.description}
@@ -141,12 +151,12 @@ export default function IntensitySelector({
       {distribution && (
         <div className="max-w-2xl mx-auto">
           <div
-            className="text-xs font-mono uppercase tracking-wider mb-2"
+            className="text-xs font-mono uppercase tracking-wider mb-3"
             style={{ color: 'var(--text-tertiary)' }}
           >
             Distribution across all hot takes
           </div>
-          <div className="flex gap-1 h-12">
+          <div className="flex gap-1.5 h-14">
             {[1, 2, 3, 4, 5].map((level) => {
               const count = distribution[level] || 0
               const total = Object.values(distribution).reduce((sum, c) => sum + c, 0)
@@ -168,11 +178,11 @@ export default function IntensitySelector({
                         : level <= 3
                         ? 'var(--accent)'
                         : 'var(--disagree)',
-                      opacity: 0.7,
+                      opacity: 0.85,
                     }}
                   />
                   <div
-                    className="text-center text-xs font-mono mt-1"
+                    className="text-center text-xs font-mono mt-1 font-medium"
                     style={{ color: 'var(--text-tertiary)' }}
                   >
                     {level}

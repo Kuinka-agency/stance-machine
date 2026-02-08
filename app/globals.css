@@ -2,30 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400;500;600;700&display=swap');
 
 :root {
   /* Surfaces */
-  --bg-primary: #F5F3EF;
+  --bg-primary: #F7F5F0;
   --bg-card: #FFFFFF;
   --bg-elevated: #FAFAF7;
   --bg-inset: #EDEAE4;
 
   /* Text */
-  --text-primary: #1A1A1A;
+  --text-primary: #111111;
   --text-secondary: #5C5851;
   --text-tertiary: #8A8680;
   --text-muted: #B0ACA6;
 
   /* Accent — Braun red-orange (bold opinion energy) */
-  --accent: #D4400E;
-  --accent-hover: #B8370C;
+  --accent: #E03E00;
+  --accent-hover: #C73600;
   --accent-subtle: #FDF0EB;
 
   /* Opinion colors */
-  --agree: #2B7A3D;
+  --agree: #1B8A3E;
   --agree-subtle: #EDF7EF;
-  --disagree: #C13030;
+  --disagree: #D42B2B;
   --disagree-subtle: #FCF0F0;
 
   /* Border */
@@ -33,7 +34,7 @@
   --border-strong: #C8C3BB;
 
   /* Typography */
-  --font-display: 'Archivo', 'Helvetica Neue', sans-serif;
+  --font-display: 'Clash Display', 'Helvetica Neue', sans-serif;
   --font-body: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
@@ -59,13 +60,13 @@
   --duration-normal: 300ms;
   --duration-slow: 500ms;
 
-  /* Category colors */
-  --cat-philosophy: #7C5CBF;
-  --cat-relationships: #D4400E;
-  --cat-work: #4A6741;
-  --cat-money: #C68A1D;
-  --cat-lifestyle: #2B6CB0;
-  --cat-society: #8B4513;
+  /* Category colors — boosted saturation ~15% */
+  --cat-philosophy: #8B5CF6;
+  --cat-relationships: #E03E00;
+  --cat-work: #3D7A35;
+  --cat-money: #D4920A;
+  --cat-lifestyle: #2563EB;
+  --cat-society: #9A4E0E;
 }
 
 * {
@@ -85,6 +86,22 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle grain texture — editorial feel */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 /* Ensure form inputs have proper text color */
@@ -122,7 +139,69 @@ textarea:-webkit-autofill:focus {
   border-top: 2px solid var(--text-primary);
 }
 
-/* Subtle fade-in animation (removed slot-machine feel) */
+/* Font display class */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ========================================
+   DRAMATIC SPIN ANIMATION — The Star
+   Multi-phase: exit → anticipation → enter
+   ======================================== */
+
+/* Phase 1: Card exits — scale down + fade + slight rotation */
+@keyframes card-exit {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.92) rotate(-1deg);
+    opacity: 0;
+  }
+}
+
+/* Phase 2: Loading pulse — category-colored anticipation */
+@keyframes loading-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleX(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Phase 3: Card enters — spring overshoot from below */
+@keyframes card-enter {
+  0% {
+    transform: translateY(24px) scale(0.92);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-4px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.card-exit {
+  animation: card-exit 0.25s var(--ease-out) forwards;
+}
+
+.card-loading {
+  animation: loading-pulse 0.6s ease-in-out infinite;
+}
+
+.card-enter {
+  animation: card-enter 0.4s var(--ease-spring) forwards;
+}
+
+/* Legacy subtle animation — kept as fallback */
 @keyframes slot-spin-in {
   0% {
     transform: translateY(-8px);
@@ -176,7 +255,18 @@ textarea:-webkit-autofill:focus {
   transform: translateY(0);
 }
 
-/* Lock button pulse */
+/* Stance lock — brief pulse + glow on selection */
+@keyframes stance-lock {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.stance-lock {
+  animation: stance-lock 0.25s var(--ease-spring);
+}
+
+/* Lock button pulse (legacy) */
 @keyframes lock-pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.08); }
@@ -184,6 +274,18 @@ textarea:-webkit-autofill:focus {
 
 .lock-active {
   animation: lock-pulse 0.25s ease-in-out;
+}
+
+/* Progress segment fill with overshoot */
+@keyframes progress-fill {
+  0% { transform: scaleX(0); }
+  70% { transform: scaleX(1.05); }
+  100% { transform: scaleX(1); }
+}
+
+.progress-fill {
+  animation: progress-fill 0.4s var(--ease-spring) forwards;
+  transform-origin: left;
 }
 
 /* Stagger delays */

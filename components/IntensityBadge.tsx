@@ -17,13 +17,12 @@ export default function IntensityBadge({ intensity }: IntensityBadgeProps) {
 
   return (
     <span
-      className="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-xs font-mono uppercase tracking-wider"
+      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-xs font-mono uppercase tracking-wider font-medium"
       style={{
-        borderWidth: '1px',
+        borderWidth: '1.5px',
         borderStyle: 'solid',
         borderColor: color,
         color: color,
-        opacity: 0.8,
       }}
     >
       <span>{emoji}</span>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import { HotTake, StanceCategory, Stance } from '@/lib/hot-takes'
 import AgreeDisagreeButtons from './AgreeDisagreeButtons'
 import ReasonTagPicker from './ReasonTagPicker'
@@ -21,6 +22,8 @@ interface CategoryCardProps {
   isSpinning: boolean
 }
 
+type AnimPhase = 'idle' | 'exit' | 'loading' | 'enter'
+
 export default function CategoryCard({
   category,
   hotTake,
@@ -35,6 +38,38 @@ export default function CategoryCard({
   onSkip,
   isSpinning,
 }: CategoryCardProps) {
+  const [animPhase, setAnimPhase] = useState<AnimPhase>('idle')
+  const prevHotTakeRef = useRef<string | null>(null)
+
+  // Drive the multi-phase animation when isSpinning changes
+  useEffect(() => {
+    if (isSpinning) {
+      setAnimPhase('exit')
+      const exitTimer = setTimeout(() => setAnimPhase('loading'), 250)
+      return () => clearTimeout(exitTimer)
+    }
+  }, [isSpinning])
+
+  // When hotTake changes (new card arrived), trigger enter animation
+  useEffect(() => {
+    if (hotTake.id !== prevHotTakeRef.current && prevHotTakeRef.current !== null) {
+      setAnimPhase('enter')
+      const enterTimer = setTimeout(() => setAnimPhase('idle'), 400)
+      return () => clearTimeout(enterTimer)
+    }
+    prevHotTakeRef.current = hotTake.id
+  }, [hotTake.id])
+
+  // On first mount, enter animation
+  useEffect(() => {
+    if (prevHotTakeRef.current === null) {
+      prevHotTakeRef.current = hotTake.id
+      setAnimPhase('enter')
+      const enterTimer = setTimeout(() => setAnimPhase('idle'), 400)
+      return () => clearTimeout(enterTimer)
+    }
+  }, [hotTake.id])
+
   const availableReasons = stance === 'agree'
     ? (hotTake.agreeReasons || [])
     : stance === 'disagree'
@@ -51,6 +86,11 @@ export default function CategoryCard({
 
   const canSave = stance !== null
 
+  const cardAnimClass =
+    animPhase === 'exit' ? 'card-exit' :
+    animPhase === 'enter' ? 'card-enter' :
+    ''
+
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       {/* Category header */}
@@ -61,50 +101,85 @@ export default function CategoryCard({
             style={{ background: category.color }}
           />
           <h2
-            className="font-mono text-sm uppercase tracking-wider"
-            style={{ color: 'var(--text-tertiary)' }}
+            className="font-mono text-sm font-medium uppercase tracking-wider"
+            style={{ color: category.color }}
           >
             {category.label}
           </h2>
         </div>
       </div>
 
-      {/* Hot take card with spinner animation */}
-      <div
-        className={`p-8 transition-all duration-300 ${isSpinning ? 'animate-slot-spin' : ''}`}
-        style={{
-          background: 'var(--bg-card)',
-          border: `2px solid ${category.color}`,
-          borderRadius: 'var(--radius-lg)',
-        }}
-      >
-        <div className="space-y-3">
-          <p
-            className="text-lg md:text-xl leading-relaxed text-center"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            {hotTake.statement}
-          </p>
-          {hotTake.intensity && (
-            <div className="flex justify-center">
-              <IntensityBadge intensity={hotTake.intensity} />
-            </div>
-          )}
+      {/* Hot take card — dramatic animation phases */}
+      {animPhase === 'loading' ? (
+        /* Phase 2: Anticipation — pulsing bar in category color */
+        <div
+          className="flex items-center justify-center"
+          style={{ minHeight: '160px' }}
+        >
+          <div
+            className="card-loading rounded-full"
+            style={{
+              width: '64px',
+              height: '4px',
+              background: category.color,
+            }}
+          />
         </div>
-      </div>
+      ) : (
+        /* Phase 1 & 3: Card visible (exit or enter animation) */
+        <div
+          className={`p-10 transition-shadow duration-300 ${cardAnimClass}`}
+          style={{
+            background: 'var(--bg-card)',
+            borderLeft: `4px solid ${category.color}`,
+            borderTop: '1px solid var(--border)',
+            borderRight: '1px solid var(--border)',
+            borderBottom: '1px solid var(--border)',
+            borderRadius: 'var(--radius-lg)',
+            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
+          }}
+        >
+          <div className="space-y-3">
+            <p
+              className="text-xl md:text-2xl leading-snug text-center font-medium"
+              style={{
+                color: 'var(--text-primary)',
+                lineHeight: '1.35',
+              }}
+            >
+              {hotTake.statement}
+            </p>
+            {hotTake.intensity && (
+              <div className="flex justify-center pt-1">
+                <IntensityBadge intensity={hotTake.intensity} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Spin again button */}
       <div className="flex justify-center">
         <button
           onClick={onSpinAgain}
           disabled={isSpinning}
-          className="flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-mono transition-all duration-200"
+          className="flex items-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider font-mono transition-all duration-200"
           style={{
-            color: 'var(--text-tertiary)',
-            border: '1px solid var(--border)',
+            color: isSpinning ? 'var(--text-muted)' : 'var(--text-secondary)',
+            border: `1.5px solid ${isSpinning ? 'var(--border)' : 'var(--border-strong)'}`,
             borderRadius: 'var(--radius-sm)',
-            opacity: isSpinning ? 0.5 : 1,
             cursor: isSpinning ? 'not-allowed' : 'pointer',
+            background: 'transparent',
+          }}
+          onMouseEnter={(e) => {
+            if (!isSpinning) {
+              e.currentTarget.style.borderColor = 'var(--accent)'
+              e.currentTarget.style.color = 'var(--accent)'
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border-strong)'
+            e.currentTarget.style.color = 'var(--text-secondary)'
           }}
         >
           <svg
@@ -174,13 +249,21 @@ export default function CategoryCard({
         <button
           onClick={onSaveAndContinue}
           disabled={!canSave}
-          className="w-full px-6 py-3 text-sm uppercase tracking-wider font-mono transition-all duration-200"
+          className="w-full px-6 py-4 text-sm uppercase tracking-wider font-mono font-medium transition-all duration-200"
           style={{
             background: canSave ? 'var(--accent)' : 'var(--bg-inset)',
             color: canSave ? 'var(--bg-primary)' : 'var(--text-muted)',
             border: 'none',
             borderRadius: 'var(--radius-md)',
             cursor: canSave ? 'pointer' : 'not-allowed',
+            letterSpacing: '0.06em',
+            transform: 'scale(1)',
+          }}
+          onMouseEnter={(e) => {
+            if (canSave) e.currentTarget.style.transform = 'scale(1.01)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)'
           }}
         >
           {(reasonTags.length > 0 || explanation.length > 0)

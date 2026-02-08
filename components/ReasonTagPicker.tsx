@@ -21,12 +21,14 @@ export default function ReasonTagPicker({
           <button
             key={reason}
             onClick={() => onToggle(reason)}
-            className="px-3 py-1.5 text-xs rounded-full transition-all duration-200"
+            className="px-3.5 py-2 text-xs rounded-full transition-all duration-200"
             style={{
               background: isSelected ? 'var(--accent)' : 'var(--bg-inset)',
               color: isSelected ? 'var(--bg-primary)' : 'var(--text-secondary)',
-              border: isSelected ? '1px solid var(--accent)' : '1px solid var(--border)',
+              border: isSelected ? '1.5px solid var(--accent)' : '1.5px solid var(--border)',
               cursor: 'pointer',
+              transform: isSelected ? 'scale(1.03)' : 'scale(1)',
+              fontWeight: isSelected ? 500 : 400,
             }}
           >
             {reason}

@@ -76,7 +76,7 @@ export default function SequentialBuilder() {
               currentCategoryIndex: prev.currentCategoryIndex + 1,
               isComplete: prev.currentCategoryIndex + 1 >= categories.length,
             }))
-          }, 400)
+          }, 900)
           return
         }
 
@@ -84,7 +84,7 @@ export default function SequentialBuilder() {
         setTimeout(() => {
           setCurrentHotTake(hotTake)
           setIsSpinning(false)
-        }, 400)
+        }, 900)
         return
       }
 
@@ -93,7 +93,7 @@ export default function SequentialBuilder() {
       setTimeout(() => {
         setCurrentHotTake(hotTake)
         setIsSpinning(false)
-      }, 400)
+      }, 900)
     } catch (error) {
       console.error('Failed to load hot take:', error)
       setIsSpinning(false)
@@ -277,11 +277,14 @@ export default function SequentialBuilder() {
 
   return (
     <div className="space-y-8">
-      {/* Progress indicator */}
+      {/* Progress indicator — discrete segments */}
       <div className="max-w-2xl mx-auto">
         <ProgressIndicator
           current={state.completedCategories.length}
           total={categories.length}
+          categories={categories}
+          completedCategories={state.completedCategories}
+          currentCategoryName={currentCategory?.name}
         />
       </div>
 

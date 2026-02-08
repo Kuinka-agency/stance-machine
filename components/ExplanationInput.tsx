@@ -20,13 +20,20 @@ export default function ExplanationInput({
         onChange={(e) => onChange(e.target.value)}
         placeholder="Explain your reasoning... (optional)"
         maxLength={maxLength}
-        className="w-full px-4 py-3 text-sm resize-none focus:outline-none transition-all duration-200"
+        className="w-full px-4 py-3.5 text-sm resize-none transition-all duration-200"
         style={{
           background: 'var(--bg-inset)',
           color: 'var(--text-primary)',
-          border: '1px solid var(--border)',
+          border: '1.5px solid var(--border)',
           borderRadius: 'var(--radius-md)',
           minHeight: '80px',
+          outline: 'none',
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = 'var(--accent)'
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.borderColor = 'var(--border)'
         }}
         rows={3}
       />

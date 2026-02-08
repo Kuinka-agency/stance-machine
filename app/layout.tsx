@@ -13,6 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
         {children}
       </body>
