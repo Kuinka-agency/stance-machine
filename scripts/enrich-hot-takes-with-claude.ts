@@ -1,28 +1,33 @@
 /**
  * enrich-hot-takes-with-claude.ts
  *
- * Transform all hot takes into natural, tweet-worthy statements using Claude API,
- * and generate context-specific reason tags for both agree and disagree stances.
+ * Enrich unenriched hot takes using the Anthropic Batch API (50% cheaper).
+ * Transforms broken template statements into natural, tweet-worthy statements,
+ * generates agree/disagree reasons, and assigns intensity scores.
  *
- * Input: data/hot-takes.json (template-transformed statements)
- * Output: data/hot-takes.json (enriched with natural statements + reason tags)
+ * Input: data/hot-takes.json
+ * Output: data/hot-takes.json (enriched in place)
  *
- * Quality gates:
- * - Grammar validation (no mechanical artifacts)
- * - Naturalness check (no "is better than" constructions)
- * - Length limit (< 280 chars for shareability)
- * - Category-appropriate tone
- * - 3-5 relevant reason tags per side
+ * CLI modes:
+ *   --dry-run         Show stats on unenriched takes
+ *   --prepare-batch   Generate enrichment-batch-request.jsonl
+ *   --submit-batch    Submit to Anthropic Batch API
+ *   --check-batch     Poll status, download results when done
+ *   --merge-results   Parse results, validate, update hot-takes.json
  *
- * Run:
- *   ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts
- *   npx tsx scripts/enrich-hot-takes-with-claude.ts --dry-run  # Test without API calls
- *   npx tsx scripts/enrich-hot-takes-with-claude.ts --limit=10  # Process first 10
+ * Usage:
+ *   npx tsx scripts/enrich-hot-takes-with-claude.ts --dry-run
+ *   npx tsx scripts/enrich-hot-takes-with-claude.ts --prepare-batch
+ *   ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts --submit-batch
+ *   ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts --check-batch
+ *   npx tsx scripts/enrich-hot-takes-with-claude.ts --merge-results
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
 import Anthropic from '@anthropic-ai/sdk'
+
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 interface HotTake {
   id: string
@@ -55,6 +60,23 @@ interface EnrichmentResult {
   validationPassed: boolean
   validationErrors?: string[]
 }
+
+interface BatchStatus {
+  batchId: string
+  submittedAt: string
+  inputFile: string
+}
+
+// ─── Config ──────────────────────────────────────────────────────────────────
+
+const HOT_TAKES_PATH = path.resolve(__dirname, '../data/hot-takes.json')
+const BATCH_REQUEST_PATH = path.resolve(__dirname, '../data/enrichment-batch-request.jsonl')
+const BATCH_STATUS_PATH = path.resolve(__dirname, '../data/enrichment-batch-status.json')
+const BATCH_RESULTS_PATH = path.resolve(__dirname, '../data/enrichment-batch-results.jsonl')
+
+const BATCH_SIZE = 20
+
+// ─── System Prompt ───────────────────────────────────────────────────────────
 
 const SYSTEM_PROMPT = `You are a hot take transformation specialist. Your job is to:
 
@@ -143,6 +165,8 @@ Output JSON format for each hot take:
   "intensityRationale": "Brief explanation of why this intensity level"
 }`
 
+// ─── Validation ──────────────────────────────────────────────────────────────
+
 function validateEnrichment(result: EnrichmentResult): { valid: boolean; errors: string[] } {
   const errors: string[] = []
 
@@ -188,19 +212,96 @@ function validateEnrichment(result: EnrichmentResult): { valid: boolean; errors:
   return { valid: errors.length === 0, errors }
 }
 
-async function enrichBatch(
-  client: Anthropic,
-  hotTakes: HotTake[],
-  batchSize: number = 20
-): Promise<EnrichmentResult[]> {
-  const results: EnrichmentResult[] = []
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
-  for (let i = 0; i < hotTakes.length; i += batchSize) {
-    const batch = hotTakes.slice(i, i + batchSize)
-    console.log(`Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(hotTakes.length / batchSize)}...`)
+function loadHotTakes(): HotTake[] {
+  if (!fs.existsSync(HOT_TAKES_PATH)) {
+    console.error(`Input file not found: ${HOT_TAKES_PATH}`)
+    process.exit(1)
+  }
+  return JSON.parse(fs.readFileSync(HOT_TAKES_PATH, 'utf-8'))
+}
+
+function getUnenriched(hotTakes: HotTake[]): HotTake[] {
+  return hotTakes.filter(ht => !ht.enrichmentMetadata)
+}
+
+// ─── CLI Commands ────────────────────────────────────────────────────────────
+
+async function dryRun() {
+  console.log('=== DRY RUN: Enrichment Stats ===\n')
+
+  const hotTakes = loadHotTakes()
+  const unenriched = getUnenriched(hotTakes)
+  const enriched = hotTakes.filter(ht => ht.enrichmentMetadata)
+
+  console.log(`Total hot takes: ${hotTakes.length}`)
+  console.log(`Already enriched: ${enriched.length}`)
+  console.log(`Unenriched (to process): ${unenriched.length}`)
+  console.log(`Batch requests needed: ${Math.ceil(unenriched.length / BATCH_SIZE)} (${BATCH_SIZE} per batch)`)
+
+  // Category breakdown of unenriched
+  const catCount: Record<string, number> = {}
+  for (const ht of unenriched) {
+    catCount[ht.category] = (catCount[ht.category] || 0) + 1
+  }
+  console.log(`\nUnenriched by category:`)
+  for (const [cat, count] of Object.entries(catCount).sort((a, b) => b[1] - a[1])) {
+    console.log(`  ${cat}: ${count}`)
+  }
+
+  // Sample unenriched takes
+  console.log(`\nSample unenriched hot takes:`)
+  for (const ht of unenriched.slice(0, 5)) {
+    console.log(`\n  ID: ${ht.id}`)
+    console.log(`  Original: ${ht.originalQuestion}`)
+    console.log(`  Current: ${ht.statement}`)
+    console.log(`  Category: ${ht.category}`)
+  }
+
+  // Cost estimate
+  const estimatedInputTokens = unenriched.length * 200
+  const estimatedOutputTokens = unenriched.length * 120
+  const inputCost = (estimatedInputTokens / 1_000_000) * 3 * 0.5
+  const outputCost = (estimatedOutputTokens / 1_000_000) * 15 * 0.5
+  const totalCost = inputCost + outputCost
+
+  console.log(`\nEstimated cost (Batch API with 50% discount):`)
+  console.log(`  Input: ~${estimatedInputTokens.toLocaleString()} tokens → $${inputCost.toFixed(2)}`)
+  console.log(`  Output: ~${estimatedOutputTokens.toLocaleString()} tokens → $${outputCost.toFixed(2)}`)
+  console.log(`  Total: ~$${totalCost.toFixed(2)}`)
+  console.log(`\nNext step: npx tsx scripts/enrich-hot-takes-with-claude.ts --prepare-batch`)
+}
+
+async function prepareBatch() {
+  console.log('=== PREPARE BATCH ===\n')
+
+  const hotTakes = loadHotTakes()
+  const unenriched = getUnenriched(hotTakes)
+
+  if (unenriched.length === 0) {
+    console.log('All hot takes are already enriched. Nothing to do.')
+    return
+  }
+
+  console.log(`Found ${unenriched.length} unenriched hot takes\n`)
+
+  // Split into batches
+  const batches: HotTake[][] = []
+  for (let i = 0; i < unenriched.length; i += BATCH_SIZE) {
+    batches.push(unenriched.slice(i, i + BATCH_SIZE))
+  }
+
+  console.log(`Creating ${batches.length} batch requests (${BATCH_SIZE} per batch)\n`)
+
+  const lines: string[] = []
+
+  for (let i = 0; i < batches.length; i++) {
+    const batch = batches[i]
 
     const batchPrompt = batch.map((ht, idx) => {
-      return `[${idx}] Original: "${ht.originalQuestion}"
+      return `[${idx}] ID: "${ht.id}"
+Original: "${ht.originalQuestion}"
 Current statement: "${ht.statement}"
 Category: ${ht.category}
 Tone: ${ht.tone.join(', ')}`
@@ -215,182 +316,328 @@ Each object must have: statement, agreeReasons (array of 3-5 strings), disagreeR
 
 JSON array:`
 
-    try {
-      const response = await client.messages.create({
+    const request = {
+      custom_id: `enrich-${i}`,
+      params: {
         model: 'claude-sonnet-4-5-20250929',
         max_tokens: 4096,
         system: SYSTEM_PROMPT,
         messages: [
           {
             role: 'user',
-            content: userPrompt
-          }
-        ]
-      })
-
-      const content = response.content[0]
-      if (content.type !== 'text') {
-        throw new Error('Unexpected response type')
-      }
-
-      // Extract JSON array from response
-      const jsonMatch = content.text.match(/\[[\s\S]*\]/)
-      if (!jsonMatch) {
-        throw new Error('No JSON array found in response')
-      }
-
-      const enriched = JSON.parse(jsonMatch[0])
-
-      if (enriched.length !== batch.length) {
-        console.warn(`Expected ${batch.length} results, got ${enriched.length}`)
-      }
-
-      for (let j = 0; j < batch.length; j++) {
-        const result: EnrichmentResult = {
-          id: batch[j].id,
-          statement: enriched[j]?.statement || batch[j].statement,
-          agreeReasons: enriched[j]?.agreeReasons || [],
-          disagreeReasons: enriched[j]?.disagreeReasons || [],
-          intensity: enriched[j]?.intensity || 3,
-          intensityRationale: enriched[j]?.intensityRationale || '',
-          validationPassed: false,
-        }
-
-        const validation = validateEnrichment(result)
-        result.validationPassed = validation.valid
-        if (!validation.valid) {
-          result.validationErrors = validation.errors
-          console.warn(`Validation failed for ${result.id}:`, validation.errors)
-        }
-
-        results.push(result)
-      }
-
-      // Rate limiting: wait 1 second between batches
-      if (i + batchSize < hotTakes.length) {
-        await new Promise(resolve => setTimeout(resolve, 1000))
-      }
-
-    } catch (error) {
-      console.error(`Batch failed:`, error)
-      // Add failed results with original data
-      for (const ht of batch) {
-        results.push({
-          id: ht.id,
-          statement: ht.statement,
-          agreeReasons: [],
-          disagreeReasons: [],
-          intensity: 3,
-          intensityRationale: '',
-          validationPassed: false,
-          validationErrors: ['API call failed']
-        })
-      }
+            content: userPrompt,
+          },
+        ],
+      },
     }
+
+    lines.push(JSON.stringify(request))
   }
 
-  return results
+  fs.writeFileSync(BATCH_REQUEST_PATH, lines.join('\n') + '\n')
+  console.log(`Wrote ${lines.length} requests to ${path.relative(process.cwd(), BATCH_REQUEST_PATH)}`)
+
+  // Also save the ID ordering for merge step
+  const idOrder = unenriched.map(ht => ht.id)
+  const orderPath = path.resolve(__dirname, '../data/enrichment-id-order.json')
+  fs.writeFileSync(orderPath, JSON.stringify(idOrder, null, 2))
+  console.log(`Wrote ID ordering (${idOrder.length} IDs) to ${path.relative(process.cwd(), orderPath)}`)
+
+  // Cost estimate
+  const estimatedInputTokens = unenriched.length * 200
+  const estimatedOutputTokens = unenriched.length * 120
+  const inputCost = (estimatedInputTokens / 1_000_000) * 3 * 0.5
+  const outputCost = (estimatedOutputTokens / 1_000_000) * 15 * 0.5
+  const totalCost = inputCost + outputCost
+
+  console.log(`\nCost estimate (Batch API with 50% discount):`)
+  console.log(`  Input: ~${estimatedInputTokens.toLocaleString()} tokens → $${inputCost.toFixed(2)}`)
+  console.log(`  Output: ~${estimatedOutputTokens.toLocaleString()} tokens → $${outputCost.toFixed(2)}`)
+  console.log(`  Total: ~$${totalCost.toFixed(2)}`)
+  console.log(`\nNext step: ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts --submit-batch`)
 }
 
-async function main() {
-  const args = process.argv.slice(2)
-  const dryRun = args.includes('--dry-run')
-  const limitArg = args.find(a => a.startsWith('--limit='))
-  const limit = limitArg ? parseInt(limitArg.split('=')[1]) : undefined
+async function submitBatch() {
+  console.log('=== SUBMIT BATCH ===\n')
 
   const apiKey = process.env.ANTHROPIC_API_KEY
-  if (!apiKey && !dryRun) {
+  if (!apiKey) {
     console.error('ANTHROPIC_API_KEY environment variable required')
     process.exit(1)
   }
 
-  const hotTakesPath = path.resolve(__dirname, '../data/hot-takes.json')
-  if (!fs.existsSync(hotTakesPath)) {
-    console.error(`Input file not found: ${hotTakesPath}`)
+  if (!fs.existsSync(BATCH_REQUEST_PATH)) {
+    console.error('Run --prepare-batch first to generate enrichment-batch-request.jsonl')
     process.exit(1)
-  }
-
-  const hotTakes: HotTake[] = JSON.parse(fs.readFileSync(hotTakesPath, 'utf-8'))
-  console.log(`Loaded ${hotTakes.length} hot takes`)
-
-  const toProcess = limit ? hotTakes.slice(0, limit) : hotTakes
-  console.log(`Processing ${toProcess.length} hot takes...`)
-
-  if (dryRun) {
-    console.log('\nDRY RUN - No API calls will be made')
-    console.log('Sample hot takes:')
-    for (const ht of toProcess.slice(0, 3)) {
-      console.log(`\nID: ${ht.id}`)
-      console.log(`Original: ${ht.originalQuestion}`)
-      console.log(`Current: ${ht.statement}`)
-      console.log(`Category: ${ht.category}`)
-    }
-    return
   }
 
   const client = new Anthropic({ apiKey })
 
-  console.log('\nEnriching hot takes with Claude API...')
-  const startTime = Date.now()
+  const fileContent = fs.readFileSync(BATCH_REQUEST_PATH, 'utf-8')
+  const requests = fileContent
+    .trim()
+    .split('\n')
+    .map((line) => JSON.parse(line))
 
-  const results = await enrichBatch(client, toProcess, 20)
+  console.log(`Submitting ${requests.length} requests to Anthropic Batch API...\n`)
 
-  const duration = ((Date.now() - startTime) / 1000).toFixed(1)
-  console.log(`\nEnrichment complete in ${duration}s`)
-
-  // Merge results back into hot takes
-  const enrichedHotTakes = hotTakes.map(ht => {
-    const result = results.find(r => r.id === ht.id)
-    if (!result) return ht
-
-    return {
-      ...ht,
-      statement: result.statement,
-      agreeReasons: result.agreeReasons,
-      disagreeReasons: result.disagreeReasons,
-      intensity: result.intensity,
-      intensityMetadata: {
-        aiGenerated: result.intensity,
-        lastUpdated: new Date().toISOString(),
-      },
-      enrichmentMetadata: {
-        model: 'claude-sonnet-4-5-20250929',
-        validationPassed: result.validationPassed,
-        timestamp: new Date().toISOString(),
-      }
-    }
+  const batch = await client.messages.batches.create({
+    requests,
   })
 
-  // Stats
-  const validated = results.filter(r => r.validationPassed).length
-  const failed = results.filter(r => !r.validationPassed).length
+  console.log(`Batch submitted successfully!`)
+  console.log(`  Batch ID: ${batch.id}`)
+  console.log(`  Status: ${batch.processing_status}`)
+  console.log(`  Created: ${batch.created_at}`)
 
-  console.log(`\nResults:`)
-  console.log(`  ✓ Validated: ${validated}`)
-  console.log(`  ✗ Failed: ${failed}`)
+  const status: BatchStatus = {
+    batchId: batch.id,
+    submittedAt: new Date().toISOString(),
+    inputFile: BATCH_REQUEST_PATH,
+  }
+  fs.writeFileSync(BATCH_STATUS_PATH, JSON.stringify(status, null, 2))
+  console.log(`\nBatch ID saved to ${path.relative(process.cwd(), BATCH_STATUS_PATH)}`)
+  console.log(`\nNext step: ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts --check-batch`)
+}
 
-  if (failed > 0) {
-    console.log('\nFailed validations:')
-    results
-      .filter(r => !r.validationPassed)
-      .slice(0, 10)
-      .forEach(r => {
-        console.log(`  ${r.id}: ${r.validationErrors?.join(', ')}`)
-      })
+async function checkBatch() {
+  console.log('=== CHECK BATCH ===\n')
+
+  const apiKey = process.env.ANTHROPIC_API_KEY
+  if (!apiKey) {
+    console.error('ANTHROPIC_API_KEY environment variable required')
+    process.exit(1)
   }
 
-  // Write output
-  fs.writeFileSync(hotTakesPath, JSON.stringify(enrichedHotTakes, null, 2))
-  console.log(`\nWrote ${enrichedHotTakes.length} enriched hot takes to ${hotTakesPath}`)
+  if (!fs.existsSync(BATCH_STATUS_PATH)) {
+    console.error('No batch status found. Run --submit-batch first.')
+    process.exit(1)
+  }
 
-  // Cost estimate
-  const inputTokens = toProcess.length * 150  // ~150 tokens per hot take
-  const outputTokens = toProcess.length * 100  // ~100 tokens per enriched result
-  const inputCost = (inputTokens / 1_000_000) * 3
-  const outputCost = (outputTokens / 1_000_000) * 15
-  const totalCost = inputCost + outputCost
+  const status: BatchStatus = JSON.parse(fs.readFileSync(BATCH_STATUS_PATH, 'utf-8'))
+  const client = new Anthropic({ apiKey })
 
-  console.log(`\nEstimated cost: $${totalCost.toFixed(2)}`)
+  console.log(`Checking batch: ${status.batchId}\n`)
+
+  const batch = await client.messages.batches.retrieve(status.batchId)
+
+  console.log(`Status: ${batch.processing_status}`)
+  console.log(`Request counts:`)
+  console.log(`  Processing: ${batch.request_counts.processing}`)
+  console.log(`  Succeeded: ${batch.request_counts.succeeded}`)
+  console.log(`  Errored: ${batch.request_counts.errored}`)
+  console.log(`  Canceled: ${batch.request_counts.canceled}`)
+  console.log(`  Expired: ${batch.request_counts.expired}`)
+
+  if (batch.processing_status === 'ended') {
+    console.log(`\nBatch complete! Downloading results...\n`)
+
+    const results: string[] = []
+    const resultsIterable = await client.messages.batches.results(status.batchId)
+    for await (const result of resultsIterable) {
+      results.push(JSON.stringify(result))
+    }
+
+    fs.writeFileSync(BATCH_RESULTS_PATH, results.join('\n') + '\n')
+    console.log(`Wrote ${results.length} results to ${path.relative(process.cwd(), BATCH_RESULTS_PATH)}`)
+    console.log(`\nNext step: npx tsx scripts/enrich-hot-takes-with-claude.ts --merge-results`)
+  } else {
+    console.log(`\nBatch still processing. Check again later.`)
+  }
+}
+
+async function mergeResults() {
+  console.log('=== MERGE RESULTS ===\n')
+
+  if (!fs.existsSync(BATCH_RESULTS_PATH)) {
+    console.error('No batch results found. Run --check-batch first (after batch completes).')
+    process.exit(1)
+  }
+
+  const idOrderPath = path.resolve(__dirname, '../data/enrichment-id-order.json')
+  if (!fs.existsSync(idOrderPath)) {
+    console.error('Missing enrichment-id-order.json. Run --prepare-batch first.')
+    process.exit(1)
+  }
+
+  // Load source data
+  const hotTakes = loadHotTakes()
+  const idOrder: string[] = JSON.parse(fs.readFileSync(idOrderPath, 'utf-8'))
+
+  // Build lookup: id → hot take index in the full array
+  const idToIndex = new Map<string, number>()
+  for (let i = 0; i < hotTakes.length; i++) {
+    idToIndex.set(hotTakes[i].id, i)
+  }
+
+  // Parse batch results
+  const resultLines = fs
+    .readFileSync(BATCH_RESULTS_PATH, 'utf-8')
+    .trim()
+    .split('\n')
+    .map((line) => JSON.parse(line))
+
+  // Sort by custom_id to ensure order
+  resultLines.sort((a: any, b: any) => {
+    const aIdx = parseInt(a.custom_id.replace('enrich-', ''))
+    const bIdx = parseInt(b.custom_id.replace('enrich-', ''))
+    return aIdx - bIdx
+  })
+
+  let enrichedCount = 0
+  let failedCount = 0
+  let validationFailedCount = 0
+  const intensityCount: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+
+  for (const result of resultLines) {
+    const batchIdx = parseInt(result.custom_id.replace('enrich-', ''))
+    const batchIds = idOrder.slice(batchIdx * BATCH_SIZE, (batchIdx + 1) * BATCH_SIZE)
+
+    if (result.result?.type !== 'succeeded') {
+      console.warn(`Batch ${batchIdx} failed: ${result.result?.type}`)
+      failedCount += batchIds.length
+      continue
+    }
+
+    // Extract JSON array from response
+    const content = result.result.message.content[0]
+    if (content.type !== 'text') {
+      console.warn(`Batch ${batchIdx}: unexpected content type`)
+      failedCount += batchIds.length
+      continue
+    }
+
+    let parsed: any[]
+    try {
+      let text = content.text
+      text = text.replace(/```json\s*/g, '').replace(/```\s*/g, '')
+      text = text.replace(/,\s*([}\]])/g, '$1')
+      const jsonMatch = text.match(/\[[\s\S]*\]/)
+      if (!jsonMatch) throw new Error('No JSON array found')
+      parsed = JSON.parse(jsonMatch[0])
+    } catch (e) {
+      console.warn(`Batch ${batchIdx}: failed to parse JSON`)
+      failedCount += batchIds.length
+      continue
+    }
+
+    for (let i = 0; i < batchIds.length; i++) {
+      const takeId = batchIds[i]
+      const enriched = parsed[i]
+      const htIndex = idToIndex.get(takeId)
+
+      if (htIndex === undefined) {
+        console.warn(`ID ${takeId} not found in hot-takes.json`)
+        failedCount++
+        continue
+      }
+
+      if (!enriched || typeof enriched !== 'object') {
+        failedCount++
+        continue
+      }
+
+      // Build enrichment result for validation
+      const enrichmentResult: EnrichmentResult = {
+        id: takeId,
+        statement: enriched.statement || hotTakes[htIndex].statement,
+        agreeReasons: enriched.agreeReasons || [],
+        disagreeReasons: enriched.disagreeReasons || [],
+        intensity: enriched.intensity || 3,
+        intensityRationale: enriched.intensityRationale || '',
+        validationPassed: false,
+      }
+
+      const validation = validateEnrichment(enrichmentResult)
+      enrichmentResult.validationPassed = validation.valid
+
+      if (!validation.valid) {
+        validationFailedCount++
+        if (validationFailedCount <= 10) {
+          console.warn(`  Validation failed for ${takeId}: ${validation.errors.join(', ')}`)
+        }
+      }
+
+      const now = new Date().toISOString()
+
+      // Update hot take in place
+      hotTakes[htIndex] = {
+        ...hotTakes[htIndex],
+        statement: enrichmentResult.statement,
+        agreeReasons: enrichmentResult.agreeReasons,
+        disagreeReasons: enrichmentResult.disagreeReasons,
+        intensity: enrichmentResult.intensity,
+        intensityMetadata: {
+          aiGenerated: enrichmentResult.intensity,
+          lastUpdated: now,
+        },
+        enrichmentMetadata: {
+          model: 'claude-sonnet-4-5-20250929',
+          validationPassed: enrichmentResult.validationPassed,
+          timestamp: now,
+        },
+      }
+
+      intensityCount[enrichmentResult.intensity]++
+      enrichedCount++
+    }
+  }
+
+  console.log(`\n=== Results ===\n`)
+  console.log(`  Total unenriched: ${idOrder.length}`)
+  console.log(`  Successfully enriched: ${enrichedCount}`)
+  console.log(`  Failed (API errors): ${failedCount}`)
+  console.log(`  Validation warnings: ${validationFailedCount}`)
+
+  console.log(`\nBy intensity:`)
+  for (let i = 1; i <= 5; i++) {
+    const label = ['', 'Chill', 'Casual', 'Engaged', 'Heated', 'Existential'][i]
+    console.log(`  ${i} (${label}): ${intensityCount[i]}`)
+  }
+
+  // Write updated hot takes
+  fs.writeFileSync(HOT_TAKES_PATH, JSON.stringify(hotTakes, null, 2))
+
+  const totalEnriched = hotTakes.filter(ht => ht.enrichmentMetadata).length
+  console.log(`\nUpdated hot-takes.json: ${totalEnriched}/${hotTakes.length} now enriched`)
+
+  // Show intensity distribution of all enriched
+  console.log(`\nFull intensity distribution:`)
+  const fullDist: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+  for (const ht of hotTakes) {
+    if (ht.enrichmentMetadata) {
+      fullDist[ht.intensity || 3]++
+    }
+  }
+  for (let i = 1; i <= 5; i++) {
+    const label = ['', 'Chill', 'Casual', 'Engaged', 'Heated', 'Existential'][i]
+    console.log(`  ${i} (${label}): ${fullDist[i]}`)
+  }
+}
+
+// ─── Main ────────────────────────────────────────────────────────────────────
+
+async function main() {
+  const args = process.argv.slice(2)
+
+  if (args.includes('--dry-run')) {
+    await dryRun()
+  } else if (args.includes('--prepare-batch')) {
+    await prepareBatch()
+  } else if (args.includes('--submit-batch')) {
+    await submitBatch()
+  } else if (args.includes('--check-batch')) {
+    await checkBatch()
+  } else if (args.includes('--merge-results')) {
+    await mergeResults()
+  } else {
+    console.log(`Usage:
+  npx tsx scripts/enrich-hot-takes-with-claude.ts --dry-run         # Stats on unenriched takes
+  npx tsx scripts/enrich-hot-takes-with-claude.ts --prepare-batch   # Generate batch JSONL
+  ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts --submit-batch   # Submit batch
+  ANTHROPIC_API_KEY=xxx npx tsx scripts/enrich-hot-takes-with-claude.ts --check-batch    # Check status
+  npx tsx scripts/enrich-hot-takes-with-claude.ts --merge-results   # Merge into hot-takes.json`)
+  }
 }
 
 main().catch(console.error)
