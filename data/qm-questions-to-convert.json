@@ -1,0 +1,4912 @@
+[
+  {
+    "question": "Could the use of nuclear weapons ever be justified?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is it ethical that animals suffer so humans can have safe medical and beauty products?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Would you risk your life to save another person?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "What would be the most ethical way to give away $5 million?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should murderers face the death penalty, or should we try to rehabilitate them through the justice system?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "If you could cheat on your wife and she’d never find out, would you do it?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are there any times or circumstances where lying, stealing, adultery, or murder is justified?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is a victimless crime a crime?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "If you found a brand new iPhone in the street, would you hand it to the police or keep it?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should children be circumcised at birth when they can’t provide consent one way or the other?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "If someone robbed a bank but donated the money to charity, should they be arrested?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should we actively limit the population of the planet?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Does humanity have the right to colonize other planets?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "If you hit a pedestrian while driving and there were no witnesses, would you drive off or stop and help them?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you think countries with higher emissions should pay reparations to low-carbon-emitting countries?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "If your next-door neighbor’s wifi has no password, is it right or wrong to use it without their permission?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "If lab-grown meat became available for cheap, would we be justified in killing animals and eating them?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are we doing enough to protect our planet’s oceans?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Why is death row so unethical?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are jails ethical?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is the justice system fit for purpose?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is it ethical to experiment on prisoners?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should we aim to rehabilitate prisoners or punish them for their crimes?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should prisoners be used for labor?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you think private prisons are unethical?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should healthcare be privatized?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is access to healthcare an ethical issue?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Would public healthcare be better than private?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you think people with low incomes have the same access to healthcare as people with higher incomes?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is it ever ok to break patient confidentiality?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "How serious is patient confidentiality?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should medical euthanasia be made legal?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you think patients should receive medication in trial periods?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should vaccinations be made mandatory?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you believe the mainstream media gives all sides of the story about healthcare and vaccines?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do social media platforms control us?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Does social media polarise society?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is social media good for mental health?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is Facebook a safe place?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you agree with the banning of social media in certain countries?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should more be done to protect children on social media?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should social media be able to track your location?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should filters that change your appearance be banned from social media?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should celebrities be given privacy?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should celebrities be involved in politics?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are celebrities good role models?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should there be a wage cap for celebrities?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do you think celebrities should be able to promote products?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is celebrity culture positive?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are all races, genders, and identities treated equally in the celebrity culture?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should selfies be banned?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should politicians pay tax?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is there corruption within politics?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should politicians be able to sit on boards or be involved with large, wealthy corporations?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should politicians be allowed any links to Facebook?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should politicians be given more protection?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should politicians be paid more?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should politics be more transparent to the public?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "How does the government promote transparency?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are you in favor of a sugar tax?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should alcohol be made illegal?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should meat consumption be discouraged in the Western world?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should fast-food chains be able to advertise on TV?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Do we need to encourage more children to cook at school?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should soft drink companies take more responsibility for ocean pollution?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "What would be wrong with advertising a plant-based diet at the government level?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "How can we make healthy food more accessible?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is the food system free from discrimination?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "How can consumers be more involved in reducing food waste?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should plastic packaging be made illegal?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Should chemicals and additives be allowed in food?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is food marketing ethical?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Are big supermarket chains responsible for putting smaller businesses in jeopardy?",
+    "sourceFile": "ethical-questions.json",
+    "sourceSlug": "ethical-questions"
+  },
+  {
+    "question": "Is there such a thing as free will?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is striving for improvement in one’s life a core component of human happiness?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is capitalism the best system for modern society?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Must we have evidence to know the truth?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is the meaning of life the same for humans and animals?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Should animals have the same basic rights as humans?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "At what point does more money cease to improve one’s happiness?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If virtual reality programs continue to improve year after year, then at some point will theybe indistinguishable from reality?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it a positive thing when Western companies build factories in poorer nations and paywages much lower than those in Western countries?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If you could replay your life from the start, what would you change?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it always wrong to lie? If not, when should you lie?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "For how long into the future will civilization continue?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it possible to be happy without sadness?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is suffering necessary to make life worthwhile?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does nature or nurture form someone’s personality?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Would you kill five people to save one?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How would you define happiness in life?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Would what it means to be human change if we could live to 500?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does life have a reason? Or is there no reason?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it wrong to focus on great challenges such as space exploration before ending worldpoverty?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Do animals experience consciousness in the same way we do?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How much does language affect the way we think?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why are people told to respect the dead?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Do acts of kindness frequently have a motive behind them?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What are thoughts, and where do they come from?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are all lives equal? Should you value the life of a direct family member the same as anunknown person elsewhere on the planet?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are there limits to human creativity?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will people from the future look back at us in the same way we look at the people from the past?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are religion and science compatible?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How much control does a person have over their own life?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How will humanity become extinct?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How long will you be remembered after you die?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does the pursuit of perfection matter in an imperfect world?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Do parallel universes exist?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If God is good, why is there so much evil in the world?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What existed before the Big Bang?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How do you think your future self will reflect on your current life choices?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How much freedom should people be allowed to have?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does absolute power corrupt absolutely?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it possible for humans to understand the full workings of the universe and existence?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If there was nothing before the universe was created, how did something emerge from nothing?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will artificial intelligence become smarter than humans?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How would you rank the top 5 biggest risks to the continuity of human civilization?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is torture ever justified?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will time travel ever become possible?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If someone jumps to their death and you could have saved them, are you complicit in their death?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it wrong for people in developed countries to have access to multiple medicines when those in the developing world have access to few, if any?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is there such a thing as absolute morality?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it ethical to clone humans?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is morality a human construct?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What rights does every human have? Do those rights change based on age?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What’s the difference between justice and revenge?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is privacy a right?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do humans often associate beauty with morality?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If it were possible to bring species back from the dead, should we do it?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What is your view on euthanasia? Should it be legal?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If very young children are considered innocent, when do people cease to be innocent?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How much attention should an individual spend trying not to offend others?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What causes the most harm in the world, but is completely avoidable?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is poverty in society inevitable?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If all humans want the same basic things, why is there so much violence and strife between people?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does religion cause more problems than it solves?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is some degree of censorship necessary?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Do we need hierarchies to function as a society?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Should full access to the internet be a fundamental human right?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What happens after we die?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What would it be like to live forever?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is there a sixth sense?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How do you know you’re free?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it possible to understand the perspective of others?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is our universe a simulation?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is an absolute truth possible?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is the present moment all we have?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How do you explain sight to a blind man and sound to a deaf man?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What is the purpose behind what we feel and think?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does the universe have any point?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is adversity a necessary part of life?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does time really exist, or is it something we perceive to be real?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are freedom and death the same?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is there such a thing as destiny?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it good to be happy all the time?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does our soul perish as well as our bodies?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is there an afterlife?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why are towels considered dirty when you get out of the shower clean?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Should a vegetarian eat animal crackers?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why can’t you buy mouse-flavored cat food?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is there a synonym for ‘synonym’?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If you save time, when do you get it back?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do we laugh when someone farts?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why is it called quicksand when you sink slowly?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If wool shrinks when it gets wet, why don’t sheep shrink in the rain?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is the “S” or the “C” silent in the word “scent?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If you drop soap on the floor, is the floor clean or is the soap dirty?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If I try to fail but succeed, which one did I do?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If Cinderella’s shoe fit perfectly, why did it fall off?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Do our pets have names for us?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why is a mustache considered attractive on a man, but not on a woman?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "At what age does a person become “elderly?”",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do pizzas come in square boxes when they are round?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do they nail down the lid of a coffin?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "When you go to a movie theatre and the seats have armrests, which one is yours and which isn’t?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do banks have branches if money doesn’t grow on trees?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do angry drivers yell at other drivers when those drivers can’t hear them?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If we expect the unexpected, doesn’t the unexpected become expected?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Why do dogs like to stick their heads out of a moving car, but they hate it when you blow on their faces?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If I slap you with a dictionary, is it considered physical or verbal assault?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If con is the opposite of pro, is congress the opposite of progress?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are you dreaming right now? How do you know?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If you were given a different name at birth, would you be a different person?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What’s the difference between a light meal and a large snack?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If nothing sticks to Teflon, how does Teflon stick to the pan?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What do you think consciousness is?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it necessary for both evil and good to both exist in life?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How would life be different if animals were the dominant species?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How would you describe what intuition is, and where do you think it comes from?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How long do you think is needed to become mature?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Under what circumstances, if any, do you think it’s OK to lie?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If plants could talk, what do you think they’d say?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If Dinosaurs could be brought back to life, would it be in favor or not?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How critical is tolerance and acceptance of others’ beliefs to world peace?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Do you believe people should have to pay for basic needs? This includes food, water, education, and shelter.",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is authoritarian government ever justified?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Would a government run with algorithms, A.I., and statistics be better or worse than the government we have now?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are politicians the best people to legislate on our behalf?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Should everyone over the age of 18 in society have the right to vote?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "How far should governments go to prevent their citizens from causing harm to themselves?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What do you think the role of a government should be? What boundaries and limitations should there be?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Could societies exist without a way to transfer value (i.e., without money or a barter system)?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What will the economy of the wealthiest nations look like in 50 to 100 years?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does revolution replace one bureaucracy with another?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If all humans want the same simple things, why is there so much violence within societies?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is the violent overthrow of power ever justified?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What are the benefits and drawbacks of diversity in society?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What is the most important right our government allows for?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is a government in the style of George Orwell’s novel, 1984, ever possible?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will humanity create a technology that endangers its survival?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Does artificial intelligence pose a threat to humanity?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is it ethical to edit the genome of an unborn child?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "At what point is a technologically enhanced human no longer a human?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will humans merge with technology, or will it evolve without us?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is technological progress unstoppable as long as humans exist, or can it be halted?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is humanity the only species in the universe to have advanced as far as we have?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "What scientific breakthroughs do you believe would have the biggest effect on humanity?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is there a limit to what humans can construct through the study of science and tech?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are cryptocurrencies the future of money?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will human consciousness be uploaded to the internet at some point in the future?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Is true artificial intelligence possible with our current technology and programming methods?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will advances in personal healthcare lead to longer lifespans for humanity?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "If it’s possible to resurrect extinct animals, should we do it?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Are there alien lifeforms with more advanced technology than us?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Will technological progress continue at its current rate, or will it increase or decrease?",
+    "sourceFile": "philosophical-questions.json",
+    "sourceSlug": "philosophical-questions"
+  },
+  {
+    "question": "Who has most impacted your life?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is it right for social media to censor certain opinions from being shared? What should happen if those viewpoints are shown to be correct later?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Are there any key changes you think you need to make to become the person you want to be?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How would it affect society if euthanasia were legal?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s more important – tremendous skill or high moral character?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is there a danger to society progressing too fast?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Do human beings have a role on Planet Earth, or are we just a plague on its surface?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Do good and evil really exist? If so, where do they come from, and do they change? If not, what does that mean for imposing morals on others?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is Bitcoin the future of money, or do you think it’s just a fad?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is everyone equal? Are we equal in some ways but not in others?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What excites you the most about the future?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Are people born talented, or is that something that’s learned over time?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is there anything you believe or think that’s considered weird or a conspiracy?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you traveled back in time to 100 years ago, what would be your greatest struggle in living back then?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What five words would you use to describe yourself? What five words would you use to describe each other?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Do people really have souls? What about animals? What part of you is a soul, and what part of you is something else?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Are tribes, groups, or cliques a good way for people to find meaning and commonality or a way of pushing others away and creating an ‘us and them’ mindset?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Does any part of us exist forever?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you’re not religious, but had to take up a religion, which would you commit to? If you’re religious but had to choose another, which would you choose, or would you be an atheist instead?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What memory in your life still causes you pain?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What was your best day, and what was your worst day?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s your opinion on how much media we consume today as a society in terms of TV and social media?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What means the most to you? Career or family?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you had to live somewhere else in the world, where would you live and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Are there any decisions you think back to and wonder what would have happened if you’d made a different one?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you had to choose absolute free speech or absolute censorship from the government, which would you choose and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What are your biggest life goals? What’s stopping you from achieving them?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you could take memories out of your brain, which would you remove?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What skill or talent would you like to be good at? What’s stopping you from being good at them?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s a core belief that you make decisions from? Do you ever worry that your core belief is wrong?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Who’s your best friend? Who’s your closest friend? If they’re not the same person, why do you think that is?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What rules would you give your children that you wish your parents had given you?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Who is the evilest person in the world? Do you think you have the capacity to be that evil?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Describe your perfect home. What do you think it tells you about your character? What answers do your friends give that tell you about theirs?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "At work, do you prefer simple tasks or challenging ones?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "When war or famine comes, art and entertainment are the first to go. Do you think art always has a place even when people are starving?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What does faith mean to you? Is there a place for faith in modern society? How do you define it?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "In what big ways has society changed due to COVID that will impact us for many, many years?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Would you ban social media for children?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If religion did not exist at all, what would the world look like?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Today we have much more choice over who we are, who we have relationships with, what jobs we have, and whether we have families or not – do you think there comes a point when too much choice is actually damaging to us?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How has the internet changed the world for the better? How has the internet changed the world for the worse? How has it changed you?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "As human beings, do you think we need to be given more rules on what to do or what not to do?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How would you solve the homeless problem in your country? What do you think is the root cause?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Should vaccines against diseases be mandatory? When are civil liberties more important than safety?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What figure has lived the most meaningful and beneficial life?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you were the leader of your country, what would you change or implement to make individuals or the wider society better? Can there be a clash of interests for individuals and wider society?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you could change one thing about your personality, what would you change and why? If you could change one thing about someone else, what would you change and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is food mainly something to give you the energy to get on with your day, or is sitting down to have a meal a big part of your day?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What unsettles you the most about the world right now?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is there a difference between someone believing in Jesus Christ as God and believing that the Jedi are real?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What do you wish you’d done when you were a child that would benefit you right now?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What historical event would you go back in time and live through if you could?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is it right for you to spend money on luxuries when people are homeless and starving around the world?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s your greatest fear, and where did it come from? Do you know if you can work through it?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Has your personality been constructed slowly over your life, or is it something you were born with?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "When you think about the world, what makes you happiest? What makes you most sad?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Who do you look up to and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What small changes would you implement to make your life better? Why haven’t you implemented these changes already?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s your biggest regret, and would you go back in time to change it? Could you change its effects in some ways now?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Who would you want to save the life of and why? Have you saved someone’s life?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Do opposites attract, or is that a myth? Do you see this in friends and family relationships?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Does life have meaning? If yes, what? If not, can you find your own meaning anyway?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If death isn’t the end, how would that change the way you live your life?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How do you want people to remember you?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you could change someone else’s decision in your personal history, what would it be and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is it hypocritical to be a vegan because you believe meat is murder, but be pro-abortion? Is killing human life and animal life the same or not?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you had to live in blistering hot weather or freezing cold weather for the rest of your life, which would you choose?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What do you miss from your childhood? Is there any way of getting it back, or would you want to leave it in the past?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What is something that doesn’t disturb most people, but really bothers you?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How do you deal with stress? Do you handle it well or poorly?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Are possessions good or bad? Where’s the line between too little and too much?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you tried to make every moment of your life meaningful, would that be liberating or stressful?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What was the biggest adjustment you had to make upon visiting another country?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How have you most embarrassed yourself in a social setting? Was it entirely your fault?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Who is the most morally good person in the world? Do you think you have the capacity to be that good?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you had to lose one sense, which would you choose? How would it negatively impact your life?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What is accepted in wider society right now that will be considered wrong in the future?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s the scariest thing you’ve ever had to do? Would you do it again?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What do you think is your greatest personality trait? What’s your friend’s greatest?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you had to choose only small talk or deep conversations for the rest of your life, which would you choose and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What’s the difference between killing and murder? Is there one?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Who annoys you the most? Why do you think that is? Is there a personality clash?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Which would you choose between – the best TV or the best cinema trips for a year?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Describe your perfect vacation. What does that tell you about your personality? What do others’ answers tell you about theirs?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What will cause the end of the world? War, hunger, or climate change?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What gets you the most passionate in life? Why is that?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If there is a third world war, where will the main threat come from, and where will the lines be drawn?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How have people become successful? Circumstance, character, or something else?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "How much do you read? Would you like to read more? What’s stopping you?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What thing in your life gives you the greatest meaning? Work? Family? Friends? Interests?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is there a book, movie, speech, or conversation that has shaped your life more than anything else?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "For there to be good, does that mean there must be evil? For there to be evil, must there be good?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "What are your biggest strengths? What are your biggest faults?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you could remove one emotion from human beings, which would you choose and why?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is free will real or just a societal construct? If it’s real, how do we ultimately make decisions? If not, can anyone be held accountable for their actions?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If you could snap your fingers and change your life, what would your life be like?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Is the pursuit of happiness the most important thing? If not, what’s the most important thing?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "If the world were ending in a week, what would happen to society?",
+    "sourceFile": "deep-conversation-starters.json",
+    "sourceSlug": "deep-conversation-starters"
+  },
+  {
+    "question": "Would you sacrifice yourself for someone you didn’t know?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could speak to one relative who was no longer here, what would you say to them?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you see yourself as a role model for other people in your life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s the most important life lesson you’ve learned from your parents or guardians?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could give one piece of advice to your younger self, what would it be and why?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When you were younger, where did you imagine you would be at your current age?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What impression do you think people get when they first meet you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you relocate to be with someone you love? How far would you travel?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you want the ability to pick the gender and appearance of your baby?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What has been the most challenging part of your life so far, and how did you overcome the challenges?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Does religion have a place in the modern world, or is it an antiquated concept?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Is suffering part of the human condition? If so, does suffering make life more or less worthwhile?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Does travel broaden your horizons and make you more empathetic and compassionate?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Is it true that life can only be lived forwards but only understood backward?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Are actions or words more important when it comes to judging a person’s character?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Is a little insanity the price to pay for being a creative person?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could choose to work in another career for a week, what would it be and why?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What can humans do to reverse the effects of climate change?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think of humans moving off the earth and living on other planets?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s a book that changed your view of the world?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s your fondest memory from your childhood?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you ever take time to think about how much you’ve achieved in your life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When was the last time you did nothing?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What qualities do you most admire about your friends?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your family’s most significant achievements?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Have you ticked anything off your bucket list? If not, when will you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s your proudest moment?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Have you ever let life get on top of you? What happened?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on renewable energy?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Which parent are you closer to?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Are you comfortable in your own company?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When people look back on your life, what do you want them to think about you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you had one day to live, what would you do for your last day?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What experiences have made you a better person?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What book has had the most impact on your life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What music always touches your soul when you hear it?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you enjoy most about your life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What was your dream career growing up?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you say that you’re a spiritual person?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When do you think the right time to have a baby is?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Where has been your favourite place to visit?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you take someone back who cheated on you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What is your idea of the perfect relationship?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Whose philosophy on life do you most admire?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you ever judge someone before you’ve ever met them?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When someone first meets you, what do you think they notice first?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What makes a perfect vacation?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you do when you need to de-stress?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think is the role of humans on this planet?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your biggest fears in life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you had one wish, what would you choose?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s the craziest thing you’ve ever done for love?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When was the last time you experienced an adrenaline rush?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What does an ideal weekend look like to you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When did your last relationship end?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would the people who know you say you were an aggressive person?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Have you ever thought about changing religion? If so, what religion did you want to switch to?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on staying friends with your ex’s?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Does getting old scare you? If so, what scares you about it?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could go back in time, what’s one thing you would make illegal?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What was the best thing about how your parents raised you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What would be the best conspiracy you could make up?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Why do we dream?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could switch genders for a week, would you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s the craziest thing you’d do to become rich?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on God?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Is there anything you’re ashamed of from your past?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you had to pick one person, who in your family would you miss the most if they died?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Have you ever felt guilty that you hadn’t given everything?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on the current political state of the country?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What is a perfect life in your eyes?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What common traits about people do you most dislike?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What in the future makes you excited?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think happens after we die?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What in life gives you the most comfort?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s more important, health or fun?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think of the theory that life is just a dream?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you consider buying lab-grown meat?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think about the vegan movement?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Where do you get your motivation from?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What has been your loneliest moment?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What has been the most challenging goodbye you’ve had?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What is something that should never be joked about?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What happy memory with a loved one always sticks in your head?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s your strangest habit?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you care for everyone around you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you look for in a future partner?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What would you do if your parents disliked your partner?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you write down your thoughts in a diary?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on online dating sites?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What have your past relationships taught you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s a common thing to think about when you’re alone?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Why did you choose the college you went to?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your personal goals for the next ten years?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could erase something from the past of humanity, what would it be and why?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you could live someone else’s life, who would they be and why?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think you were in a past life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What is the darkest thought you’ve ever had and not told anyone about?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Is there a current world event you find unsettling?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What decision in your life had a positive impact on your life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What makes you feel empowered?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s your favorite movie line of all time?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think is more important, material wealth or spiritual wealth?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What age are you next looking forward to the most and why?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you say that you procrastinate a lot?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What does sex mean to you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "How would you address and resolve the current global poverty gap?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What part of your life have you felt the most vulnerable?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s your definition of true evil? Have you ever witnessed it?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What were your first thoughts of me when we met?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What job did you always want but never applied for?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your opinions on war?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are the pros/cons of being a conscientious objector?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Why don’t men express their feelings more?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Out of everyone you know, who is the hardest worker?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s a significant turnoff for you in any relationship?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you enjoy about being creative?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When someone knocks your confidence, are you able to bounce back?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What does your love life look like at the moment?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on mass social control and censorship?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you ever think that your life could be like the film The Truman Show?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you had the power, how would you deal with the current homeless crisis?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would there be any benefits to having one leader for the world?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Are you happy with the person that you’ve become?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What rules have you broken in the past?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What makes you different from everyone else?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What is your biggest insecurity in life?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s your opinion on same-sex marriages?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you earn what you think you’re worth?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "How do you get countries with complex, long-standing issues to communicate and reach an agreement?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Will there be a time when we will have world peace?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What can you do this week to make it a better week than the last?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What do you think of the current state of the police service in the United States?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "How important is having a family to you?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you relocate for your perfect job?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "How do you react to an uncomfortable situation?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Would you like the ability to influence people’s decisions?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What goals do you have in your current job?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "How much money would you need to feel rich?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Do you actively seek out new things to learn?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What is your experience and thoughts on the COVID vaccine?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When your sports team loses a big match, how upset do you get?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What are your thoughts on the black lives movement?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s one thing that you wish women understood about men better?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "Have you ever protested something?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What qualities did you dislike and like about your ex?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What internal problem facing your country do you most care about?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s the most adventurous thing you’ve done as a last-minute decision?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "In what way would you raise your children? Would you be a strict or chill mom?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What’s one thing that you wish men knew about women?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When was the last time you cried with joy?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What family traditions would you like to keep alive in your family?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "What would be the longest you could live without looking at your mobile phone?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "If you put your mind to a task, do you think it’s always achievable?",
+    "sourceFile": "deep-questions-to-ask.json",
+    "sourceSlug": "deep-questions-to-ask"
+  },
+  {
+    "question": "When we went on our first date, what was the first thing you noticed about me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What impressed you most about me when we met?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What value do you think would be most important to pass on to our children?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Knowing what you know now, what are my top five flaws?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you could change anything about our relationship, what would it be and why?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s one thing you would never want to change about me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When have I most surprised you during our relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been one of your favorite moments in our relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What stage of our relationship have you found the most challenging?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If we could go anywhere on vacation right now, where would you go and why?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What activity, that we do together, do you enjoy so much that you’ll never get tired of doing it?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Did you think this relationship was going to last this long when we got together initially?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Are you afraid that with age, we might grow apart in the relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Be honest, is there anything I could do to make this relationship better for you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If I had to move away for work, would you still be willing to continue the relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What life event had a positive impact on you as a person?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Who’s a hero of yours, and what qualities do you like about them?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What was the last thing you did that you genuinely got excited about?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "As a couple, what do you think are our greatest strengths and weaknesses?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What makes our relationship unique compared to others around us?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "How has our relationship changed since we first met?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What things would cause you to end a relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you think is the most adventurous thing we’ve ever done together?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What characteristics do you think are essential for a solid and healthy relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Has there been a time when you needed reassurance from me, but I failed to give it?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Who was your favorite author as a child?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you have any secrets from me? Do you feel comfortable talking about them?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What scared you most about ageing?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you hold any regrets in life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What was your dream career growing up as a child? Do you think you will ever succeed in getting this career if you aren’t doing it already?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Have you ever been hurt or betrayed by someone close to you? Tell me what happened.",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been a challenge in your life so far? How did you overcome it?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Would you like to change anything about yourself?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Why do you think we are so compatible?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "How well do you think we handle disagreements?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been our biggest obstacle?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Is there anything you need to let go of in life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Name a time when you felt most fulfilled?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What are your most significant weaknesses as a person?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When you appear to be worried or hurt by something, what can I do to support you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you had to describe me to someone, what would your description include?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "How can I assure you that I love you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What issue, which can sometimes be seen as controversial, do you have a strong opinion about?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What are some actions you take to show me that I’m important in your life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What can I do to show how much I appreciate you and all you do for us as a family?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s still a significant goal in your life that you haven’t yet achieved?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Where do you see yourself ten years from now?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you had the power, what would you change about the world?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Is there a time you can remember when you felt the real you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What are the two things you like most about yourself?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Which joint possession that we own do you cherish the most?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If I were to pass away suddenly, what would you say at my funeral?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Tell me a time when I made you laugh uncontrollably?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you think has been our biggest struggle?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "In life, what values do you consider to be the most important?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What does your perfect day look like?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What in your life are you most grateful for?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you could wake up tomorrow with one quality or talent, what would it be and why?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If a psychic could tell your future, what would you want to know?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been our most significant accomplishment as a couple?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What is your most treasured memory of us?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What does friendship mean to you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Does the role of love and affection play a big part in your life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "How close is your family? Do you feel that you had a loving childhood?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you consider your relationship with your mother to be strong?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Tell me what you like about me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been an extremely embarrassing moment in your life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When did you last cry in front of someone?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you were to lose your ability to talk this evening, what would you regret not saying to someone?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If our house were to catch on fire and all your loved ones were out of the property, what other thing would you save?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What dreams do you have when it comes to spending the future together?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you have a rule you would never break?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Who do you think shows more emotion between us?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do we both contribute to this relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Would you change anything about me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Describe our love in one word?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you consider me to be your soulmate?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What romantic thing that I do, do you like the most?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When did you feel the most open with me in this relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If we were to end the relationship tomorrow, what would you miss the most?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Is there a question you’ve always wanted to ask me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What always gets you excited?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Does our love ever frighten you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What can’t you get enough of in our relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What often scares you about falling in love with me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Describe me in one word?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Is there anything you would like to see more of from me in this relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you consider me to be a romantic?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Would you ever want to be in a causal relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What one thing that I hate about myself, do you secretly love?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do I listen enough to you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Are you always open and honest with me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What physical features do you like most about me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What location is unique to both of us?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When did you know you loved me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What memory always sticks in your head about how we first met?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you weren’t the father of our children, what would you have liked to do instead?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been the most valuable lesson you’ve learned from your parents?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What are your favoritedate night dinner recipes to cook together?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When you were younger, did you expect you would be in a relationship like this?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What happened in the last dream you had about us?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you like about my personality?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Have you been hurt in the past?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "How do you calm yourself down when you get angry?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Did you have any fears before getting into this relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you like to read daily?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "In your opinion, what is the most emotional movie scene of all time?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you like to have your own company?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Up to now, when have you felt most alive?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you sometimes choose to ignore difficult topics?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Have you ever felt like a complete failure?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What personality types do you most enjoy being around?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Before meeting me, what was the biggest secret you had kept?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you consider yourself to be spiritual?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What political/world issue is most important to you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Before you met me, had you ever had your heart broken by someone?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Has there ever been an occasion when you cried tears of joy?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Have you broken someone’s heart before?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What change you’ve made in your life are you most proud of?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What feelings do you get when you return to the place where you grew up?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you usually find yourself dreaming about?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you had the opportunity never to feel pain, would you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you think happens to us after we die?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What instantly comes to mind when I say beauty?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Where do you think real happiness comes from?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Is freedom in a relationship important to you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If I had to answer any questions truthfully, what would you ask me and why?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s the best life lesson you’ve learnt to date?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Are your priorities different now from what they were as a teenager?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Who do you trust with your life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s something you could do every day for a week and never get bored?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What activity always helps you recharge your batteries?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Have you ever had a nightmare involving you and me?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What must you achieve before you leave this world?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When did you last feel in awe at something?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Would you sacrifice your life for mine?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What life skills need to be taught in school but aren’t?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you find most unsettling about your life currently?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What people are you happy you no longer have in your life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you hadn’t met me, would you have been content with being single for the rest of your life?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Are you superstitious?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What characteristics do you least like when looking for love?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Have you missed a past opportunity you now massively regret?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you could change careers tomorrow, what would you do instead?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Did you ever experience anger issues as a child?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What parts of your parents do you think you’ve inherited?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What moment in childhood scared you the most?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What toy meant the most to you as a child?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you still have any childhood habits?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you think your childhood self would think of your adult self today?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "How much time going out with friends do you think is reasonable when you’re in a relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s the worst mistake a parent can make when bringing up children?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If we could experience something new as a couple, what would it be and why?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you could take me somewhere that meant a lot to me as a child, where would it be and why?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Do you ever get bored with your life currently?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Is there anything I do that really bothers you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Where is on your travel-bucket-list?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "When we eventually become parents, would you still make spending quality time together a priority?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What would be your philosophy when raising children?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "Which traits do you have that you would like your children to inherit?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "If you woke up tomorrow with the ability not to fear, what would you do?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What has been the biggest blessing in disguise in your life so far?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s something that you find hard to tolerate?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What does a perfect day look like to you?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What’s always something that never ends well when it comes to our relationship?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What do you think our relationship is lacking?",
+    "sourceFile": "deep-questions-for-couples.json",
+    "sourceSlug": "deep-questions-for-couples"
+  },
+  {
+    "question": "What 3 qualities do you look for in a partner?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What 3 things are most important for maintaining a healthy and enjoyable long-term relationship?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Which of your closest friends has had the most positive impact on your life, and why?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What actions make you feel loved and appreciated in a relationship?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What goals would you most like to achieve over the next 5 years?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you see children in your future?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What qualities would you look for in a man to consider starting a family together?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What principles do you feel are most important when bringing up a family?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Are you happy with where you are in your career? Do you feel appreciated in the workplace?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there anything in the past you were working toward that you gave up on, but you’d love to try to finish?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What skill or interest would you most like to learn/pursue this year?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you didn’t need to worry about money, what would you choose to do with your time?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you ever imagine yourself as an old woman? What do you think your life will be like?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Would you move to a remote location with a partner if you really loved them?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If your partner were unfaithful, under what circumstances do you think you could forgive them?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If your best friend were cheating on their partner, how would you manage that situation?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Which 3 famous people would you choose to have dinner with?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Which famous person would you most like to get drunk with?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What controversial opinion do you have, but usually keep to yourself?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Were there any events in your life that you feel made you suddenly grow up fast?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Which childhood memory really sticks out for you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What do you most enjoy about your job? If that wasn’t there, would you still do it?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s your love language (as in the way you feel loved)?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there a connection between physical and emotional intimacy, or are they separate?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What is the main thing that attracts you to someone?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is marriage just a legal agreement, or is there a greater meaning to it?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Where do morals come from? Why do we disagree on what’s right and wrong?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the most important part of a relationship for you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you have to feel a spark with someone, even if, in every other way, you make a good couple?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Have you ever told someone you were in love with them? In hindsight, were you correct?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Why do you think there are so many people who are lonely? Why is it so hard for people to make real connections?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the most romantic thing anyone has ever done for you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Does having children strengthen or weaken a marriage? Why?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Have you ever done online dating? What’s your opinion of it?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "In what ways is the present better than the past? In what ways is the past better than the present?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the most important trait in a boyfriend/partner/spouse?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is it important to be physically attracted to someone?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are some traits that make a good father?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the meaning of life? Is it different for each person, or is there one universal meaning for all?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How often do you lie? Do you think you’re always aware of when you do?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s your perfect lazy Sunday afternoon date?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are the things that make you feel safe?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What was the worst date you’ve ever been on?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you use social media? If you do, does it bother you how much you use it?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you could live anywhere in the world, where would you live and why?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are you passionate about? Work? Friends? Politics?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are your thoughts on abortion?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How much do you buy into our culture’s consumerist attitude?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Who are your best friends, and are they the friends you see most regularly?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Where in life would you want to be in ten years?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there some part of your personality that you dislike? Why do you dislike it, and why are you like that?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What wisdom have you learned that you would want to teach your children?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the worst thing your parents installed in you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What is the most fabulous holiday you’ve been on?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What was the best gift you got when you were growing up?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Ideally, do you think children need a mother and a father?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What most attracts you to me?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Have you ever been set up on a date?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you have children, do you think you’ll use a lot of discipline to teach them what’s right and wrong?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How do you feel about conflict? Do you shy away from it? Do you think it can help in some situations?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What way would you like to better yourself? Why haven’t you yet?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you have children, do you think you’d be tempted to pursue certain dreams or goals through them?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "When you share problems, do you want advice or just someone to listen?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What would you have done in Nazi Germany? Do you think you’d have gone along with it all or spoken out against it?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is everyone equal? What about abilities or skills? Would you save a stranger or a friend in a fire?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Why are TV shows and movies becoming more violent? Is it strange that we relax to such entertainment?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What was the best date you’ve ever been on?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "With so many people in the world, why is it hard for people to find someone to spend their life with?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you were the leader of your country, what would be the first change you would make?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How did your family celebrate holidays when you were growing up?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is it inevitable for politicians to become power-hungry and corrupt? Is this due to human beings or the system we have in place?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Are there any goals, not part of your career, you want to achieve by the end of your life?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If your country were taken over by a corrupt government or war, which country would you flee to?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there anything about yourself you used to feel insecure about but have grown more confident in over time?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "We all had dreams when we were younger. Only very few achieve them. Why do you think this is?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How important is honesty to you in a relationship, even when it’s uncomfortable?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there a genetic trait in your family you worry you may pass on to your children?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What in society are we irrationally afraid of? What are we not afraid of enough?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How long would you want to date someone before you get married to them?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How would you raise your children differently from how your parents raised you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How do you imagine your wedding day?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are your thoughts on homelessness? Should people always be helped, or is there a point where they have to pull themselves up?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "When was the last time you cried out of sadness? When was the last time you cried out of joy?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Where would you like to go on your honeymoon?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What was your longest relationship? Have you been married or engaged before?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you want to relax, what’s the thing you’re most likely to do?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "When would be too soon for a marriage proposal?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How important is it that your boyfriend/spouse/partner has a well-paid job? How about a job that is better paid than yours?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Which books, films, or music have had the biggest influence on how you see the world?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How responsible are people for their actions? What would pardon someone’s bad behavior?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you want children someday? How many do you want?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you were going through marriage problems, who would you turn to? A friend or a marriage counselor?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are your parents or family like? Are your parents still together?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you put up any barriers to others in some way to protect yourself?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are your political views? Is there anything you’re very passionate about in politics?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What are your thoughts on the depiction of love and romance we see in movies?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How important are shared values around intimacy and commitment to you in a relationship?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How important is physical affection in helping you feel close to someone?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Have you ever been through heartbreak? What happened?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "When you were a child, what did you want to be when you were older?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What do you believe happens once we die?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s your relationship with your parents like?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What hobbies do you have? Do they cost a lot to upkeep?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s an overrated part of marriage? What’s an underrated part of marriage?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What kind of dates do you enjoy?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Have you ever ‘ghosted’ someone after a date? Why did you do this?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the greatest lesson you’ve ever learned?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What would someone have to do for you to become unattracted to them?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What is your biggest regret? Would you change it if you could?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s your greatest fear?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How would you navigate your children’s access to the internet and social media?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there something secret that you’ve never told anyone but would one day tell your spouse?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Would you ever renew your wedding vows? What do you think is the point of doing that?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you were to have a midlife crisis, what do you think you’d end up doing as part of it?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Where do your values come from?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If today were your last day alive, what would you do?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How did your parents spend money when you were growing up? Do you spend in a similar way?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How many dates would you go on before making a relationship official?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you worry about being a mother? What worries you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you could tell your fifteen-year-old self one thing, what would you say to them?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s the most memorable moment of your life?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What makes life worth living for you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What do you do when stressful situations come your way?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Who has died that you miss spending time with the most?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What do you need in your life to make you happy?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Fulfilling job, fulfilling relationship, fulfilling friendships, what order would you rank these in?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What is your favorite spot in the village/town/city where you live?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you have a pet? Would you break up with someone if they flatly refused to have one?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Who would you consider your family?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Who was your biggest high school crush?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What would your perfect home be like?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What’s an enjoyable exercise for you to do?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What do you feel your life lacks?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you have any tattoos?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Have you ever found it hard to accept someone rejecting you?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Where do you shop the most?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is it OK to kiss on a first date?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Is there a children’s book or movie you still like to read or watch now that you are older?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "How comfortable are you with expressing your emotions to people you trust?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you had all the money in the world, what date would you go on?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Do you receive letters from anyone? Would you like to?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "If you were famous, would you use your fame to help others or for your own desires?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "What superpower would you have if you could have any power?",
+    "sourceFile": "deep-questions-to-ask-a-girl.json",
+    "sourceSlug": "deep-questions-to-ask-a-girl"
+  },
+  {
+    "question": "Were you serious and fully committed in your last relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you feel if your partner had to work away for 3 weeks per month?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you feel if I had a close friendship with someone of the oppositegender and we hung out from time to time?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Should a man be the one to propose, or is it ok for women to take the lead?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What’s something/somebody you would sacrifice your life for?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Should women change their last name when they get married?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If your best friend was cheating on their partner, would you tell him/her?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you found out that I was seeing someone else, what would you do?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Do men and women have different roles when it comes to parenting? Should strictnessbe varied between the two?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Do you not truly know your partner until you move in together?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I had to answer any question you asked me truthfully, what would your top 5 questions be?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Is rivalry between siblings a positive thing?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you have still gotten into a relationship with me if you had found out that I had cheated on my ex-partner?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you found out that someone who worked with your partner had a crush on them, how would you feel? Would you still be OK with them working there?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I told you I’d had multiple one-night stands after nights out, how would you feel?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How should you comfort an infant crying because they want more toys?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What do you think of my best friend? If you don’t think highly of them, tell me why",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you feel if we put off moving in together for the time being?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If your partner earned more money than you, would you be ok with this?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Is it possible to fall in and out of love with someone?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How difficult do you think it would be if someone moved to a new country to be with their partner?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you react if you found out I was messaging someone else in a flirty way?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you mind if your partner were naturally a flirty person but meant nothing by it?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What do you think about same-gender marriages?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If your partner didn’t like your parents, how would you react?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you end the relationship if my ex came up in conversation all the time?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I told you that I didn’t want kids, would you end the relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you think twice about the relationship if your current partner always made fun of you during social gatherings?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you feel If I had zero drive or ambition to work or do anything around the house? Would you still stay in the relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How do you feel about having an open marriage policy?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Have you ever set up a fake social media account to follow someone you want to know more about?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "In the past, have you ever dated two women at once?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I told you I had a crush on your best friend while I was dating you, what would you think?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What’s your opinion on experimenting in a relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I told you that I was travelling to a party hotspot alone, would you have any concerns?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you be ok with me going on a girls’/boys’ holiday?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Did you ever consider keeping me a secret from your friends and family?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you react if I told you I wanted a break from the relationship for the month without any reason?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Have you ever slept with a stranger?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Have you ever had feelings for someone of the same gender?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you feel about me having a close friendship with someone of the oppositegender and hanging out one-on-one?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you had a choice between the perfect job and me, which would you choose?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you react if your best friend told you they had a crush on me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would it be ok if I schedule some alone time (me time) in the week?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Do you have a backup if this relationship doesn’t work out?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If we got married and then divorced, would you be reasonable when it came to sorting the divorce settlement?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I were to cheat on you once, would you forgive me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you had the choice to start your life again, would you still want to be in a relationship with me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I were to turn vegan and start eating a whole plant-based diet, would you join me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would it be ok if I looked at adult websites sometimes?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Is physical intimacy a requirement for a strong relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What’s your view on polyamory? Do you think having more than one partner is okay?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Is it a problem if there is a language barrier between your family and your partner?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Who should get custody of the children in the event of a divorce?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you end the relationship if your friends told you they didn’t like me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If I were severely injured after an accident and could not care for myself, would you stay and look after me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What regrets do you have about our relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What type of parent do you think I would be, and what kind of parents do you think we would become?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Does money make a relationship more complicated?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Is there anything you regret about the way we got together?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How should you approach expenditure if one person in the relationship earnssignificantly more than the other?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Why have we not been as intimate recently?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you feel like your love for your partner wanes over time, should you end the relationship or not?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What would you do if you found out that alone I’d watched the season finale of a Netflix series we’d been watching together?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If your partner fell down a rabbit hole related to a conspiracy theory, how would you react?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How would you react if your partner forgot your birthday?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "When we first met, what attracted you to me? Do you still have that same feeling of attraction now?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you be ok with us not trying for children right now? (Without a concrete reason)",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Do you love your friends more than you love me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What would you change about the way you look?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Would you ever consider having a casual open relationship where both of you could see other people?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Could you be in a relationship with someone who had diametrically opposed political views to yours?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Are you always completely honest with me in our relationship?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "Do you ever try to search for your ex on social media?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "How many guys/girls have you dated in the past?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "What’s your opinion on people who fall in love with more than one person at once?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you found out that I’d had an affair on our wedding day, would you still marry me?",
+    "sourceFile": "controversial-relationship-questions.json",
+    "sourceSlug": "controversial-relationship-questions"
+  },
+  {
+    "question": "If you could be any fictional character, who would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If all the politicians of your country had to compete in a reality TV show of some kind, what kind of show would you create for them?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What would you do if you had the power to be invisible?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could only eat one food for the rest of your life, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to be woken up by the same piece of music every day of your life, which music would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could own a billion-dollar company that doesn’t yet exist, what would the company do?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What kind of apocalypse would you choose: zombies, an asteroid, or an alien invasion?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were a character in a fantasy role-playing game, who out of your friends or family would you recruit for your party?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What would you do if you woke up as a member of the opposite sex for the day?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What animal body part or skill would you like to have? Wings? A tail? The ability to shed your skin?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If we discovered the secret to stopping the ageing process, would you want to use it or not?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What will your country look like in ten years’ time? What about fifty years’ time? How will it have changed socially, politically, or technologically?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What would you do if you found out you were living in a Truman Show-type world, where everything was fake and for TV?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If robots became sentient and seemed as alive and as real as human beings, would you campaign for their equal rights?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to marry a Disney prince or princess, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What national monument would you like installed in your back garden?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to choose to be born as someone else and live their life, who would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What period of time would you travel to if time travel were possible? Into the future or back in time?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could get a ticket to see a singer who’s dead or a band that’s no longer together, which band or singer would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "InBack to the Future, when Marty has gone back in time, he asks his parents not to be so hard on their son; if you could give your parents some pointers, what would you say to their younger selves?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What would you do if you suddenly inherited a small country? Lead it, give it its freedom, or something else?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you couldn’t have a cake at your wedding, what would you have instead?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could start an elite club for only certain people, what would the club be, and who would be invited?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could choose an animal to become sentient and live alongside us, which would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If no one was ever canceled for what they said or did on social media, how would that change the culture of online communication?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could shapeshift into any person, what would you do with the power? Prank people? Find out what it’s like to be a member of the opposite sex or a different race? Make videos of famous people saying stupid things?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could create a teleport door from your house to anywhere in the world, where would you choose the door to go to?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If someone broke into your house, what item in your bedroom would you use to fend them off with?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What word do you hate, and if you had the power to, would ban? What word would you replace it with?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could stop time, just once in your life for an hour, when would you use it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If for every manufactured ‘good’ photo posted on social media, everyone had to post a more real ‘bad’ photo, what would the culture be like on social media?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could have a fictional character that followed you around and gave you life advice but was invisible to others, what person would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to get a tattoo of a word written on your forehead, what would you get? What would you choose for me?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could make all the decisions for one person for a week, which person would you choose and what would you have them do?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Who would you most like to get Boanthropy, where the sufferer believes themselves to be a cow?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What kind of thing would you want to be named after you?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could commission, reboot, or remake any TV show, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you became a secret Banksy-like graffiti artist, what name would you give yourself?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Whatever you do for the next week will be erased from time and the memory of everyone but you – what do you do?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could have one magic spell, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could be a superhero, so you would have their powers, but then also their life, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were to win an award, what do you think you’d win? What would your friend(s) win an award for?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could bring any author back from the dead to write a new novel or comic, or finish one that they never finished, which author would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could remove a memory from someone else’s brain, which person would you choose and what memory would you take?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had a magic spell to cause anyone you want to fall in love with you, do you think you’d use it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you found out a member of your family had committed a heinous crime, what would you do? Would you tell them you know? Would you report them to the police?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "You’re having a hot tub party – which four people, alive or dead, do you choose to join you for the party?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could only eat one food for every meal for the rest of your life, which food would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were a superhero but had no superpowers, what would be your way of saving people and fighting enemies?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Would you increase your life satisfaction if it meant that it was going to be shorter?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could take holidays in alternate realities where your life is very different, but the caveat would be that an alternate you also takes a holiday in your life, would you?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could live in any fictional world, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What would you be most likely to become a celebrity of?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to choose a song to play in your head every time you went for a walk, what song would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If a genie turned up and gave you three wishes, what would your wishes be? (No infinite wishes, no infinite genies!)",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Would you prefer to have bottoms on your toes and mouths on your fingers, or mouths on your toes and bottoms on your fingers?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could do all of your work with the snap of your fingers, would you? What would be the downside of this power?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What would you do if you suddenly owned Disney, Amazon, and Apple?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to have three housemates, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If there were a film about your life, who would play you? Who would play your family members?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to come up with new names for the months of the year, what would you call them?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to be any animal, which would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could only use one social media for the rest of your life, which would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were to create or abolish any laws in your country, what would you do?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could remove one of your bodily functions, which would you get rid of? If you could add a bodily function, which would you add?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could add one thing to the sky, what would it be?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could travel the stars with aliens for the rest of your life, but never see your family and friends again, would you?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could be the one to have invented something, what would you have liked to have invented?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Would you rather everyone around you be constantly annoying, or be constantly annoying to everyone?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you became a member of the royal family for a week, what would you do with it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Pixar Animation Studios has a cereal bar that is stocked with every cereal you could imagine – what kind of ‘bar’ would you have at your place of work?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to be an inanimate object for the day, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to go back in time and fight in any war, which would you choose and why? Does the probability of death come into it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If everyone had a facial tick when lying, like Pinocchio’s nose growing, how would that change the way we communicate?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could have a therapy session with any person, living, dead, or fictional, who would you choose and what do you think they’d say to you?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were the leader of your country, what laws would you bring in?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could live someone else’s life for a week, whose would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were given a million for each toe you cut off, how many toes would you have left afterwards?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could, what inanimate object would you make edible because it just looks so tasty? A pillow? Soap? A book?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could try a job just for one day, and you’d know exactly what you were doing, which job would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If tomorrow were to go perfectly, what would happen on that day?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to go color-blind or have to sleep with your eyes open, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were given the opportunity to go deeper in the ocean than anyone has ever gone, would you go?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you found out that you had an identical twin, do you think you’d instantly get on or find it hard to move past the sudden revelation?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had the power to go back in time and change decisions made in casting, script, or direction of any movie series or TV series, what would you choose and what would you change?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to live in another one, which historical era would you like to live in?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you found out you were a clone, what would you do?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If there were a democratically elected one-world government, how long do you think it would take for it to become corrupt?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What tech or gadget that was in futuristic movies of the past, that haven’t come to fruition, would you choose to exist?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could be a fly on the wall for any conversation in history, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were given control of all the wealth in the world, what would you do with it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could have dinner with anyone alive or dead, who would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you won the lottery, what would be the first thing you’d do with your money?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could make something grow on trees, not money, what would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you suddenly became a cat, what would be the first thing you’d try to do?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to lose a room in your house, which would you choose – living room, bedroom, bathroom, or kitchen?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What makes you the happiest? What makes you the saddest?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Whatpotential scenarios for the futureare you looking forward to? Which ones are you apprehensive about?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could have a photographic memory or have the ability to pick up skills very quickly, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could get royalties from any novel, song, TV show, movie, or stage play, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Do you think the world would be better without caffeine or without alcohol?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could cast an actor in a movie or TV role that you think they’d be perfect for, which actor would you choose for what role?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could live your life and never have to sleep a wink, would you? You could get so much done, but how would it affect you mentally?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to choose between freedom and security, which would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Which argument would you like to settle once and for all?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were in danger and needed saving by a superhero, which superhero would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Would you prefer for everyone’s thoughts to be thought aloud, or shown visually on a screen on their stomachs?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What’s something terrible you’ve done? Would you prefer it posted on every billboard in your country, or would you prefer to do it again?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you suddenly owned Facebook and were in charge, what would you do with it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "What piece of clothing would you add something to, to make it better?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "Would you prefer to live on the Moon or Mars?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to have an extra something on your body, what would you choose and why?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could hear one sentence from the afterlife, what do you think you’d hear?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you were a living toy, like in Toy Story, would you be a wonderful child’s plaything or would you mess with your child and freak them out?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you had to make your house out of any food, which would you choose?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you owned a house in every country in the world, how would that affect your life?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you could go back and change something you said or did that you regret, would you? How would it change your life for the better or worse?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If you made a sandwich right now, what filling would you put in it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  },
+  {
+    "question": "If a new color were invented, what would you call it?",
+    "sourceFile": "hypothetical-questions.json",
+    "sourceSlug": "hypothetical-questions"
+  }
+]
