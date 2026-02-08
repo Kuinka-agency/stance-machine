@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { HotTake, StanceCategory, Stance } from '@/lib/hot-takes'
 import AgreeDisagreeButtons from './AgreeDisagreeButtons'
 import ReasonTagPicker from './ReasonTagPicker'
@@ -36,8 +35,6 @@ export default function CategoryCard({
   onSkip,
   isSpinning,
 }: CategoryCardProps) {
-  const [showReasons, setShowReasons] = useState(false)
-
   const availableReasons = stance === 'agree'
     ? (hotTake.agreeReasons || [])
     : stance === 'disagree'
@@ -135,90 +132,49 @@ export default function CategoryCard({
           disabled={isSpinning}
         />
 
-        {/* Optional reasons section */}
-        {stance && availableReasons.length > 0 && (
+        {/* Explanation section - always visible when stance is selected */}
+        {stance && (
           <div className="space-y-4 pt-4">
-            <button
-              onClick={() => setShowReasons(!showReasons)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm transition-all duration-200"
-              style={{
-                background: 'var(--bg-inset)',
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--radius-md)',
-                color: 'var(--text-secondary)',
-              }}
-            >
-              <span>Why do you think that? (Optional)</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={`transition-transform duration-200 ${showReasons ? 'rotate-180' : ''}`}
-              >
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-
-            {showReasons && (
-              <div className="space-y-4 px-2">
-                <div className="space-y-2">
-                  <label
-                    className="text-xs uppercase tracking-wider font-mono"
-                    style={{ color: 'var(--text-tertiary)' }}
-                  >
-                    Quick reasons
-                  </label>
-                  <ReasonTagPicker
-                    reasons={availableReasons}
-                    selectedTags={reasonTags}
-                    onToggle={handleToggleTag}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="text-xs uppercase tracking-wider font-mono"
-                    style={{ color: 'var(--text-tertiary)' }}
-                  >
-                    Explain more (280 chars)
-                  </label>
-                  <ExplanationInput
-                    value={explanation}
-                    onChange={onExplanationChange}
-                  />
-                </div>
+            {/* Reason tags - only if available */}
+            {availableReasons.length > 0 && (
+              <div className="space-y-2">
+                <label
+                  className="text-xs uppercase tracking-wider font-mono"
+                  style={{ color: 'var(--text-tertiary)' }}
+                >
+                  Quick reasons
+                </label>
+                <ReasonTagPicker
+                  reasons={availableReasons}
+                  selectedTags={reasonTags}
+                  onToggle={handleToggleTag}
+                />
               </div>
             )}
+
+            {/* Explanation textarea - always visible */}
+            <div className="space-y-2">
+              <label
+                className="text-xs uppercase tracking-wider font-mono"
+                style={{ color: 'var(--text-tertiary)' }}
+              >
+                Explain your reasoning (optional)
+              </label>
+              <ExplanationInput
+                value={explanation}
+                onChange={onExplanationChange}
+              />
+            </div>
           </div>
         )}
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-3 pt-4">
-        <button
-          onClick={onSkip}
-          disabled={!canSave}
-          className="flex-1 px-6 py-3 text-sm uppercase tracking-wider font-mono transition-all duration-200"
-          style={{
-            background: 'transparent',
-            color: 'var(--text-tertiary)',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--radius-md)',
-            opacity: canSave ? 1 : 0.5,
-            cursor: canSave ? 'pointer' : 'not-allowed',
-          }}
-        >
-          Skip explanation
-        </button>
+      <div className="pt-4">
         <button
           onClick={onSaveAndContinue}
           disabled={!canSave}
-          className="flex-1 px-6 py-3 text-sm uppercase tracking-wider font-mono transition-all duration-200"
+          className="w-full px-6 py-3 text-sm uppercase tracking-wider font-mono transition-all duration-200"
           style={{
             background: canSave ? 'var(--accent)' : 'var(--bg-inset)',
             color: canSave ? 'var(--bg-primary)' : 'var(--text-muted)',
@@ -227,10 +183,24 @@ export default function CategoryCard({
             cursor: canSave ? 'pointer' : 'not-allowed',
           }}
         >
-          {showReasons && (reasonTags.length > 0 || explanation.length > 0)
+          {(reasonTags.length > 0 || explanation.length > 0)
             ? 'Save & Continue'
             : 'Continue'}
         </button>
+        {canSave && (
+          <button
+            onClick={onSkip}
+            className="w-full mt-2 py-2 text-xs font-mono transition-all duration-200"
+            style={{
+              color: 'var(--text-muted)',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            skip
+          </button>
+        )}
       </div>
     </div>
   )

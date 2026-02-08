@@ -59,6 +59,35 @@ export default function SequentialBuilder() {
       const response = await fetch(
         `/api/spin-category?category=${currentCategory.name}&intensity_min=${min}&intensity_max=${max}`
       )
+
+      if (!response.ok) {
+        // No enriched hot takes for this category - try without intensity filter
+        const fallbackResponse = await fetch(
+          `/api/spin-category?category=${currentCategory.name}`
+        )
+
+        if (!fallbackResponse.ok) {
+          // Still no hot takes - skip this category
+          console.warn(`No hot takes available for ${currentCategory.name}, skipping`)
+          setTimeout(() => {
+            setIsSpinning(false)
+            setState((prev) => ({
+              ...prev,
+              currentCategoryIndex: prev.currentCategoryIndex + 1,
+              isComplete: prev.currentCategoryIndex + 1 >= categories.length,
+            }))
+          }, 400)
+          return
+        }
+
+        const hotTake = await fallbackResponse.json()
+        setTimeout(() => {
+          setCurrentHotTake(hotTake)
+          setIsSpinning(false)
+        }, 400)
+        return
+      }
+
       const hotTake = await response.json()
 
       setTimeout(() => {
@@ -69,7 +98,7 @@ export default function SequentialBuilder() {
       console.error('Failed to load hot take:', error)
       setIsSpinning(false)
     }
-  }, [currentCategory, state.intensityRange])
+  }, [currentCategory, state.intensityRange, categories.length])
 
   useEffect(() => {
     // Only load hot take after intensity is selected
