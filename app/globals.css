@@ -87,6 +87,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ensure form inputs have proper text color */
+input,
+textarea,
+select {
+  color: var(--text-primary);
+}
+
+/* Prevent browser autocomplete from overriding text color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-primary) !important;
+  box-shadow: 0 0 0 1000px var(--bg-inset) inset !important;
+}
+
+/* Placeholder text */
+::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
 /* Dividers */
 .rams-divider {
   border: none;
@@ -98,27 +122,20 @@ body {
   border-top: 2px solid var(--text-primary);
 }
 
-/* Slot spin animation */
+/* Subtle fade-in animation (removed slot-machine feel) */
 @keyframes slot-spin-in {
   0% {
-    transform: translateY(-60%) scale(0.96);
+    transform: translateY(-8px);
     opacity: 0;
-    filter: blur(4px);
-  }
-  60% {
-    transform: translateY(3%) scale(1.01);
-    opacity: 0.9;
-    filter: blur(0px);
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     opacity: 1;
-    filter: blur(0px);
   }
 }
 
 .animate-slot-spin {
-  animation: slot-spin-in 0.5s var(--ease-spring) forwards;
+  animation: slot-spin-in 0.3s var(--ease-out) forwards;
 }
 
 /* Reveal animations */

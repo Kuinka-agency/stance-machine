@@ -79,6 +79,10 @@ export default function SequentialBuilder() {
   }, [loadHotTake, state.intensitySelected])
 
   const handleSpinAgain = () => {
+    // Reset all state when spinning for a new hot take
+    setCurrentStance(null)
+    setCurrentReasonTags([])
+    setCurrentExplanation('')
     loadHotTake()
   }
 
