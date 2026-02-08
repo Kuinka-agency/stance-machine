@@ -7,7 +7,7 @@ import { neon, type NeonQueryFunction } from '@neondatabase/serverless'
 // Lazy-load database connection to allow build without DATABASE_URL
 let _sql: NeonQueryFunction<false, false> | null = null
 
-function getSQL(): NeonQueryFunction<false, false> {
+export function getSQL(): NeonQueryFunction<false, false> {
   if (!_sql) {
     const databaseUrl = process.env.DATABASE_URL
     if (!databaseUrl) {
@@ -54,6 +54,29 @@ function getSQL(): NeonQueryFunction<false, false> {
  * GROUP BY take_id;
  *
  * CREATE UNIQUE INDEX IF NOT EXISTS idx_take_stats_take_id ON take_stats(take_id);
+ *
+ * -- Hot takes table
+ * CREATE TABLE IF NOT EXISTS hot_takes (
+ *   id VARCHAR(12) PRIMARY KEY,
+ *   statement TEXT NOT NULL,
+ *   category VARCHAR(20) NOT NULL,
+ *   slug VARCHAR(80) NOT NULL,
+ *   tone TEXT[] NOT NULL DEFAULT '{}',
+ *   original_question TEXT NOT NULL,
+ *   agree_reasons TEXT[],
+ *   disagree_reasons TEXT[],
+ *   intensity SMALLINT DEFAULT 3,
+ *   intensity_ai_generated SMALLINT,
+ *   intensity_last_updated TIMESTAMPTZ,
+ *   enrichment_model VARCHAR(50),
+ *   enrichment_validated BOOLEAN DEFAULT FALSE,
+ *   enrichment_timestamp TIMESTAMPTZ,
+ *   created_at TIMESTAMPTZ DEFAULT NOW()
+ * );
+ *
+ * CREATE INDEX IF NOT EXISTS idx_hot_takes_category ON hot_takes(category);
+ * CREATE INDEX IF NOT EXISTS idx_hot_takes_intensity ON hot_takes(category, intensity);
+ * CREATE INDEX IF NOT EXISTS idx_hot_takes_slug ON hot_takes(slug);
  */
 
 export interface Vote {

@@ -1,6 +1,6 @@
 'use client'
 
-import { HotTake, Stance } from '@/lib/hot-takes'
+import { HotTake, Stance } from '@/lib/categories'
 import AgreeDisagreeButtons from './AgreeDisagreeButtons'
 
 interface HotTakeCardProps {

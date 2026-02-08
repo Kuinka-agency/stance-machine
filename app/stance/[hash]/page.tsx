@@ -5,8 +5,8 @@ import ScrollReveal from '@/components/ScrollReveal'
 import { decodeStanceCard } from '@/lib/stance-card'
 import Link from 'next/link'
 
-export function generateMetadata({ params }: { params: { hash: string } }): Metadata {
-  const entries = decodeStanceCard(params.hash)
+export async function generateMetadata({ params }: { params: { hash: string } }): Promise<Metadata> {
+  const entries = await decodeStanceCard(params.hash)
   if (!entries) {
     return { title: 'Stance Card — Stance Machine' }
   }
@@ -25,8 +25,8 @@ export function generateMetadata({ params }: { params: { hash: string } }): Meta
   }
 }
 
-export default function StanceCardPage({ params }: { params: { hash: string } }) {
-  const entries = decodeStanceCard(params.hash)
+export default async function StanceCardPage({ params }: { params: { hash: string } }) {
+  const entries = await decodeStanceCard(params.hash)
 
   if (!entries) {
     return (

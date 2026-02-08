@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { type StanceEntry } from '@/lib/stance-card'
+import { type StanceEntry } from '@/lib/categories'
 
 interface StanceCardProps {
   entries: StanceEntry[]

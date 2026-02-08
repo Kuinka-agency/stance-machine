@@ -83,11 +83,11 @@ export function generateMetadata({ params }: { params: { category: string } }): 
   }
 }
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+export default async function CategoryPage({ params }: { params: { category: string } }) {
   const config = configBySlug.get(params.category)
   if (!config) notFound()
 
-  const hotTakes = getFilteredHotTakes({ category: config.category, limit: 30 })
+  const hotTakes = await getFilteredHotTakes({ category: config.category, limit: 30 })
 
   const faqSchema = {
     '@context': 'https://schema.org',

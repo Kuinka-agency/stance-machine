@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { type Stance } from '@/lib/hot-takes'
+import { type Stance } from '@/lib/categories'
 
 interface AgreeDisagreeButtonsProps {
   stance: Stance

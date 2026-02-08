@@ -1,6 +1,6 @@
 'use client'
 
-import { StanceCategory } from '@/lib/hot-takes'
+import { StanceCategory } from '@/lib/categories'
 
 interface ProgressIndicatorProps {
   current: number

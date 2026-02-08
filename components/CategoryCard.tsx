@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { HotTake, StanceCategory, Stance } from '@/lib/hot-takes'
+import { HotTake, StanceCategory, Stance } from '@/lib/categories'
 import AgreeDisagreeButtons from './AgreeDisagreeButtons'
 import ReasonTagPicker from './ReasonTagPicker'
 import ExplanationInput from './ExplanationInput'

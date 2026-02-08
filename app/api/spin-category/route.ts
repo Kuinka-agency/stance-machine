@@ -21,8 +21,8 @@ export async function GET(request: NextRequest) {
 
   // Use intensity-aware function if intensity params provided
   const hotTake = (intensityMinParam || intensityMaxParam)
-    ? getRandomHotTakeWithIntensity(category, intensityMin, intensityMax, excludeIds)
-    : getRandomHotTake(category, excludeIds)
+    ? await getRandomHotTakeWithIntensity(category, intensityMin, intensityMax, excludeIds)
+    : await getRandomHotTake(category, excludeIds)
 
   if (!hotTake) {
     return NextResponse.json(

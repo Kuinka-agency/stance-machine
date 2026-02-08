@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { HotTake, StanceCategory, Stance, getCategories } from '@/lib/hot-takes'
+import { HotTake, Stance, StanceCategory, getCategories } from '@/lib/categories'
 import CategoryCard from './CategoryCard'
 import ProgressIndicator from './ProgressIndicator'
 import StanceCard from './StanceCard'
 import ShareButton from './ShareButton'
 import IntensitySelector from './IntensitySelector'
-import { encodeStanceCard, type StanceEntry } from '@/lib/stance-card'
+import { encodeStanceCard, type StanceEntry } from '@/lib/categories'
 
 interface StanceData {
   take: HotTake

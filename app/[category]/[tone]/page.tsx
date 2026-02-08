@@ -57,7 +57,7 @@ export function generateMetadata({ params }: { params: { category: string; tone:
   }
 }
 
-export default function CategoryTonePage({
+export default async function CategoryTonePage({
   params,
 }: {
   params: { category: string; tone: string }
@@ -65,7 +65,7 @@ export default function CategoryTonePage({
   const config = configByKey.get(`${params.category}/${params.tone}`)
   if (!config) notFound()
 
-  const hotTakes = getFilteredHotTakes({
+  const hotTakes = await getFilteredHotTakes({
     category: config.category,
     tone: config.tone,
     limit: 30,

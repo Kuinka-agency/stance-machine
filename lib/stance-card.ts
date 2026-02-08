@@ -1,33 +1,14 @@
-import { type HotTake, type Stance, getHotTakeById } from './hot-takes'
+import { getHotTakeById } from './hot-takes'
+import type { StanceEntry } from './categories'
 
-export interface StanceEntry {
-  take: HotTake
-  stance: Stance
-}
-
-/**
- * Encode 6 stance selections into a shareable hash.
- * Format: id1.s|id2.s|id3.s|id4.s|id5.s|id6.s
- * where s = 'a' (agree) or 'd' (disagree)
- *
- * Then base64url encode for URL safety.
- */
-export function encodeStanceCard(entries: StanceEntry[]): string {
-  const payload = entries
-    .map((e) => `${e.take.id}.${e.stance === 'agree' ? 'a' : 'd'}`)
-    .join('|')
-
-  // Simple base64url encoding
-  if (typeof Buffer !== 'undefined') {
-    return Buffer.from(payload).toString('base64url')
-  }
-  return btoa(payload).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-}
+export type { StanceEntry } from './categories'
+export { encodeStanceCard } from './categories'
 
 /**
  * Decode a stance card hash back into entries.
+ * Server-only: requires DB access via getHotTakeById.
  */
-export function decodeStanceCard(hash: string): StanceEntry[] | null {
+export async function decodeStanceCard(hash: string): Promise<StanceEntry[] | null> {
   try {
     let payload: string
     if (typeof Buffer !== 'undefined') {
@@ -42,7 +23,7 @@ export function decodeStanceCard(hash: string): StanceEntry[] | null {
 
     for (const pair of pairs) {
       const [id, stanceChar] = pair.split('.')
-      const take = getHotTakeById(id)
+      const take = await getHotTakeById(id)
       if (!take) return null
 
       entries.push({

@@ -1,141 +1,92 @@
-import hotTakesData from '@/data/hot-takes.json'
+import { getSQL } from './db'
+import { getCategories } from './categories'
+import type { HotTake } from './categories'
 
-export interface HotTake {
-  id: string
-  statement: string
-  category: string
-  slug: string
-  tone: string[]
-  originalQuestion: string
+export type { HotTake, StanceCategory, Stance } from './categories'
+export { getCategories } from './categories'
 
-  // AI-generated reason tags
-  agreeReasons?: string[]
-  disagreeReasons?: string[]
-
-  // Intensity measurement (1-5 scale)
-  intensity?: number
-  intensityMetadata?: {
-    aiGenerated: number           // Initial AI score (1-5)
-    voteRefined?: number          // Adjusted based on vote patterns
-    polarization?: number         // Vote variance (0-1, where 0.5 = 50/50 split)
-    avgExplanationLength?: number // Engagement signal
-    lastUpdated: string
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapRow(row: any): HotTake {
+  return {
+    id: row.id,
+    statement: row.statement,
+    category: row.category,
+    slug: row.slug,
+    tone: row.tone || [],
+    originalQuestion: row.original_question,
+    agreeReasons: row.agree_reasons || undefined,
+    disagreeReasons: row.disagree_reasons || undefined,
+    intensity: row.intensity || undefined,
+    intensityMetadata: row.intensity_ai_generated
+      ? {
+          aiGenerated: row.intensity_ai_generated,
+          lastUpdated: row.intensity_last_updated?.toISOString?.() || row.intensity_last_updated || '',
+        }
+      : undefined,
+    enrichmentMetadata: row.enrichment_model
+      ? {
+          model: row.enrichment_model,
+          validationPassed: row.enrichment_validated || false,
+          timestamp: row.enrichment_timestamp?.toISOString?.() || row.enrichment_timestamp || '',
+        }
+      : undefined,
   }
-
-  // Enrichment metadata
-  enrichmentMetadata?: {
-    model: string
-    validationPassed: boolean
-    timestamp: string
-  }
-
-  // Future analytics (Phase 2)
-  totalVotes?: number
-  agreePercentage?: number
-  topReason?: string
 }
 
-export interface StanceCategory {
-  name: string
-  label: string
-  color: string
-  icon: string
+export async function getAllHotTakes(): Promise<HotTake[]> {
+  const sql = getSQL()
+  const rows = await sql`SELECT * FROM hot_takes`
+  return rows.map(mapRow)
 }
 
-export type Stance = 'agree' | 'disagree' | null
-
-const CATEGORIES: StanceCategory[] = [
-  { name: 'philosophy', label: 'Philosophy', color: 'var(--cat-philosophy)', icon: 'brain' },
-  { name: 'relationships', label: 'Relationships', color: 'var(--cat-relationships)', icon: 'heart' },
-  { name: 'work', label: 'Work', color: 'var(--cat-work)', icon: 'briefcase' },
-  { name: 'money', label: 'Money', color: 'var(--cat-money)', icon: 'banknote' },
-  { name: 'lifestyle', label: 'Lifestyle', color: 'var(--cat-lifestyle)', icon: 'sun' },
-  { name: 'society', label: 'Society', color: 'var(--cat-society)', icon: 'globe' },
-]
-
-// Parse all hot takes at module load
-const allHotTakes: HotTake[] = (hotTakesData as any[]).map((h) => ({
-  id: h.id,
-  statement: h.statement,
-  category: h.category,
-  slug: h.slug,
-  tone: h.tone,
-  originalQuestion: h.originalQuestion,
-  agreeReasons: h.agreeReasons,
-  disagreeReasons: h.disagreeReasons,
-  intensity: h.intensity,
-  intensityMetadata: h.intensityMetadata,
-  enrichmentMetadata: h.enrichmentMetadata,
-  totalVotes: h.totalVotes,
-  agreePercentage: h.agreePercentage,
-  topReason: h.topReason,
-}))
-
-// Index by category
-const takesByCategory: Record<string, HotTake[]> = {}
-for (const take of allHotTakes) {
-  if (!takesByCategory[take.category]) {
-    takesByCategory[take.category] = []
-  }
-  takesByCategory[take.category].push(take)
+export async function getHotTakeById(id: string): Promise<HotTake | null> {
+  const sql = getSQL()
+  const rows = await sql`SELECT * FROM hot_takes WHERE id = ${id}`
+  if (rows.length === 0) return null
+  return mapRow(rows[0])
 }
 
-const takesById: Record<string, HotTake> = {}
-for (const take of allHotTakes) {
-  takesById[take.id] = take
+export async function getHotTakesByCategory(category: string): Promise<HotTake[]> {
+  const sql = getSQL()
+  const rows = await sql`SELECT * FROM hot_takes WHERE category = ${category}`
+  return rows.map(mapRow)
 }
 
-export function getCategories(): StanceCategory[] {
-  return CATEGORIES
-}
-
-export function getAllHotTakes(): HotTake[] {
-  return allHotTakes
-}
-
-export function getHotTakeById(id: string): HotTake | null {
-  return takesById[id] || null
-}
-
-export function getHotTakesByCategory(category: string): HotTake[] {
-  return takesByCategory[category] || []
-}
-
-export function getRandomHotTake(
+export async function getRandomHotTake(
   category: string,
   excludeIds: string[] = []
-): HotTake | null {
-  const pool = (takesByCategory[category] || [])
-    .filter((t) => !excludeIds.includes(t.id))
-    // TEMPORARY FIX: Only serve enriched hot takes (with reason tags)
-    // Remove this filter after full enrichment
-    .filter((t) => t.agreeReasons && t.disagreeReasons)
-
-  if (pool.length === 0) return null
-
-  // Equal-weight random
-  const index = Math.floor(Math.random() * pool.length)
-  return pool[index]
+): Promise<HotTake | null> {
+  const sql = getSQL()
+  const rows = await sql`
+    SELECT * FROM hot_takes
+    WHERE category = ${category}
+      AND id != ALL(${excludeIds})
+      AND agree_reasons IS NOT NULL
+    ORDER BY RANDOM()
+    LIMIT 1
+  `
+  if (rows.length === 0) return null
+  return mapRow(rows[0])
 }
 
 export interface SpinResult {
   [category: string]: HotTake
 }
 
-export function spinHotTakes(locked: Record<string, string> = {}): SpinResult {
+export async function spinHotTakes(locked: Record<string, string> = {}): Promise<SpinResult> {
   const categories = getCategories()
   const result: SpinResult = {}
 
   for (const cat of categories) {
     if (locked[cat.name]) {
-      const take = getHotTakeById(locked[cat.name])
+      const take = await getHotTakeById(locked[cat.name])
       if (take) {
         result[cat.name] = take
         continue
       }
     }
 
-    const take = getRandomHotTake(cat.name)
+    const take = await getRandomHotTake(cat.name)
     if (take) {
       result[cat.name] = take
     }
@@ -144,78 +95,115 @@ export function spinHotTakes(locked: Record<string, string> = {}): SpinResult {
   return result
 }
 
-// For pSEO: filter by category and/or tone
-export function getFilteredHotTakes(options: {
+export async function getFilteredHotTakes(options: {
   category?: string
   tone?: string
   limit?: number
-}): HotTake[] {
-  let pool = allHotTakes
-    // TEMPORARY FIX: Only serve enriched hot takes (with reason tags)
-    // Remove this filter after full enrichment
-    .filter((t) => t.agreeReasons && t.disagreeReasons)
+}): Promise<HotTake[]> {
+  const sql = getSQL()
+
+  if (options.category && options.tone) {
+    const rows = await sql`
+      SELECT * FROM hot_takes
+      WHERE category = ${options.category}
+        AND ${options.tone} = ANY(tone)
+        AND agree_reasons IS NOT NULL
+      LIMIT ${options.limit || 1000}
+    `
+    return rows.map(mapRow)
+  }
 
   if (options.category) {
-    pool = pool.filter((t) => t.category === options.category)
+    const rows = await sql`
+      SELECT * FROM hot_takes
+      WHERE category = ${options.category}
+        AND agree_reasons IS NOT NULL
+      LIMIT ${options.limit || 1000}
+    `
+    return rows.map(mapRow)
   }
 
   if (options.tone) {
-    pool = pool.filter((t) => t.tone.includes(options.tone!))
+    const rows = await sql`
+      SELECT * FROM hot_takes
+      WHERE ${options.tone} = ANY(tone)
+        AND agree_reasons IS NOT NULL
+      LIMIT ${options.limit || 1000}
+    `
+    return rows.map(mapRow)
   }
 
-  if (options.limit) {
-    pool = pool.slice(0, options.limit)
-  }
-
-  return pool
+  const rows = await sql`
+    SELECT * FROM hot_takes
+    WHERE agree_reasons IS NOT NULL
+    LIMIT ${options.limit || 1000}
+  `
+  return rows.map(mapRow)
 }
 
-export function getHotTakeBySlug(slug: string): HotTake | null {
-  return allHotTakes.find((t) => t.slug === slug) || null
+export async function getHotTakeBySlug(slug: string): Promise<HotTake | null> {
+  const sql = getSQL()
+  const rows = await sql`SELECT * FROM hot_takes WHERE slug = ${slug}`
+  if (rows.length === 0) return null
+  return mapRow(rows[0])
 }
 
-// Intensity filtering
-export function getHotTakesByIntensity(
+export async function getHotTakesByIntensity(
   category: string,
   intensityMin: number,
   intensityMax: number
-): HotTake[] {
-  return getHotTakesByCategory(category).filter((t) => {
-    const intensity = t.intensity || 3 // Default to medium if unset
-    return intensity >= intensityMin && intensity <= intensityMax
-  })
+): Promise<HotTake[]> {
+  const sql = getSQL()
+  const rows = await sql`
+    SELECT * FROM hot_takes
+    WHERE category = ${category}
+      AND intensity BETWEEN ${intensityMin} AND ${intensityMax}
+  `
+  return rows.map(mapRow)
 }
 
-export function getIntensityDistribution(category?: string): Record<number, number> {
-  const takes = (category ? getHotTakesByCategory(category) : getAllHotTakes())
-    // TEMPORARY FIX: Only count enriched hot takes
-    // Remove this filter after full enrichment
-    .filter((t) => t.agreeReasons && t.disagreeReasons)
+export async function getIntensityDistribution(category?: string): Promise<Record<number, number>> {
+  const sql = getSQL()
+
+  const rows = category
+    ? await sql`
+        SELECT intensity, COUNT(*) as count
+        FROM hot_takes
+        WHERE category = ${category} AND agree_reasons IS NOT NULL
+        GROUP BY intensity
+        ORDER BY intensity
+      `
+    : await sql`
+        SELECT intensity, COUNT(*) as count
+        FROM hot_takes
+        WHERE agree_reasons IS NOT NULL
+        GROUP BY intensity
+        ORDER BY intensity
+      `
 
   const distribution: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-
-  takes.forEach((t) => {
-    const intensity = t.intensity || 3
-    distribution[intensity]++
-  })
-
+  for (const row of rows) {
+    distribution[Number(row.intensity)] = Number(row.count)
+  }
   return distribution
 }
 
-export function getRandomHotTakeWithIntensity(
+export async function getRandomHotTakeWithIntensity(
   category: string,
   intensityMin: number,
   intensityMax: number,
   excludeIds: string[] = []
-): HotTake | null {
-  const pool = getHotTakesByIntensity(category, intensityMin, intensityMax)
-    .filter((t) => !excludeIds.includes(t.id))
-    // TEMPORARY FIX: Only serve enriched hot takes (with reason tags)
-    // Remove this filter after full enrichment
-    .filter((t) => t.agreeReasons && t.disagreeReasons)
-
-  if (pool.length === 0) return null
-
-  const index = Math.floor(Math.random() * pool.length)
-  return pool[index]
+): Promise<HotTake | null> {
+  const sql = getSQL()
+  const rows = await sql`
+    SELECT * FROM hot_takes
+    WHERE category = ${category}
+      AND id != ALL(${excludeIds})
+      AND intensity BETWEEN ${intensityMin} AND ${intensityMax}
+      AND agree_reasons IS NOT NULL
+    ORDER BY RANDOM()
+    LIMIT 1
+  `
+  if (rows.length === 0) return null
+  return mapRow(rows[0])
 }

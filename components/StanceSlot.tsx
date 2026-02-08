@@ -1,6 +1,6 @@
 'use client'
 
-import { HotTake, StanceCategory, Stance } from '@/lib/hot-takes'
+import { HotTake, StanceCategory, Stance } from '@/lib/categories'
 import HotTakeCard from './HotTakeCard'
 import HillToggle from './HillToggle'
 

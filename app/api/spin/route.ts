@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  const hotTakes = spinHotTakes(locked)
+  const hotTakes = await spinHotTakes(locked)
   const categories = getCategories()
 
   return NextResponse.json({
