@@ -1,0 +1,157 @@
+/**
+ * Database connection and helpers for Neon Postgres
+ */
+
+import { neon, type NeonQueryFunction } from '@neondatabase/serverless'
+
+// Lazy-load database connection to allow build without DATABASE_URL
+let _sql: NeonQueryFunction<false, false> | null = null
+
+function getSQL(): NeonQueryFunction<false, false> {
+  if (!_sql) {
+    const databaseUrl = process.env.DATABASE_URL
+    if (!databaseUrl) {
+      throw new Error('DATABASE_URL environment variable is required')
+    }
+    _sql = neon(databaseUrl)
+  }
+  return _sql
+}
+
+/**
+ * Database schema setup
+ *
+ * Run this manually via psql or Neon console:
+ *
+ * CREATE TABLE IF NOT EXISTS votes (
+ *   id SERIAL PRIMARY KEY,
+ *   take_id VARCHAR(12) NOT NULL,
+ *   stance VARCHAR(10) NOT NULL,
+ *   reason_tags TEXT[],
+ *   explanation TEXT,
+ *   session_id UUID,
+ *   created_at TIMESTAMPTZ DEFAULT NOW()
+ * );
+ *
+ * CREATE INDEX IF NOT EXISTS idx_take_stance ON votes(take_id, stance);
+ * CREATE INDEX IF NOT EXISTS idx_reason_tags ON votes USING GIN(reason_tags);
+ * CREATE INDEX IF NOT EXISTS idx_session_id ON votes(session_id);
+ *
+ * CREATE MATERIALIZED VIEW IF NOT EXISTS take_stats AS
+ * SELECT
+ *   take_id,
+ *   COUNT(*) as total_votes,
+ *   ROUND(100.0 * SUM(CASE WHEN stance = 'agree' THEN 1 ELSE 0 END) / COUNT(*), 1) as agree_percentage,
+ *   (
+ *     SELECT unnest(reason_tags) as tag
+ *     FROM votes v2
+ *     WHERE v2.take_id = votes.take_id
+ *     GROUP BY tag
+ *     ORDER BY COUNT(*) DESC
+ *     LIMIT 1
+ *   ) as top_reason
+ * FROM votes
+ * GROUP BY take_id;
+ *
+ * CREATE UNIQUE INDEX IF NOT EXISTS idx_take_stats_take_id ON take_stats(take_id);
+ */
+
+export interface Vote {
+  id: number
+  take_id: string
+  stance: 'agree' | 'disagree'
+  reason_tags: string[] | null
+  explanation: string | null
+  session_id: string | null
+  created_at: Date
+}
+
+export interface TakeStats {
+  take_id: string
+  total_votes: number
+  agree_percentage: number
+  top_reason: string | null
+}
+
+/**
+ * Insert a new vote
+ */
+export async function createVote(params: {
+  takeId: string
+  stance: 'agree' | 'disagree'
+  reasonTags?: string[]
+  explanation?: string
+  sessionId?: string
+}): Promise<Vote> {
+  const sql = getSQL()
+  const result = await sql`
+    INSERT INTO votes (take_id, stance, reason_tags, explanation, session_id)
+    VALUES (
+      ${params.takeId},
+      ${params.stance},
+      ${params.reasonTags || null},
+      ${params.explanation || null},
+      ${params.sessionId || null}
+    )
+    RETURNING *
+  `
+
+  return result[0] as Vote
+}
+
+/**
+ * Get aggregate stats for a hot take
+ */
+export async function getTakeStats(takeId: string): Promise<TakeStats | null> {
+  const sql = getSQL()
+  const result = await sql`
+    SELECT
+      take_id,
+      COUNT(*) as total_votes,
+      ROUND(100.0 * SUM(CASE WHEN stance = 'agree' THEN 1 ELSE 0 END) / COUNT(*), 1) as agree_percentage,
+      (
+        SELECT unnest(reason_tags) as tag
+        FROM votes v2
+        WHERE v2.take_id = ${takeId} AND reason_tags IS NOT NULL
+        GROUP BY tag
+        ORDER BY COUNT(*) DESC
+        LIMIT 1
+      ) as top_reason
+    FROM votes
+    WHERE take_id = ${takeId}
+    GROUP BY take_id
+  `
+
+  if (result.length === 0) {
+    return null
+  }
+
+  return {
+    take_id: result[0].take_id,
+    total_votes: Number(result[0].total_votes),
+    agree_percentage: Number(result[0].agree_percentage),
+    top_reason: result[0].top_reason,
+  }
+}
+
+/**
+ * Get votes for a session
+ */
+export async function getSessionVotes(sessionId: string): Promise<Vote[]> {
+  const sql = getSQL()
+  const result = await sql`
+    SELECT * FROM votes
+    WHERE session_id = ${sessionId}
+    ORDER BY created_at DESC
+  `
+
+  return result as Vote[]
+}
+
+/**
+ * Refresh materialized view (call periodically via cron)
+ */
+export async function refreshTakeStats(): Promise<void> {
+  const sql = getSQL()
+  await sql`REFRESH MATERIALIZED VIEW CONCURRENTLY take_stats`
+}

@@ -7,6 +7,32 @@ export interface HotTake {
   slug: string
   tone: string[]
   originalQuestion: string
+
+  // AI-generated reason tags
+  agreeReasons?: string[]
+  disagreeReasons?: string[]
+
+  // Intensity measurement (1-5 scale)
+  intensity?: number
+  intensityMetadata?: {
+    aiGenerated: number           // Initial AI score (1-5)
+    voteRefined?: number          // Adjusted based on vote patterns
+    polarization?: number         // Vote variance (0-1, where 0.5 = 50/50 split)
+    avgExplanationLength?: number // Engagement signal
+    lastUpdated: string
+  }
+
+  // Enrichment metadata
+  enrichmentMetadata?: {
+    model: string
+    validationPassed: boolean
+    timestamp: string
+  }
+
+  // Future analytics (Phase 2)
+  totalVotes?: number
+  agreePercentage?: number
+  topReason?: string
 }
 
 export interface StanceCategory {
@@ -35,6 +61,14 @@ const allHotTakes: HotTake[] = (hotTakesData as any[]).map((h) => ({
   slug: h.slug,
   tone: h.tone,
   originalQuestion: h.originalQuestion,
+  agreeReasons: h.agreeReasons,
+  disagreeReasons: h.disagreeReasons,
+  intensity: h.intensity,
+  intensityMetadata: h.intensityMetadata,
+  enrichmentMetadata: h.enrichmentMetadata,
+  totalVotes: h.totalVotes,
+  agreePercentage: h.agreePercentage,
+  topReason: h.topReason,
 }))
 
 // Index by category
@@ -132,4 +166,43 @@ export function getFilteredHotTakes(options: {
 
 export function getHotTakeBySlug(slug: string): HotTake | null {
   return allHotTakes.find((t) => t.slug === slug) || null
+}
+
+// Intensity filtering
+export function getHotTakesByIntensity(
+  category: string,
+  intensityMin: number,
+  intensityMax: number
+): HotTake[] {
+  return getHotTakesByCategory(category).filter((t) => {
+    const intensity = t.intensity || 3 // Default to medium if unset
+    return intensity >= intensityMin && intensity <= intensityMax
+  })
+}
+
+export function getIntensityDistribution(category?: string): Record<number, number> {
+  const takes = category ? getHotTakesByCategory(category) : getAllHotTakes()
+  const distribution: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+
+  takes.forEach((t) => {
+    const intensity = t.intensity || 3
+    distribution[intensity]++
+  })
+
+  return distribution
+}
+
+export function getRandomHotTakeWithIntensity(
+  category: string,
+  intensityMin: number,
+  intensityMax: number,
+  excludeIds: string[] = []
+): HotTake | null {
+  const pool = getHotTakesByIntensity(category, intensityMin, intensityMax).filter(
+    (t) => !excludeIds.includes(t.id)
+  )
+  if (pool.length === 0) return null
+
+  const index = Math.floor(Math.random() * pool.length)
+  return pool[index]
 }

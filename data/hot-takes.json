@@ -1,103 +1,323 @@
 [
   {
     "id": "8e94d091f9d5",
-    "statement": "would you prefer to go skinny-dipping in the winter is better than sunbathe in a boiler suit in the summer",
+    "statement": "Skinny-dipping in winter beats a boiler suit tan",
     "category": "lifestyle",
     "slug": "would-you-prefer-to-go-skinny-dipping-in-the-winter-is-bette",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Would you prefer to go skinny-dipping in the winter or sunbathe in a boiler suit in the summer?"
+    "originalQuestion": "Would you prefer to go skinny-dipping in the winter or sunbathe in a boiler suit in the summer?",
+    "agreeReasons": [
+      "The shock is over quick",
+      "Better story to tell later",
+      "Actually feels refreshing after",
+      "No sweating for hours"
+    ],
+    "disagreeReasons": [
+      "Hypothermia is real",
+      "Takes forever to warm up",
+      "Way too painful",
+      "At least in boiler suit you're safe"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.369Z"
+    }
   },
   {
     "id": "d341a885301a",
-    "statement": "have bums on your toes and eyes on your fingers, is better than bums on your fingers and eyes on your toes",
+    "statement": "Eyes on fingers beats eyes on toes",
     "category": "lifestyle",
     "slug": "have-bums-on-your-toes-and-eyes-on-your-fingers-is-better-th",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Would you rather have bums on your toes and eyes on your fingers, or bums on your fingers and eyes on your toes?"
+    "originalQuestion": "Would you rather have bums on your toes and eyes on your fingers, or bums on your fingers and eyes on your toes?",
+    "agreeReasons": [
+      "Can see what you're doing",
+      "Hands are more useful than feet",
+      "Don't have to bend down constantly",
+      "Better field of vision overall"
+    ],
+    "disagreeReasons": [
+      "Sounds absolutely horrifying",
+      "Can't look at anything you touch",
+      "Would see gross stuff constantly",
+      "At least toes are hidden in shoes"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "d4eb431bebcd",
-    "statement": "You do any great impressions is possible",
+    "statement": "Anyone can learn to do great impressions",
     "category": "lifestyle",
     "slug": "you-do-any-great-impressions-is-possible",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Can you do any great impressions?"
+    "originalQuestion": "Can you do any great impressions?",
+    "agreeReasons": [
+      "Just takes practice like anything",
+      "It's mimicking not magic",
+      "Kids do it naturally all the time",
+      "Plenty of tutorials online now"
+    ],
+    "disagreeReasons": [
+      "Some people are tone deaf",
+      "Requires natural ear for voices",
+      "I've tried and I'm terrible",
+      "Natural mimics are just gifted"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 2,
+    "intensityMetadata": {
+      "aiGenerated": 2,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "1e1fa5b34157",
-    "statement": "be a jenga block, a game console controller, is better than a twister mat",
+    "statement": "Being a game controller beats being a Jenga block",
     "category": "lifestyle",
     "slug": "be-a-jenga-block-a-game-console-controller-is-better-than-a-",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Would you rather be a Jenga block, a game console controller, or a Twister mat?"
+    "originalQuestion": "Would you rather be a Jenga block, a game console controller, or a Twister mat?",
+    "agreeReasons": [
+      "Controllers get held gently",
+      "You'd be part of epic moments",
+      "More consistent useful purpose",
+      "Not constantly in danger of falling"
+    ],
+    "disagreeReasons": [
+      "Controllers get rage-thrown constantly",
+      "Sticky gamer hands all day",
+      "At least Jenga blocks rest peacefully",
+      "Being a Twister mat is worse though"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "7b118f789401",
-    "statement": "is a bowl of lettuce actually a salad is better than just a bowl of lettuce",
+    "statement": "A bowl of lettuce is basically a salad",
     "category": "lifestyle",
     "slug": "is-a-bowl-of-lettuce-actually-a-salad-is-better-than-just-a-",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Is a bowl of lettuce actually a salad or just a bowl of lettuce?"
+    "originalQuestion": "Is a bowl of lettuce actually a salad or just a bowl of lettuce?",
+    "agreeReasons": [
+      "Salad just means mixture of greens",
+      "Simple is better anyway",
+      "Adding stuff doesn't change the base",
+      "Restaurants charge extra for same thing"
+    ],
+    "disagreeReasons": [
+      "Salad needs dressing minimum",
+      "That's literally just one ingredient",
+      "By that logic water is soup",
+      "Need variety to call it salad"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "5ecea88c8f3e",
-    "statement": "You rename all the fruits is possible",
+    "statement": "We should rename all the fruits",
     "category": "lifestyle",
     "slug": "you-rename-all-the-fruits-is-possible",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Can you rename all the fruits?"
+    "originalQuestion": "Can you rename all the fruits?",
+    "agreeReasons": [
+      "Current names are boring and random",
+      "Would be hilarious chaos",
+      "Some names make no sense anyway",
+      "Fresh start for fruit identity"
+    ],
+    "disagreeReasons": [
+      "Would confuse literally everyone",
+      "These names have history and meaning",
+      "Total waste of time and effort",
+      "If it ain't broke don't fix it"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "4fa4dde8a3b2",
-    "statement": "lose your sense of smell is better than your sense of taste",
+    "statement": "Losing smell beats losing taste",
     "category": "lifestyle",
     "slug": "lose-your-sense-of-smell-is-better-than-your-sense-of-taste",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Would you rather lose your sense of smell or your sense of taste?"
+    "originalQuestion": "Would you rather lose your sense of smell or your sense of taste?",
+    "agreeReasons": [
+      "Can still enjoy food flavors",
+      "Taste is more important for eating",
+      "Smell loss is less noticeable daily",
+      "At least food is still good"
+    ],
+    "disagreeReasons": [
+      "Smell protects you from danger",
+      "Taste depends heavily on smell",
+      "Would miss perfume and flowers",
+      "Can't smell gas leaks or fire"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 2,
+    "intensityMetadata": {
+      "aiGenerated": 2,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "d597ea66f360",
-    "statement": "Tinsel should go on the Christmas tree",
+    "statement": "Tinsel belongs on every Christmas tree",
     "category": "lifestyle",
     "slug": "tinsel-should-go-on-the-christmas-tree",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Do you think tinsel should go on the Christmas tree?"
+    "originalQuestion": "Do you think tinsel should go on the Christmas tree?",
+    "agreeReasons": [
+      "It's literally made for trees",
+      "Adds sparkle and magic",
+      "Classic tradition for a reason",
+      "Makes everything feel festive"
+    ],
+    "disagreeReasons": [
+      "Looks tacky and overdone",
+      "Nightmare to clean up later",
+      "Modern trees look better without",
+      "Gets tangled in everything"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 2,
+    "intensityMetadata": {
+      "aiGenerated": 2,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "4190c86a62e5",
-    "statement": "which disney princess would you either want to be is better than marry",
+    "statement": "Being a Disney princess beats marrying one",
     "category": "lifestyle",
     "slug": "which-disney-princess-would-you-either-want-to-be-is-better-",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Which Disney princess would you either want to be or marry?"
+    "originalQuestion": "Which Disney princess would you either want to be or marry?",
+    "agreeReasons": [
+      "You're the main character not sidekick",
+      "Get the magical powers yourself",
+      "Don't have to deal with royal duties",
+      "The adventure is yours"
+    ],
+    "disagreeReasons": [
+      "Princesses go through too much trauma",
+      "Rather support than be in spotlight",
+      "Princes have less dramatic lives",
+      "Marriage means partnership and love"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "58076ec9b5bf",
-    "statement": "do you sing is better than do something else unrelated to washing in the shower",
+    "statement": "Everyone sings in the shower",
     "category": "lifestyle",
     "slug": "do-you-sing-is-better-than-do-something-else-unrelated-to-wa",
     "tone": [
       "funny"
     ],
-    "originalQuestion": "Do you sing or do something else unrelated to washing in the shower?"
+    "originalQuestion": "Do you sing or do something else unrelated to washing in the shower?",
+    "agreeReasons": [
+      "Acoustics are too good to resist",
+      "Privacy makes you brave",
+      "It's a natural human impulse",
+      "Even quiet humming counts"
+    ],
+    "disagreeReasons": [
+      "Some of us just zone out",
+      "I literally never have",
+      "Prefer silence and thinking time",
+      "Not everyone likes singing"
+    ],
+    "enrichmentMetadata": {
+      "model": "claude-sonnet-4-5-20250929",
+      "validationPassed": true,
+      "timestamp": "2026-02-08T08:21:47.372Z"
+    },
+    "intensity": 1,
+    "intensityMetadata": {
+      "aiGenerated": 1,
+      "lastUpdated": "2026-02-08T08:21:47.372Z"
+    }
   },
   {
     "id": "d2c0a3b1baf5",
