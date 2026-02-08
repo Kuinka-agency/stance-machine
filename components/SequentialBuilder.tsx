@@ -185,13 +185,13 @@ export default function SequentialBuilder() {
       <div className="max-w-4xl mx-auto text-center space-y-8">
         <div className="space-y-4">
           <h2
-            className="text-2xl md:text-3xl font-bold"
+            className="text-2xl md:text-3xl font-bold text-balance"
             style={{ color: 'var(--text-primary)' }}
           >
             Stance Card Complete! 🎉
           </h2>
           <p
-            className="text-lg"
+            className="text-lg text-pretty"
             style={{ color: 'var(--text-secondary)' }}
           >
             You've claimed all 6 hills. Here's your stance card:

@@ -41,7 +41,7 @@ export default function SiteHeader() {
         {/* Hero text */}
         <div className="max-w-3xl">
           <h1
-            className="font-display text-5xl sm:text-6xl md:text-7xl font-semibold mb-5 reveal-up delay-1"
+            className="font-display text-5xl sm:text-6xl md:text-7xl font-semibold mb-5 reveal-up delay-1 text-balance"
             style={{
               color: 'var(--text-primary)',
               letterSpacing: '-0.03em',
@@ -61,7 +61,7 @@ export default function SiteHeader() {
             </span>
           </h1>
           <p
-            className="text-lg sm:text-xl max-w-lg reveal-up delay-2"
+            className="text-lg sm:text-xl max-w-lg reveal-up delay-2 text-pretty"
             style={{ color: 'var(--text-secondary)', lineHeight: '1.65' }}
           >
             Spin hot takes across 6 categories.

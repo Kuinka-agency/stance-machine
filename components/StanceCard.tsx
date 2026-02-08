@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { type StanceEntry } from '@/lib/stance-card'
 
 interface StanceCardProps {
@@ -8,10 +9,30 @@ interface StanceCardProps {
 }
 
 export default function StanceCard({ entries, onClose }: StanceCardProps) {
+  const dialogRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    dialogRef.current?.focus()
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ background: 'rgba(0,0,0,0.65)' }}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      style={{ background: 'rgba(0,0,0,0.65)' }}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+    >
       <div
-        className="w-full max-w-lg relative"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Your stance card results"
+        tabIndex={-1}
+        className="w-full max-w-lg relative outline-none"
         style={{
           background: 'var(--bg-primary)',
           borderRadius: 'var(--radius-lg)',
@@ -24,7 +45,7 @@ export default function StanceCard({ entries, onClose }: StanceCardProps) {
           <div className="flex items-center justify-between mb-5">
             <div>
               <h2
-                className="font-display text-2xl font-semibold"
+                className="font-display text-2xl font-semibold text-balance"
                 style={{ color: 'var(--text-primary)', letterSpacing: '-0.02em' }}
               >
                 My Stance Card
@@ -38,6 +59,7 @@ export default function StanceCard({ entries, onClose }: StanceCardProps) {
             </div>
             <button
               onClick={onClose}
+              aria-label="Close stance card"
               className="w-8 h-8 flex items-center justify-center transition-colors duration-150"
               style={{
                 borderRadius: 'var(--radius-sm)',

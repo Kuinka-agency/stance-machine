@@ -67,7 +67,7 @@ export default function IntensitySelector({
     <div className="space-y-8">
       <div className="text-center space-y-3">
         <h2
-          className="font-display text-2xl md:text-3xl font-semibold"
+          className="font-display text-2xl md:text-3xl font-semibold text-balance"
           style={{ color: 'var(--text-primary)', letterSpacing: '-0.02em' }}
         >
           What's your vibe today?
@@ -96,7 +96,7 @@ export default function IntensitySelector({
             <button
               key={`${preset.range[0]}-${preset.range[1]}`}
               onClick={() => onChange(preset.range)}
-              className="text-left p-5 rounded transition-all duration-200"
+              className="intensity-preset text-left p-5 rounded transition-all duration-200"
               style={{
                 borderWidth: selected ? '3px' : '1.5px',
                 borderStyle: 'solid',
@@ -104,16 +104,6 @@ export default function IntensitySelector({
                 background: selected ? 'var(--accent-subtle)' : 'var(--bg-primary)',
                 cursor: 'pointer',
                 transform: selected ? 'scale(1.01)' : 'scale(1)',
-              }}
-              onMouseEnter={(e) => {
-                if (!selected) {
-                  e.currentTarget.style.borderColor = 'var(--border-strong)'
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!selected) {
-                  e.currentTarget.style.borderColor = 'var(--border)'
-                }
               }}
             >
               <div className="flex items-start gap-4">

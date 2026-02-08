@@ -110,6 +110,9 @@ export default function CategoryCard({
       </div>
 
       {/* Hot take card — dramatic animation phases */}
+      <div aria-live="polite" role="status" className="sr-only">
+        {animPhase === 'loading' ? 'Loading new hot take...' : ''}
+      </div>
       {animPhase === 'loading' ? (
         /* Phase 2: Anticipation — pulsing bar in category color */
         <div
@@ -163,23 +166,13 @@ export default function CategoryCard({
         <button
           onClick={onSpinAgain}
           disabled={isSpinning}
-          className="flex items-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider font-mono transition-all duration-200"
+          className={`spin-again-btn flex items-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider font-mono transition-all duration-200`}
           style={{
             color: isSpinning ? 'var(--text-muted)' : 'var(--text-secondary)',
             border: `1.5px solid ${isSpinning ? 'var(--border)' : 'var(--border-strong)'}`,
             borderRadius: 'var(--radius-sm)',
             cursor: isSpinning ? 'not-allowed' : 'pointer',
             background: 'transparent',
-          }}
-          onMouseEnter={(e) => {
-            if (!isSpinning) {
-              e.currentTarget.style.borderColor = 'var(--accent)'
-              e.currentTarget.style.color = 'var(--accent)'
-            }
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-strong)'
-            e.currentTarget.style.color = 'var(--text-secondary)'
           }}
         >
           <svg
@@ -230,6 +223,7 @@ export default function CategoryCard({
             {/* Explanation textarea - always visible */}
             <div className="space-y-2">
               <label
+                htmlFor="explanation-input"
                 className="text-xs uppercase tracking-wider font-mono"
                 style={{ color: 'var(--text-tertiary)' }}
               >

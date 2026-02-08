@@ -16,6 +16,7 @@ export default function ExplanationInput({
   return (
     <div className="space-y-2">
       <textarea
+        id="explanation-input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Explain your reasoning... (optional)"
