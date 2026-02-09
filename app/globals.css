@@ -2,41 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   /* Surfaces */
-  --bg-primary: #F7F5F0;
-  --bg-card: #FFFFFF;
-  --bg-elevated: #FAFAF7;
-  --bg-inset: #EDEAE4;
+  --bg-primary: #0e0e0e;
+  --bg-card: #ffffff;
+  --bg-elevated: #f5f5f3;
+  --bg-inset: #1a1a1a;
 
-  /* Text */
-  --text-primary: #111111;
-  --text-secondary: #5C5851;
-  --text-tertiary: #8A8680;
-  --text-muted: #B0ACA6;
+  /* Text — on dark background */
+  --text-primary: #f0ede6;
+  --text-secondary: #a09b93;
+  --text-tertiary: #5a5650;
+  --text-muted: #3a3835;
 
-  /* Accent — Braun red-orange (bold opinion energy) */
-  --accent: #E03E00;
-  --accent-hover: #C73600;
-  --accent-subtle: #FDF0EB;
+  /* Text — on white card surface */
+  --text-on-surface: #0e0e0e;
+  --text-on-surface-secondary: #555;
+  --text-on-surface-muted: #999;
+
+  /* Accent — gold */
+  --accent: #c9a033;
+  --accent-hover: #ddb53e;
+  --accent-subtle: rgba(201, 160, 51, 0.08);
 
   /* Opinion colors */
-  --agree: #1B8A3E;
-  --agree-subtle: #EDF7EF;
-  --disagree: #D42B2B;
-  --disagree-subtle: #FCF0F0;
+  --agree: #2da838;
+  --agree-subtle: rgba(45, 168, 56, 0.12);
+  --disagree: #d94535;
+  --disagree-subtle: rgba(217, 69, 53, 0.12);
 
   /* Border */
-  --border: #E0DCD6;
-  --border-strong: #C8C3BB;
+  --border: #1e1e1e;
+  --border-strong: #2e2e2e;
+  --border-surface: rgba(0, 0, 0, 0.08);
 
   /* Typography */
-  --font-display: 'Clash Display', 'Helvetica Neue', sans-serif;
-  --font-body: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-quote: 'Bricolage Grotesque', sans-serif;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -51,7 +57,7 @@
   /* Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-lg: 16px;
 
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -60,13 +66,23 @@
   --duration-normal: 300ms;
   --duration-slow: 500ms;
 
-  /* Category colors — boosted saturation ~15% */
-  --cat-philosophy: #8B5CF6;
-  --cat-relationships: #E03E00;
-  --cat-work: #3D7A35;
-  --cat-money: #D4920A;
-  --cat-lifestyle: #2563EB;
-  --cat-society: #9A4E0E;
+  /* Category colors — from landing page */
+  --cat-philosophy: #7c5cc5;
+  --cat-relationships: #d94535;
+  --cat-work: #2da838;
+  --cat-money: #b8900e;
+  --cat-lifestyle: #3d73d9;
+  --cat-society: #c06518;
+}
+
+/* White card surface — overrides text vars for dark-on-white context */
+.surface-card {
+  --text-primary: #0e0e0e;
+  --text-secondary: #555;
+  --text-tertiary: #777;
+  --text-muted: #999;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -98,7 +114,7 @@ body::before {
   height: 100%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.03;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
@@ -139,9 +155,13 @@ textarea:-webkit-autofill:focus {
   border-top: 2px solid var(--text-primary);
 }
 
-/* Font display class */
+/* Font classes */
 .font-display {
   font-family: var(--font-display);
+}
+
+.font-quote {
+  font-family: var(--font-quote);
 }
 
 /* ========================================
@@ -327,6 +347,103 @@ textarea:-webkit-autofill:focus {
   border-color: var(--disagree);
 }
 
+/* ========================================
+   TAROT CARD SYSTEM
+   3D flips, hover lifts, spread rotations
+   ======================================== */
+
+/* Card hover lift */
+.tarot-card-container {
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.tarot-card-container:hover {
+  transform: translateY(-8px) scale(1.02) rotate(0deg) !important;
+}
+
+.tarot-card-container:hover .tarot-card-face:first-child {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+}
+
+/* Corner ornament styling */
+.tarot-corner-ornament {
+  font-size: 6px;
+  line-height: 1;
+  opacity: 0.4;
+}
+
+/* Spread card entrance */
+@keyframes spread-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tarot-spread-card {
+  opacity: 0;
+  animation: spread-card-enter 0.5s var(--ease-out) forwards;
+}
+
+/* ========================================
+   BOTTOM SHEET ANIMATIONS
+   ======================================== */
+
+@keyframes sheet-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes sheet-slide-down {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+.bottom-sheet-enter {
+  animation: sheet-slide-up 0.4s var(--ease-spring) forwards;
+}
+
+.bottom-sheet-exit {
+  animation: sheet-slide-down 0.25s var(--ease-out) forwards;
+}
+
+/* Backdrop */
+@keyframes backdrop-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.bottom-sheet-backdrop {
+  animation: backdrop-fade-in 0.3s var(--ease-out) forwards;
+}
+
+/* ========================================
+   HERO TRANSITIONS BETWEEN CATEGORIES
+   ======================================== */
+
+@keyframes hero-exit {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.97); }
+}
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-exit {
+  animation: hero-exit 0.25s var(--ease-out) forwards;
+}
+
+.hero-enter {
+  animation: hero-enter 0.4s var(--ease-spring) forwards;
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .card-exit,
@@ -337,9 +454,25 @@ textarea:-webkit-autofill:focus {
   .reveal-scale,
   .stance-lock,
   .lock-active,
-  .progress-fill {
+  .progress-fill,
+  .tarot-spread-card,
+  .bottom-sheet-enter,
+  .bottom-sheet-exit,
+  .bottom-sheet-backdrop,
+  .hero-exit,
+  .hero-enter {
     animation: none !important;
     opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .tarot-card-inner {
+    transition: none !important;
+  }
+
+  .tarot-card-container,
+  .tarot-card-container:hover {
+    transition: none !important;
     transform: none !important;
   }
 

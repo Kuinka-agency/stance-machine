@@ -32,15 +32,18 @@ export interface StanceCategory {
   label: string
   color: string
   icon: string
+  archetype: string
+  romanNumeral: string
+  symbol: string
 }
 
 export const CATEGORIES: StanceCategory[] = [
-  { name: 'philosophy', label: 'Philosophy', color: 'var(--cat-philosophy)', icon: 'brain' },
-  { name: 'relationships', label: 'Relationships', color: 'var(--cat-relationships)', icon: 'heart' },
-  { name: 'work', label: 'Work', color: 'var(--cat-work)', icon: 'briefcase' },
-  { name: 'money', label: 'Money', color: 'var(--cat-money)', icon: 'banknote' },
-  { name: 'lifestyle', label: 'Lifestyle', color: 'var(--cat-lifestyle)', icon: 'sun' },
-  { name: 'society', label: 'Society', color: 'var(--cat-society)', icon: 'globe' },
+  { name: 'philosophy', label: 'Philosophy', color: 'var(--cat-philosophy)', icon: 'brain', archetype: 'The Thinker', romanNumeral: 'I', symbol: '◈' },
+  { name: 'relationships', label: 'Relationships', color: 'var(--cat-relationships)', icon: 'heart', archetype: 'The Heart', romanNumeral: 'II', symbol: '◎' },
+  { name: 'work', label: 'Work', color: 'var(--cat-work)', icon: 'briefcase', archetype: 'The Builder', romanNumeral: 'III', symbol: '▲' },
+  { name: 'money', label: 'Money', color: 'var(--cat-money)', icon: 'banknote', archetype: 'The Merchant', romanNumeral: 'IV', symbol: '☸' },
+  { name: 'lifestyle', label: 'Lifestyle', color: 'var(--cat-lifestyle)', icon: 'sun', archetype: 'The Seeker', romanNumeral: 'V', symbol: '✦' },
+  { name: 'society', label: 'Society', color: 'var(--cat-society)', icon: 'globe', archetype: 'The Citizen', romanNumeral: 'VI', symbol: '⚖' },
 ]
 
 export function getCategories(): StanceCategory[] {

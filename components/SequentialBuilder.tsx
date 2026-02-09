@@ -4,9 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { HotTake, Stance, StanceCategory, getCategories } from '@/lib/categories'
 import CategoryCard from './CategoryCard'
 import ProgressIndicator from './ProgressIndicator'
-import StanceCard from './StanceCard'
-import ShareButton from './ShareButton'
 import IntensitySelector from './IntensitySelector'
+import TarotReveal from './tarot/TarotReveal'
 import { encodeStanceCard, type StanceEntry } from '@/lib/categories'
 
 interface StanceData {
@@ -44,7 +43,6 @@ export default function SequentialBuilder() {
   const [currentReasonTags, setCurrentReasonTags] = useState<string[]>([])
   const [currentExplanation, setCurrentExplanation] = useState('')
   const [isSpinning, setIsSpinning] = useState(false)
-  const [showCard, setShowCard] = useState(false)
 
   const currentCategory = categories[state.currentCategoryIndex]
 
@@ -182,68 +180,23 @@ export default function SequentialBuilder() {
       : ''
 
     return (
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <div className="space-y-4">
-          <h2
-            className="text-2xl md:text-3xl font-bold text-balance"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            Stance Card Complete! 🎉
-          </h2>
-          <p
-            className="text-lg text-pretty"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            You've claimed all 6 hills. Here's your stance card:
-          </p>
-        </div>
-
-        <div className="flex flex-col items-center gap-4">
-          <button
-            onClick={() => setShowCard(true)}
-            className="font-mono text-xs uppercase tracking-wider px-10 py-4 transition-all duration-200"
-            style={{
-              background: 'var(--accent)',
-              color: 'var(--bg-primary)',
-              borderRadius: 'var(--radius-sm)',
-              letterSpacing: '0.05em',
-              fontSize: '0.8125rem',
-              fontWeight: 500,
-            }}
-          >
-            View Stance Card
-          </button>
-          <ShareButton url={shareUrl} />
-
-          <button
-            onClick={() => {
-              setState({
-                currentCategoryIndex: 0,
-                completedCategories: [],
-                stances: {},
-                sessionId: typeof window !== 'undefined'
-                  ? window.crypto.randomUUID()
-                  : '',
-                isComplete: false,
-                intensityRange: [1, 5],
-                intensitySelected: false,
-              })
-              setShowCard(false)
-            }}
-            className="mt-4 text-sm"
-            style={{
-              color: 'var(--text-tertiary)',
-              textDecoration: 'underline',
-            }}
-          >
-            Start over with new hills
-          </button>
-        </div>
-
-        {showCard && (
-          <StanceCard entries={stanceEntries} onClose={() => setShowCard(false)} />
-        )}
-      </div>
+      <TarotReveal
+        entries={stanceEntries}
+        shareUrl={shareUrl}
+        onStartOver={() => {
+          setState({
+            currentCategoryIndex: 0,
+            completedCategories: [],
+            stances: {},
+            sessionId: typeof window !== 'undefined'
+              ? window.crypto.randomUUID()
+              : '',
+            isComplete: false,
+            intensityRange: [1, 5],
+            intensitySelected: false,
+          })
+        }}
+      />
     )
   }
 
