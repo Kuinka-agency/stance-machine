@@ -253,6 +253,14 @@ export default function SequentialBuilder() {
 
   // Tarot reveal on completion
   if (state.isComplete) {
+    // Guard: ensure all categories have stances before rendering
+    const allStancesPresent = categories.every((cat) => state.stances[cat.name])
+    if (!allStancesPresent) {
+      // Shouldn't happen, but recover gracefully
+      setState((prev) => ({ ...prev, isComplete: false }))
+      return null
+    }
+
     const stanceEntries: StanceEntry[] = categories.map((cat) => ({
       take: state.stances[cat.name].take,
       stance: state.stances[cat.name].stance as 'agree' | 'disagree',
