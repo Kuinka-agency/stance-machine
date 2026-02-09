@@ -4,6 +4,11 @@ on:
   issues:
     types: [labeled]
 
+# Prevent duplicate runs for the same issue
+concurrency:
+  group: autodev-${{ github.repository }}-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
 jobs:
   autodev:
     if: github.event.label.name == 'automagic'
@@ -19,38 +24,68 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
-          ~/Claude/dev-factory/notify.sh "🚀 *Job Started*
+          ~/Claude/dev-factory/notify.sh "🚀 Job Started
           Repo: ${{ github.repository }}
           Issue: #${{ github.event.issue.number }} - ${{ github.event.issue.title }}"
 
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Wait for Parallel Slot
+        run: ~/Claude/dev-factory/parallel-guard.sh 3
 
-      - name: Setup
+      - name: Create Worktree
+        id: worktree
         run: |
-          git checkout -b "auto/issue-${{ github.event.issue.number }}"
-          git config user.name "Eetu Karppanen"
-          git config user.email "eetu@kuinka.agency"
+          WORKTREE_PATH=$(~/Claude/dev-factory/worktree-job.sh \
+            "${{ github.repository }}" \
+            "${{ github.event.issue.number }}" \
+            "${{ github.run_id }}" \
+            "auto/issue-${{ github.event.issue.number }}")
+          echo "path=$WORKTREE_PATH" >> $GITHUB_OUTPUT
+
+      - name: Read Repo Config
+        id: config
+        working-directory: ${{ steps.worktree.outputs.path }}
+        run: |
+          # Check for .autodev.yml config
+          if [[ -f ".autodev.yml" ]]; then
+            VERIFY_TYPE=$(yq -r '.verification.type // "skip"' .autodev.yml 2>/dev/null || echo "skip")
+            PREVIEW_ENABLED=$(yq -r '.verification.preview.enabled // false' .autodev.yml 2>/dev/null || echo "false")
+          else
+            VERIFY_TYPE="skip"
+            PREVIEW_ENABLED="false"
+          fi
+          echo "verify_type=$VERIFY_TYPE" >> $GITHUB_OUTPUT
+          echo "preview_enabled=$PREVIEW_ENABLED" >> $GITHUB_OUTPUT
 
       - name: Run Claude
         id: claude
+        working-directory: ${{ steps.worktree.outputs.path }}
         run: |
           START_TIME=$(date +%s)
           CLAUDE_OUTPUT="/tmp/claude-output-${{ github.run_id }}.json"
           PROMPT_FILE=~/Claude/dev-factory/prompts/implement.md
+          TEMP_PROMPT="/tmp/prompt-${{ github.run_id }}.txt"
+          ISSUE_BODY_FILE="/tmp/issue-body-${{ github.run_id }}.txt"
 
-          # Build prompt from template
-          PROMPT=$(cat "$PROMPT_FILE" | \
-            sed "s|{{REPO}}|${{ github.repository }}|g" | \
-            sed "s|{{ISSUE_NUMBER}}|${{ github.event.issue.number }}|g" | \
-            sed "s|{{ISSUE_TITLE}}|${{ github.event.issue.title }}|g")
-
-          # Inject issue body (multiline safe)
-          ISSUE_BODY=$(cat <<'ISSUE_BODY_EOF'
+          # Write issue body to file (heredoc handles multiline properly)
+          cat > "$ISSUE_BODY_FILE" <<'ISSUE_BODY_EOF'
           ${{ github.event.issue.body }}
           ISSUE_BODY_EOF
-          )
-          PROMPT=$(echo "$PROMPT" | sed "s|{{ISSUE_BODY}}|$ISSUE_BODY|g")
+
+          # Build prompt from template (simple substitutions first)
+          sed -e "s|{{REPO}}|${{ github.repository }}|g" \
+              -e "s|{{ISSUE_NUMBER}}|${{ github.event.issue.number }}|g" \
+              -e "s|{{ISSUE_TITLE}}|${{ github.event.issue.title }}|g" \
+              "$PROMPT_FILE" > "$TEMP_PROMPT"
+
+          # Replace {{ISSUE_BODY}} with file contents using perl (multiline-safe)
+          perl -i -0777 -pe '
+            open(my $fh, "<", "'"$ISSUE_BODY_FILE"'") or die "Cannot open body file: $!";
+            my $body = do { local $/; <$fh> };
+            close($fh);
+            s/\{\{ISSUE_BODY\}\}/$body/g;
+          ' "$TEMP_PROMPT"
+
+          PROMPT=$(cat "$TEMP_PROMPT")
 
           # Run Claude with JSON output
           claude -p --dangerously-skip-permissions --output-format json \
@@ -62,9 +97,12 @@ jobs:
           echo "output_file=$CLAUDE_OUTPUT" >> $GITHUB_OUTPUT
           echo "duration_ms=$DURATION_MS" >> $GITHUB_OUTPUT
           echo "start_time=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
+          echo "issue_body_file=$ISSUE_BODY_FILE" >> $GITHUB_OUTPUT
+          echo "temp_prompt=$TEMP_PROMPT" >> $GITHUB_OUTPUT
 
       - name: Log Usage
         id: usage
+        working-directory: ${{ steps.worktree.outputs.path }}
         run: |
           CLAUDE_OUTPUT="${{ steps.claude.outputs.output_file }}"
           REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
@@ -108,9 +146,14 @@ jobs:
 
           echo "$USAGE_LINE" >> ~/Claude/dev-factory/logs/usage.jsonl
 
+          # Write result to file for later steps
+          RESULT_FILE="/tmp/impl-summary-${{ github.run_id }}.txt"
+          echo "$RESULT" > "$RESULT_FILE"
+
           # Export for later steps
           echo "total_cost=$TOTAL_COST" >> $GITHUB_OUTPUT
           echo "duration_min=$DURATION_MIN" >> $GITHUB_OUTPUT
+          echo "result_file=$RESULT_FILE" >> $GITHUB_OUTPUT
           echo "result_short<<EOF" >> $GITHUB_OUTPUT
           echo "$RESULT_SHORT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -118,37 +161,153 @@ jobs:
           echo "$RESULT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Create PR
-        id: create-pr
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+      - name: Validate Checklist
+        id: checklist
         run: |
+          OUTPUT=$(~/Claude/dev-factory/validate-checklist.sh \
+            "${{ steps.claude.outputs.issue_body_file }}" \
+            "${{ steps.usage.outputs.result_file }}")
+
+          # Parse output
+          eval "$OUTPUT"
+          echo "status=$CHECKLIST_STATUS" >> $GITHUB_OUTPUT
+          echo "checked=$CHECKED_COUNT" >> $GITHUB_OUTPUT
+          echo "total=$TOTAL_COUNT" >> $GITHUB_OUTPUT
+
+      - name: Push Branch
+        id: push
+        working-directory: ${{ steps.worktree.outputs.path }}
+        run: |
+          # Protect .github directory
           git checkout HEAD -- .github/ 2>/dev/null || true
 
           if git log origin/main..HEAD --oneline | grep -q .; then
             git push origin "auto/issue-${{ github.event.issue.number }}"
-            PR_URL=$(gh pr create \
-              --title "Auto: ${{ github.event.issue.title }}" \
-              --body "Closes #${{ github.event.issue.number }}
-
-              ---
-              Generated by Dev Factory")
-            echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
-            echo "pr_created=true" >> $GITHUB_OUTPUT
-
-            # Get list of changed files
-            FILES_CHANGED=$(git diff --name-only origin/main..HEAD | head -20)
-            FILES_COUNT=$(git diff --name-only origin/main..HEAD | wc -l | tr -d ' ')
-            echo "files_changed<<EOF" >> $GITHUB_OUTPUT
-            echo "$FILES_CHANGED" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-            echo "files_count=$FILES_COUNT" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> $GITHUB_OUTPUT
           else
-            echo "No changes were made - commenting on issue"
-            gh issue comment ${{ github.event.issue.number }} \
-              --body "AutoDev analyzed this issue but determined no code changes were needed. Please review the issue description or add more details."
-            echo "pr_created=false" >> $GITHUB_OUTPUT
+            echo "No changes were made"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Verify Preview
+        if: steps.push.outputs.has_changes == 'true' && steps.config.outputs.preview_enabled == 'true'
+        id: verify
+        run: |
+          OUTPUT=$(~/Claude/dev-factory/verify-preview.sh \
+            "${{ github.repository }}" \
+            "auto/issue-${{ github.event.issue.number }}" \
+            "${{ steps.config.outputs.verify_type }}")
+
+          # Parse output
+          eval "$OUTPUT"
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "status=$VERIFY_STATUS" >> $GITHUB_OUTPUT
+          echo "message=$VERIFY_MESSAGE" >> $GITHUB_OUTPUT
+
+      - name: Fix Preview Issues
+        if: steps.verify.outputs.status == 'failed'
+        working-directory: ${{ steps.worktree.outputs.path }}
+        run: |
+          # Build fix prompt
+          FIX_PROMPT="/tmp/verify-fix-${{ github.run_id }}.md"
+          TEMPLATE=~/Claude/dev-factory/prompts/verify-and-fix.md
+
+          sed -e "s|{{REPO}}|${{ github.repository }}|g" \
+              -e "s|{{BRANCH}}|auto/issue-${{ github.event.issue.number }}|g" \
+              -e "s|{{PREVIEW_URL}}|${{ steps.verify.outputs.preview_url }}|g" \
+              -e "s|{{VERIFY_TYPE}}|${{ steps.config.outputs.verify_type }}|g" \
+              -e "s|{{VERIFY_STATUS}}|${{ steps.verify.outputs.status }}|g" \
+              -e "s|{{VERIFY_MESSAGE}}|${{ steps.verify.outputs.message }}|g" \
+              "$TEMPLATE" > "$FIX_PROMPT"
+
+          # Run Claude to fix
+          claude -p --dangerously-skip-permissions "$( cat "$FIX_PROMPT")" || true
+
+          # Protect .github and push
+          git checkout HEAD -- .github/ 2>/dev/null || true
+          git add -A
+          git commit -m "fix: resolve preview deployment issue" || true
+          git push origin "auto/issue-${{ github.event.issue.number }}"
+
+          rm -f "$FIX_PROMPT"
+
+      - name: Create PR
+        id: create-pr
+        if: steps.push.outputs.has_changes == 'true'
+        working-directory: ${{ steps.worktree.outputs.path }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          RESULT: ${{ steps.usage.outputs.result }}
+        run: |
+          # Get list of changed files
+          FILES_CHANGED=$(git diff --name-only origin/main..HEAD | head -20)
+          FILES_COUNT=$(git diff --name-only origin/main..HEAD | wc -l | tr -d ' ')
+
+          # Build PR body with full implementation details
+          PR_BODY_FILE="/tmp/pr-body-${{ github.run_id }}.md"
+          {
+            echo "Closes #${{ github.event.issue.number }}"
+            echo ""
+            echo "## What was done"
+            echo ""
+            echo "$RESULT"
+            echo ""
+
+            # Add checklist validation status
+            if [[ "${{ steps.checklist.outputs.total }}" -gt 0 ]]; then
+              echo "## Checklist Validation"
+              echo ""
+              echo "**Status**: ${{ steps.checklist.outputs.status }} (${{ steps.checklist.outputs.checked }}/${{ steps.checklist.outputs.total }} items)"
+              echo ""
+            fi
+
+            # Add preview info if available
+            if [[ -n "${{ steps.verify.outputs.preview_url }}" ]]; then
+              echo "## Preview"
+              echo ""
+              echo "**URL**: ${{ steps.verify.outputs.preview_url }}"
+              echo "**Status**: ${{ steps.verify.outputs.status }}"
+              echo ""
+            fi
+
+            echo "## Files changed ($FILES_COUNT)"
+            echo '```'
+            echo "$FILES_CHANGED"
+            echo '```'
+            echo ""
+            echo "---"
+            echo "*Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }} | Generated by Dev Factory*"
+          } > "$PR_BODY_FILE"
+
+          # Add labels based on status
+          LABELS=""
+          if [[ "${{ steps.checklist.outputs.status }}" == "partial" ]]; then
+            LABELS="--label incomplete-criteria"
+          fi
+          if [[ "${{ steps.verify.outputs.status }}" == "warning" ]]; then
+            LABELS="$LABELS --label preview-warning"
+          fi
+
+          PR_URL=$(gh pr create \
+            --title "Auto: ${{ github.event.issue.title }}" \
+            --body-file "$PR_BODY_FILE" \
+            $LABELS)
+          rm -f "$PR_BODY_FILE"
+
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+          echo "pr_created=true" >> $GITHUB_OUTPUT
+          echo "files_changed<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES_CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "files_count=$FILES_COUNT" >> $GITHUB_OUTPUT
+
+      - name: Comment on Issue (No Changes)
+        if: steps.push.outputs.has_changes == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --body "AutoDev analyzed this issue but determined no code changes were needed. Please review the issue description or add more details."
 
       - name: Post Implementation Summary
         if: steps.create-pr.outputs.pr_created == 'true'
@@ -157,9 +316,8 @@ jobs:
           RESULT: ${{ steps.usage.outputs.result }}
           FILES_CHANGED: ${{ steps.create-pr.outputs.files_changed }}
         run: |
-          # Write comment to file to avoid shell escaping issues
+          # Comment on issue for testing context
           COMMENT_FILE="/tmp/comment-${{ github.run_id }}.md"
-
           {
             echo "## Implementation Summary"
             echo ""
@@ -168,6 +326,14 @@ jobs:
             echo "### What was done"
             echo "$RESULT"
             echo ""
+
+            # Add checklist status
+            if [[ "${{ steps.checklist.outputs.total }}" -gt 0 ]]; then
+              echo "### Checklist Validation"
+              echo "**${{ steps.checklist.outputs.status }}**: ${{ steps.checklist.outputs.checked }}/${{ steps.checklist.outputs.total }} items addressed"
+              echo ""
+            fi
+
             echo "### Files changed (${{ steps.create-pr.outputs.files_count }})"
             echo '```'
             echo "$FILES_CHANGED"
@@ -180,41 +346,121 @@ jobs:
           gh issue comment ${{ github.event.issue.number }} --body-file "$COMMENT_FILE"
           rm -f "$COMMENT_FILE"
 
+      - name: Check for Merge Conflicts
+        if: steps.create-pr.outputs.pr_created == 'true'
+        id: conflict-check
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          # Extract PR number from URL
+          PR_URL="${{ steps.create-pr.outputs.pr_url }}"
+          PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+
+          # Wait a moment for GitHub to compute mergeable status
+          sleep 5
+
+          # Check mergeable status
+          MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable -q '.mergeable')
+          echo "Mergeable status: $MERGEABLE"
+
+          if [[ "$MERGEABLE" == "CONFLICTING" ]]; then
+            echo "has_conflict=true" >> $GITHUB_OUTPUT
+            echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "Merge conflict detected, fix-pr workflow will handle it"
+          else
+            echo "has_conflict=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify Conflict Detected
+        if: steps.conflict-check.outputs.has_conflict == 'true'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          ~/Claude/dev-factory/notify.sh "⚠️ Merge Conflict Detected
+          Repo: ${{ github.repository }}
+          PR: ${{ steps.create-pr.outputs.pr_url }}
+          The fix-pr workflow will attempt to resolve automatically."
+
       - name: Notify Complete
         if: success()
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          RESULT_SHORT: ${{ steps.usage.outputs.result_short }}
         run: |
-          if [[ "${{ steps.create-pr.outputs.pr_created }}" == "true" ]]; then
-            ~/Claude/dev-factory/notify.sh "✅ *Job Complete*
-          Repo: ${{ github.repository }}
-          Issue: #${{ github.event.issue.number }}
-          PR: ${{ steps.create-pr.outputs.pr_url }}
-
-          *What was done:*
-          ${{ steps.usage.outputs.result_short }}
-
-          _Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}_"
+          # Write message to file to avoid shell escaping issues with backticks
+          MSG_FILE="/tmp/slack-msg-${{ github.run_id }}.txt"
+          if [[ "${{ steps.push.outputs.has_changes }}" == "true" ]]; then
+            {
+              echo "✅ Job Complete"
+              echo "Repo: ${{ github.repository }}"
+              echo "Issue: #${{ github.event.issue.number }}"
+              echo "PR: ${{ steps.create-pr.outputs.pr_url }}"
+              echo ""
+              if [[ "${{ steps.checklist.outputs.total }}" -gt 0 ]]; then
+                echo "Checklist: ${{ steps.checklist.outputs.status }} (${{ steps.checklist.outputs.checked }}/${{ steps.checklist.outputs.total }})"
+              fi
+              echo ""
+              echo "What was done:"
+              echo "$RESULT_SHORT"
+              echo ""
+              echo "Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}"
+            } > "$MSG_FILE"
           else
-            ~/Claude/dev-factory/notify.sh "ℹ️ *Job Complete - No Changes*
-          Repo: ${{ github.repository }}
-          Issue: #${{ github.event.issue.number }}
-          Claude determined no code changes were needed.
-
-          _Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}_"
+            {
+              echo "ℹ️ Job Complete - No Changes"
+              echo "Repo: ${{ github.repository }}"
+              echo "Issue: #${{ github.event.issue.number }}"
+              echo "Claude determined no code changes were needed."
+              echo ""
+              echo "Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}"
+            } > "$MSG_FILE"
           fi
+          ~/Claude/dev-factory/notify.sh "$(cat "$MSG_FILE")"
+          rm -f "$MSG_FILE"
+
+      - name: Notify Clawdbot Complete
+        if: success()
+        env:
+          CLAWDBOT_HOOK_TOKEN: ${{ secrets.CLAWDBOT_HOOK_TOKEN }}
+        run: |
+          if [[ "${{ steps.push.outputs.has_changes }}" == "true" ]]; then
+            MSG="✅ Dev Factory complete: ${{ github.repository }}#${{ github.event.issue.number }} → ${{ steps.create-pr.outputs.pr_url }}"
+          else
+            MSG="ℹ️ Dev Factory: ${{ github.repository }}#${{ github.event.issue.number }} - no changes needed"
+          fi
+          curl -s -X POST http://127.0.0.1:18789/hooks/agent \
+            -H "Authorization: Bearer $CLAWDBOT_HOOK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -nc --arg msg "$MSG" '{message: $msg, name: "DevFactory", deliver: true, channel: "telegram"}')" || true
 
       - name: Notify Failed
         if: failure()
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          CLAWDBOT_HOOK_TOKEN: ${{ secrets.CLAWDBOT_HOOK_TOKEN }}
         run: |
-          ~/Claude/dev-factory/notify.sh "❌ *Job Failed*
+          ~/Claude/dev-factory/notify.sh "❌ Job Failed
           Repo: ${{ github.repository }}
           Issue: #${{ github.event.issue.number }} - ${{ github.event.issue.title }}
           Check: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-      - name: Cleanup
+          # Also notify Clawdbot
+          MSG="❌ Dev Factory failed: ${{ github.repository }}#${{ github.event.issue.number }} - https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST http://127.0.0.1:18789/hooks/agent \
+            -H "Authorization: Bearer $CLAWDBOT_HOOK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -nc --arg msg "$MSG" '{message: $msg, name: "DevFactory", deliver: true, channel: "telegram"}')" || true
+
+      - name: Cleanup Worktree
         if: always()
         run: |
+          ~/Claude/dev-factory/worktree-cleanup.sh \
+            "${{ steps.worktree.outputs.path }}" \
+            "${{ github.repository }}" \
+            "${{ github.event.issue.number }}" || true
+
+          # Also clean temp files
           rm -f /tmp/claude-output-${{ github.run_id }}.json
+          rm -f /tmp/prompt-${{ github.run_id }}.txt
+          rm -f /tmp/issue-body-${{ github.run_id }}.txt
+          rm -f /tmp/impl-summary-${{ github.run_id }}.txt

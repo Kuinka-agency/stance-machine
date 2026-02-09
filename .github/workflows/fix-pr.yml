@@ -1,0 +1,528 @@
+name: FixPR
+
+on:
+  # Trigger on CI failure for auto/* branches
+  check_suite:
+    types: [completed]
+  # Trigger on /autofix comment
+  issue_comment:
+    types: [created]
+  # Trigger on workflow dispatch (manual)
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to fix'
+        required: true
+        type: number
+
+# Prevent duplicate fix attempts
+concurrency:
+  group: fix-pr-${{ github.repository }}-${{ github.event.issue.number || github.event.inputs.pr_number || github.event.check_suite.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  fix-pr:
+    # Conditions:
+    # 1. check_suite failed on auto/* branch (not already a fix attempt)
+    # 2. /autofix comment on a PR
+    # 3. Manual workflow dispatch
+    if: |
+      (github.event_name == 'check_suite' &&
+       github.event.check_suite.conclusion == 'failure' &&
+       startsWith(github.event.check_suite.head_branch, 'auto/') &&
+       !contains(github.event.check_suite.head_branch, '-fix-')) ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       startsWith(github.event.comment.body, '/autofix')) ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: self-hosted
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      checks: read
+
+    steps:
+      - name: Get PR Info
+        id: pr-info
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [[ "${{ github.event_name }}" == "check_suite" ]]; then
+            BRANCH="${{ github.event.check_suite.head_branch }}"
+            # Find PR for this branch
+            PR_NUMBER=$(gh pr list --head "$BRANCH" --json number -q '.[0].number' --repo ${{ github.repository }})
+          elif [[ "${{ github.event_name }}" == "issue_comment" ]]; then
+            PR_NUMBER="${{ github.event.issue.number }}"
+            BRANCH=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName' --repo ${{ github.repository }})
+          else
+            PR_NUMBER="${{ github.event.inputs.pr_number }}"
+            BRANCH=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName' --repo ${{ github.repository }})
+          fi
+
+          if [[ -z "$PR_NUMBER" ]]; then
+            echo "Could not determine PR number"
+            exit 1
+          fi
+
+          # Get original issue number from PR body (Closes #N)
+          PR_BODY=$(gh pr view $PR_NUMBER --json body -q '.body' --repo ${{ github.repository }})
+          ORIGINAL_ISSUE=$(echo "$PR_BODY" | grep -oE 'Closes #[0-9]+' | head -1 | sed 's/Closes #//' || echo "")
+
+          # Count existing fix attempts on this PR
+          ATTEMPT_COUNT=$(gh pr view $PR_NUMBER --json commits -q '.commits | map(select(.messageHeadline | startswith("fix:"))) | length' --repo ${{ github.repository }} 2>/dev/null || echo "0")
+          ATTEMPT=$((ATTEMPT_COUNT + 1))
+
+          # Always output pr_number first (needed for notifications even if max_reached)
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "original_issue=$ORIGINAL_ISSUE" >> $GITHUB_OUTPUT
+          echo "attempt=$ATTEMPT" >> $GITHUB_OUTPUT
+
+          if [[ $ATTEMPT -gt 3 ]]; then
+            echo "Max fix attempts (3) reached for PR #$PR_NUMBER"
+            echo "max_reached=true" >> $GITHUB_OUTPUT
+          else
+            echo "max_reached=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify Max Attempts Reached
+        if: steps.pr-info.outputs.max_reached == 'true'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          PR_NUMBER="${{ steps.pr-info.outputs.pr_number }}"
+          PR_URL="https://github.com/${{ github.repository }}/pull/$PR_NUMBER"
+
+          ~/Claude/dev-factory/notify.sh "⚠️ Manual Intervention Needed
+          Repo: ${{ github.repository }}
+          PR: $PR_URL
+          Reason: Max fix attempts (3) reached
+          Please review and fix manually."
+
+          gh pr comment $PR_NUMBER --body "⚠️ **Auto-fix limit reached**
+
+          This PR has had 3 fix attempts and still has failing checks.
+          Manual intervention is required.
+
+          [View workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" --repo ${{ github.repository }}
+
+      - name: Stop if Max Reached
+        if: steps.pr-info.outputs.max_reached == 'true'
+        run: exit 0
+
+      - name: Notify Fix Start
+        if: steps.pr-info.outputs.max_reached != 'true'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          ~/Claude/dev-factory/notify.sh "🔧 Fix Attempt ${{ steps.pr-info.outputs.attempt }}/3
+          Repo: ${{ github.repository }}
+          PR: #${{ steps.pr-info.outputs.pr_number }}
+          Branch: ${{ steps.pr-info.outputs.branch }}"
+
+      - name: Checkout PR Branch
+        if: steps.pr-info.outputs.max_reached != 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr-info.outputs.branch }}
+          fetch-depth: 0
+
+      - name: Setup Git
+        if: steps.pr-info.outputs.max_reached != 'true'
+        run: |
+          git config user.name "Eetu Karppanen"
+          git config user.email "eetu@kuinka.agency"
+
+      - name: Get Error Context
+        if: steps.pr-info.outputs.max_reached != 'true'
+        id: error-context
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          PR_NUMBER="${{ steps.pr-info.outputs.pr_number }}"
+          ERROR_TYPE="unknown"
+          ERROR_DETAILS=""
+          ERROR_FILE="/tmp/error-details-${{ github.run_id }}.txt"
+
+          # Check for merge conflicts first
+          MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable -q '.mergeable' --repo ${{ github.repository }})
+          if [[ "$MERGEABLE" == "CONFLICTING" ]]; then
+            ERROR_TYPE="merge_conflict"
+            # Get conflict info by attempting merge
+            git fetch origin main
+            CONFLICT_OUTPUT=$(git merge origin/main 2>&1 || true)
+            ERROR_DETAILS="Merge conflict detected:\n\n$CONFLICT_OUTPUT"
+            git merge --abort 2>/dev/null || true
+          else
+            # Get failed check runs
+            FAILED_CHECKS=$(gh pr checks $PR_NUMBER --json name,conclusion,detailsUrl \
+              -q '.[] | select(.conclusion == "failure") | "\(.name): \(.detailsUrl)"' \
+              --repo ${{ github.repository }} 2>/dev/null || echo "")
+
+            if [[ -n "$FAILED_CHECKS" ]]; then
+              # Try to get logs from the failed workflow
+              WORKFLOW_RUN_ID=$(gh run list --branch "${{ steps.pr-info.outputs.branch }}" \
+                --json databaseId,conclusion -q '.[] | select(.conclusion == "failure") | .databaseId' \
+                --repo ${{ github.repository }} | head -1)
+
+              if [[ -n "$WORKFLOW_RUN_ID" ]]; then
+                # Get workflow logs (last 200 lines)
+                CI_LOGS=$(gh run view $WORKFLOW_RUN_ID --log --repo ${{ github.repository }} 2>/dev/null | tail -200 || echo "Could not fetch logs")
+              else
+                CI_LOGS="No workflow logs available"
+              fi
+
+              # Write logs to file for classification
+              echo "$CI_LOGS" > "$ERROR_FILE"
+
+              # Use classify-error.sh to determine error type
+              ERROR_TYPE=$(~/Claude/dev-factory/classify-error.sh "$ERROR_FILE")
+
+              ERROR_DETAILS="Failed checks:\n$FAILED_CHECKS\n\nCI Logs (last 200 lines):\n\`\`\`\n$CI_LOGS\n\`\`\`"
+            fi
+          fi
+
+          # If triggered by /autofix comment, include the comment context
+          if [[ "${{ github.event_name }}" == "issue_comment" ]]; then
+            COMMENT_BODY="${{ github.event.comment.body }}"
+            # Remove /autofix prefix and get any additional context
+            EXTRA_CONTEXT=$(echo "$COMMENT_BODY" | sed 's|^/autofix||' | xargs)
+            if [[ -n "$EXTRA_CONTEXT" ]]; then
+              ERROR_TYPE="manual_fix"
+              ERROR_DETAILS="User requested fix:\n$EXTRA_CONTEXT\n\n$ERROR_DETAILS"
+            fi
+          fi
+
+          echo "error_type=$ERROR_TYPE" >> $GITHUB_OUTPUT
+
+          # Write error details to file (multiline safe)
+          echo -e "$ERROR_DETAILS" > "$ERROR_FILE"
+          echo "error_file=$ERROR_FILE" >> $GITHUB_OUTPUT
+
+      - name: Get Original Issue Body
+        if: steps.pr-info.outputs.max_reached != 'true'
+        id: original-issue
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          ISSUE_NUMBER="${{ steps.pr-info.outputs.original_issue }}"
+          ISSUE_FILE="/tmp/original-issue-${{ github.run_id }}.txt"
+
+          if [[ -n "$ISSUE_NUMBER" ]]; then
+            gh issue view $ISSUE_NUMBER --json body -q '.body' --repo ${{ github.repository }} > "$ISSUE_FILE" 2>/dev/null || echo "Original issue not found" > "$ISSUE_FILE"
+          else
+            echo "No original issue linked" > "$ISSUE_FILE"
+          fi
+
+          echo "issue_file=$ISSUE_FILE" >> $GITHUB_OUTPUT
+
+      - name: Build Fix Prompt
+        if: steps.pr-info.outputs.max_reached != 'true'
+        id: build-prompt
+        run: |
+          PROMPT_TEMPLATE=~/Claude/dev-factory/prompts/fix-pr.md
+          PROMPT_FILE="/tmp/fix-prompt-${{ github.run_id }}.md"
+
+          # Copy template
+          cp "$PROMPT_TEMPLATE" "$PROMPT_FILE"
+
+          # Simple substitutions
+          sed -i '' -e "s|{{REPO}}|${{ github.repository }}|g" \
+              -e "s|{{PR_NUMBER}}|${{ steps.pr-info.outputs.pr_number }}|g" \
+              -e "s|{{BRANCH}}|${{ steps.pr-info.outputs.branch }}|g" \
+              -e "s|{{ATTEMPT}}|${{ steps.pr-info.outputs.attempt }}|g" \
+              -e "s|{{ERROR_TYPE}}|${{ steps.error-context.outputs.error_type }}|g" \
+              "$PROMPT_FILE"
+
+          # Replace multiline placeholders using perl
+          perl -i -0777 -pe '
+            open(my $fh, "<", "'"${{ steps.original-issue.outputs.issue_file }}"'") or die;
+            my $body = do { local $/; <$fh> };
+            close($fh);
+            s/\{\{ORIGINAL_ISSUE_BODY\}\}/$body/g;
+          ' "$PROMPT_FILE"
+
+          perl -i -0777 -pe '
+            open(my $fh, "<", "'"${{ steps.error-context.outputs.error_file }}"'") or die;
+            my $details = do { local $/; <$fh> };
+            close($fh);
+            s/\{\{ERROR_DETAILS\}\}/$details/g;
+          ' "$PROMPT_FILE"
+
+          echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
+
+      - name: Handle Merge Conflict
+        if: steps.pr-info.outputs.max_reached != 'true' && steps.error-context.outputs.error_type == 'merge_conflict'
+        run: |
+          # Rebase onto main
+          git fetch origin main
+          git rebase origin/main || {
+            # If rebase fails, Claude will handle conflicts
+            git rebase --abort 2>/dev/null || true
+          }
+
+      - name: Try Codex First (Simple Errors)
+        if: |
+          steps.pr-info.outputs.max_reached != 'true' &&
+          (steps.error-context.outputs.error_type == 'lint_error' ||
+           steps.error-context.outputs.error_type == 'type_error' ||
+           steps.error-context.outputs.error_type == 'simple_test')
+        id: codex-fix
+        run: |
+          echo "Using Codex for simple ${{ steps.error-context.outputs.error_type }}"
+
+          # Run Codex fix loop (2 attempts max)
+          if ~/Claude/dev-factory/fix-loop-codex.sh \
+               "${{ steps.build-prompt.outputs.prompt_file }}" \
+               2 \
+               "${{ steps.error-context.outputs.error_type }}"; then
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Claude Fix (Fallback or Complex)
+        if: |
+          steps.pr-info.outputs.max_reached != 'true' &&
+          (steps.codex-fix.outputs.success != 'true' ||
+           steps.error-context.outputs.error_type == 'build_error' ||
+           steps.error-context.outputs.error_type == 'merge_conflict' ||
+           steps.error-context.outputs.error_type == 'complex_test' ||
+           steps.error-context.outputs.error_type == 'runtime_error' ||
+           steps.error-context.outputs.error_type == 'unknown')
+        id: claude-fix
+        run: |
+          START_TIME=$(date +%s)
+          CLAUDE_OUTPUT="/tmp/claude-fix-${{ github.run_id }}.json"
+          PROMPT=$(cat "${{ steps.build-prompt.outputs.prompt_file }}")
+
+          # Protect .github directory
+          git checkout HEAD -- .github/ 2>/dev/null || true
+
+          # Determine if this is a fallback from Codex
+          IS_FALLBACK="false"
+          if [[ "${{ steps.codex-fix.outputs.success }}" == "false" ]]; then
+            IS_FALLBACK="true"
+            echo "Codex failed, falling back to Claude"
+          fi
+
+          # Run Claude
+          claude -p --dangerously-skip-permissions --output-format json \
+            "$PROMPT" > "$CLAUDE_OUTPUT" 2>&1 || true
+
+          # Protect .github directory again after Claude
+          git checkout HEAD -- .github/ 2>/dev/null || true
+
+          END_TIME=$(date +%s)
+          DURATION_MS=$(( (END_TIME - START_TIME) * 1000 ))
+
+          echo "output_file=$CLAUDE_OUTPUT" >> $GITHUB_OUTPUT
+          echo "duration_ms=$DURATION_MS" >> $GITHUB_OUTPUT
+          echo "is_fallback=$IS_FALLBACK" >> $GITHUB_OUTPUT
+
+      - name: Push Fixes
+        if: steps.pr-info.outputs.max_reached != 'true'
+        id: push-fixes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          BRANCH="${{ steps.pr-info.outputs.branch }}"
+
+          # Check if there are changes to push
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes made"
+            echo "changes_pushed=false" >> $GITHUB_OUTPUT
+          else
+            # Stage any unstaged changes
+            git add -A
+
+            # Determine tool used
+            if [[ "${{ steps.codex-fix.outputs.success }}" == "true" ]]; then
+              TOOL="codex"
+            else
+              TOOL="claude"
+            fi
+
+            # Commit with fix message
+            git commit -m "fix: resolve ${{ steps.error-context.outputs.error_type }}
+
+          Auto-fix attempt ${{ steps.pr-info.outputs.attempt }}/3 for PR #${{ steps.pr-info.outputs.pr_number }}
+          Tool: $TOOL" || true
+
+            # Push changes
+            git push origin "$BRANCH"
+            echo "changes_pushed=true" >> $GITHUB_OUTPUT
+            echo "tool=$TOOL" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Log Usage
+        if: steps.pr-info.outputs.max_reached != 'true'
+        id: usage
+        run: |
+          CLAUDE_OUTPUT="${{ steps.claude-fix.outputs.output_file }}"
+          TOOL="${{ steps.push-fixes.outputs.tool }}"
+
+          # Get cost (from Claude if used, otherwise 0 for Codex)
+          if [[ -f "$CLAUDE_OUTPUT" ]]; then
+            TOTAL_COST=$(jq -r '.total_cost_usd // 0' "$CLAUDE_OUTPUT" 2>/dev/null || echo "0")
+            RESULT=$(jq -r '.result // "No result available"' "$CLAUDE_OUTPUT" 2>/dev/null || echo "No result available")
+          else
+            TOTAL_COST="0"
+            RESULT="Fixed via Codex"
+          fi
+
+          DURATION_MS=${{ steps.claude-fix.outputs.duration_ms || '0' }}
+          DURATION_MIN=$(echo "scale=1; $DURATION_MS / 60000" | bc 2>/dev/null || echo "0")
+
+          # Truncate result for Slack (first 500 chars)
+          RESULT_SHORT=$(echo "$RESULT" | head -c 500)
+          if [ ${#RESULT} -gt 500 ]; then
+            RESULT_SHORT="${RESULT_SHORT}..."
+          fi
+
+          # Log to usage.jsonl
+          USAGE_LINE=$(jq -nc \
+            --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg repo "${{ github.repository }}" \
+            --argjson pr_number "${{ steps.pr-info.outputs.pr_number }}" \
+            --argjson duration_ms "$DURATION_MS" \
+            --argjson total_cost_usd "$TOTAL_COST" \
+            --arg error_type "${{ steps.error-context.outputs.error_type }}" \
+            --argjson attempt "${{ steps.pr-info.outputs.attempt }}" \
+            --arg type "fix" \
+            --arg tool "$TOOL" \
+            '{timestamp: $timestamp, repo: $repo, pr_number: $pr_number, duration_ms: $duration_ms, total_cost_usd: $total_cost_usd, error_type: $error_type, attempt: $attempt, type: $type, tool: $tool}')
+
+          echo "$USAGE_LINE" >> ~/Claude/dev-factory/logs/usage.jsonl
+
+          # Also log to fix-usage.jsonl for detailed fix tracking
+          if [[ -n "$TOOL" ]]; then
+            jq -nc \
+              --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              --arg tool "$TOOL" \
+              --arg error_type "${{ steps.error-context.outputs.error_type }}" \
+              --argjson attempt "${{ steps.pr-info.outputs.attempt }}" \
+              --argjson success "${{ steps.push-fixes.outputs.changes_pushed == 'true' }}" \
+              --argjson duration_ms "$DURATION_MS" \
+              --argjson cost_usd "$TOTAL_COST" \
+              --arg is_fallback "${{ steps.claude-fix.outputs.is_fallback }}" \
+              '{timestamp: $timestamp, tool: $tool, error_type: $error_type, attempt: $attempt, success: $success, duration_ms: $duration_ms, cost_usd: $cost_usd, is_fallback: $is_fallback}' \
+              >> ~/Claude/dev-factory/logs/fix-usage.jsonl
+          fi
+
+          echo "total_cost=$TOTAL_COST" >> $GITHUB_OUTPUT
+          echo "duration_min=$DURATION_MIN" >> $GITHUB_OUTPUT
+          echo "result<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESULT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "result_short<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESULT_SHORT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Post Fix Summary
+        if: steps.pr-info.outputs.max_reached != 'true' && steps.push-fixes.outputs.changes_pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          RESULT: ${{ steps.usage.outputs.result }}
+        run: |
+          PR_NUMBER="${{ steps.pr-info.outputs.pr_number }}"
+          COMMENT_FILE="/tmp/fix-comment-${{ github.run_id }}.md"
+
+          {
+            echo "## 🔧 Auto-Fix Attempt ${{ steps.pr-info.outputs.attempt }}/3"
+            echo ""
+            echo "**Error Type**: \`${{ steps.error-context.outputs.error_type }}\`"
+            echo "**Tool Used**: \`${{ steps.push-fixes.outputs.tool }}\`"
+            echo ""
+            echo "### What was fixed"
+            echo "$RESULT"
+            echo ""
+            echo "---"
+            echo "*Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}*"
+          } > "$COMMENT_FILE"
+
+          gh pr comment $PR_NUMBER --body-file "$COMMENT_FILE" --repo ${{ github.repository }}
+          rm -f "$COMMENT_FILE"
+
+      - name: Notify Fix Complete
+        if: steps.pr-info.outputs.max_reached != 'true' && success()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          RESULT_SHORT: ${{ steps.usage.outputs.result_short }}
+        run: |
+          PR_NUMBER="${{ steps.pr-info.outputs.pr_number }}"
+          PR_URL="https://github.com/${{ github.repository }}/pull/$PR_NUMBER"
+          MSG_FILE="/tmp/slack-fix-msg-${{ github.run_id }}.txt"
+
+          if [[ "${{ steps.push-fixes.outputs.changes_pushed }}" == "true" ]]; then
+            {
+              echo "🔧 Fix Pushed"
+              echo "Repo: ${{ github.repository }}"
+              echo "PR: $PR_URL"
+              echo "Error: ${{ steps.error-context.outputs.error_type }}"
+              echo "Tool: ${{ steps.push-fixes.outputs.tool }}"
+              echo "Attempt: ${{ steps.pr-info.outputs.attempt }}/3"
+              echo ""
+              echo "What was fixed:"
+              echo "$RESULT_SHORT"
+              echo ""
+              echo "Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}"
+            } > "$MSG_FILE"
+          else
+            {
+              echo "🔧 Fix Attempted (No Changes)"
+              echo "Repo: ${{ github.repository }}"
+              echo "PR: $PR_URL"
+              echo "Tool analyzed but made no changes."
+              echo "Attempt: ${{ steps.pr-info.outputs.attempt }}/3"
+            } > "$MSG_FILE"
+          fi
+          ~/Claude/dev-factory/notify.sh "$(cat "$MSG_FILE")"
+          rm -f "$MSG_FILE"
+
+      - name: Notify Clawdbot
+        if: steps.pr-info.outputs.max_reached != 'true' && success()
+        env:
+          CLAWDBOT_HOOK_TOKEN: ${{ secrets.CLAWDBOT_HOOK_TOKEN }}
+        run: |
+          PR_URL="https://github.com/${{ github.repository }}/pull/${{ steps.pr-info.outputs.pr_number }}"
+          if [[ "${{ steps.push-fixes.outputs.changes_pushed }}" == "true" ]]; then
+            MSG="🔧 Fix pushed: ${{ github.repository }} PR#${{ steps.pr-info.outputs.pr_number }} (${{ steps.error-context.outputs.error_type }}, ${{ steps.push-fixes.outputs.tool }}, attempt ${{ steps.pr-info.outputs.attempt }}/3)"
+          else
+            MSG="🔧 Fix attempted (no changes): ${{ github.repository }} PR#${{ steps.pr-info.outputs.pr_number }}"
+          fi
+          curl -s -X POST http://127.0.0.1:18789/hooks/agent \
+            -H "Authorization: Bearer $CLAWDBOT_HOOK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -nc --arg msg "$MSG" '{message: $msg, name: "DevFactory", deliver: true, channel: "telegram"}')" || true
+
+      - name: Notify Fix Failed
+        if: steps.pr-info.outputs.max_reached != 'true' && failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          CLAWDBOT_HOOK_TOKEN: ${{ secrets.CLAWDBOT_HOOK_TOKEN }}
+        run: |
+          PR_URL="https://github.com/${{ github.repository }}/pull/${{ steps.pr-info.outputs.pr_number }}"
+
+          ~/Claude/dev-factory/notify.sh "❌ Fix Failed
+          Repo: ${{ github.repository }}
+          PR: $PR_URL
+          Attempt: ${{ steps.pr-info.outputs.attempt }}/3
+          Check: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          MSG="❌ Fix failed: ${{ github.repository }} PR#${{ steps.pr-info.outputs.pr_number }} (attempt ${{ steps.pr-info.outputs.attempt }}/3)"
+          curl -s -X POST http://127.0.0.1:18789/hooks/agent \
+            -H "Authorization: Bearer $CLAWDBOT_HOOK_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -nc --arg msg "$MSG" '{message: $msg, name: "DevFactory", deliver: true, channel: "telegram"}')" || true
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f /tmp/claude-fix-${{ github.run_id }}.json
+          rm -f /tmp/fix-prompt-${{ github.run_id }}.md
+          rm -f /tmp/error-details-${{ github.run_id }}.txt
+          rm -f /tmp/original-issue-${{ github.run_id }}.txt
