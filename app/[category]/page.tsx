@@ -7,6 +7,9 @@ import ScrollReveal from '@/components/ScrollReveal'
 import { getFilteredHotTakes } from '@/lib/hot-takes'
 import Link from 'next/link'
 
+// ISR: revalidate every 10 minutes — hot takes are mostly static
+export const revalidate = 600
+
 interface CategoryConfig {
   slug: string
   category: string
@@ -139,11 +142,11 @@ export default async function CategoryPage({ params }: { params: { category: str
             {hotTakes.map((take, i) => (
               <li
                 key={take.id}
-                className="p-4"
+                className="surface-card p-4"
                 style={{
                   background: 'var(--bg-card)',
-                  border: '1px solid var(--border)',
                   borderRadius: 'var(--radius-md)',
+                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.4)',
                 }}
               >
                 <div className="flex gap-3">
