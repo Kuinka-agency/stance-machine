@@ -74,55 +74,29 @@ export default function HotTakeHero({
     ''
 
   const isLocked = phase === 'post-vote'
-  const isCelebrating = celebrationPhase === 'celebrating' || celebrationPhase === 'sheet'
+  const isAnimating = celebrationPhase === 'celebrating' // Only the 1.5s burst
+  const isPostVote = celebrationPhase === 'celebrating' || celebrationPhase === 'sheet' // Both phases
 
   // Button style helper — outline pre-vote, filled on selection
-  const getAgreeStyle = () => {
-    if (isCelebrating && stance === 'agree') {
-      return { background: 'var(--agree)', color: 'white', border: '2px solid var(--agree)', opacity: 1 }
+  const getButtonStyle = (type: 'agree' | 'disagree') => {
+    const color = type === 'agree' ? 'var(--agree)' : 'var(--disagree)'
+    const subtle = type === 'agree' ? 'var(--agree-subtle)' : 'var(--disagree-subtle)'
+    const isChosen = stance === type
+
+    // Post-vote: chosen button stays filled, unchosen hidden
+    if (isPostVote) {
+      if (isChosen) {
+        return { background: color, color: 'white', border: `2px solid ${color}`, opacity: 1 }
+      }
+      return { background: 'transparent', color, border: `2px solid ${color}`, opacity: 0 }
     }
-    if (isCelebrating && stance !== 'agree') {
-      return { background: 'transparent', color: 'var(--agree)', border: '2px solid var(--agree)', opacity: 0 }
-    }
-    if (isLocked && stance === 'agree') {
-      return { background: 'var(--agree)', color: 'white', border: '2px solid var(--agree)', opacity: 1 }
-    }
-    if (isLocked && stance !== 'agree') {
-      return { background: 'transparent', color: 'var(--agree)', border: '2px solid var(--agree)', opacity: 0 }
-    }
+
     // Pre-vote: outline style
-    return {
-      background: 'var(--agree-subtle)',
-      color: 'var(--agree)',
-      border: '2px solid var(--agree)',
-      opacity: isSpinning ? 0.5 : 1,
-    }
+    return { background: subtle, color, border: `2px solid ${color}`, opacity: isSpinning ? 0.5 : 1 }
   }
 
-  const getDisagreeStyle = () => {
-    if (isCelebrating && stance === 'disagree') {
-      return { background: 'var(--disagree)', color: 'white', border: '2px solid var(--disagree)', opacity: 1 }
-    }
-    if (isCelebrating && stance !== 'disagree') {
-      return { background: 'transparent', color: 'var(--disagree)', border: '2px solid var(--disagree)', opacity: 0 }
-    }
-    if (isLocked && stance === 'disagree') {
-      return { background: 'var(--disagree)', color: 'white', border: '2px solid var(--disagree)', opacity: 1 }
-    }
-    if (isLocked && stance !== 'disagree') {
-      return { background: 'transparent', color: 'var(--disagree)', border: '2px solid var(--disagree)', opacity: 0 }
-    }
-    // Pre-vote: outline style
-    return {
-      background: 'var(--disagree-subtle)',
-      color: 'var(--disagree)',
-      border: '2px solid var(--disagree)',
-      opacity: isSpinning ? 0.5 : 1,
-    }
-  }
-
-  const agreeStyle = getAgreeStyle()
-  const disagreeStyle = getDisagreeStyle()
+  const agreeStyle = getButtonStyle('agree')
+  const disagreeStyle = getButtonStyle('disagree')
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col" style={{ background: 'var(--bg-primary)' }}>
@@ -220,7 +194,7 @@ export default function HotTakeHero({
                 borderRadius: 'var(--radius-lg)',
                 boxShadow: '0 8px 40px rgba(0, 0, 0, 0.5)',
                 borderLeft: `4px solid ${category.color}`,
-                opacity: isCelebrating ? 0.7 : 1,
+                opacity: isAnimating ? 0.7 : 1,
                 transition: 'opacity 0.3s ease',
               }}
             >
@@ -272,7 +246,7 @@ export default function HotTakeHero({
             )}
 
             {/* Celebration text — appears after voting */}
-            {isCelebrating && (
+            {isPostVote && (
               <div className="flex justify-center celebration-enter">
                 <p
                   className="font-mono text-xs uppercase tracking-[0.12em]"
@@ -289,8 +263,8 @@ export default function HotTakeHero({
                 onClick={() => !isLocked && onVote('agree')}
                 disabled={isSpinning || isLocked}
                 className={`stance-btn flex-1 flex items-center justify-center gap-3 font-mono text-base uppercase tracking-wider font-semibold transition-all duration-200 ${
-                  isCelebrating && stance === 'agree' ? 'vote-glow-agree btn-celebrate' : ''
-                } ${isCelebrating && stance !== 'agree' ? 'btn-fade-out' : ''}`}
+                  isAnimating && stance === 'agree' ? 'vote-glow-agree btn-celebrate' : ''
+                } ${isAnimating && stance !== 'agree' ? 'btn-fade-out' : ''}`}
                 style={{
                   padding: '20px 24px',
                   borderRadius: 'var(--radius-md)',
@@ -310,8 +284,8 @@ export default function HotTakeHero({
                 onClick={() => !isLocked && onVote('disagree')}
                 disabled={isSpinning || isLocked}
                 className={`stance-btn flex-1 flex items-center justify-center gap-3 font-mono text-base uppercase tracking-wider font-semibold transition-all duration-200 ${
-                  isCelebrating && stance === 'disagree' ? 'vote-glow-disagree btn-celebrate' : ''
-                } ${isCelebrating && stance !== 'disagree' ? 'btn-fade-out' : ''}`}
+                  isAnimating && stance === 'disagree' ? 'vote-glow-disagree btn-celebrate' : ''
+                } ${isAnimating && stance !== 'disagree' ? 'btn-fade-out' : ''}`}
                 style={{
                   padding: '20px 24px',
                   borderRadius: 'var(--radius-md)',
