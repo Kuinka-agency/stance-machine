@@ -444,6 +444,72 @@ textarea:-webkit-autofill:focus {
   animation: hero-enter 0.4s var(--ease-spring) forwards;
 }
 
+/* ========================================
+   VOTE CELEBRATION ANIMATIONS
+   ======================================== */
+
+/* Vote glow burst — radiating shadow on selected button */
+@keyframes vote-glow-agree {
+  0% { box-shadow: 0 0 0 0 rgba(45, 168, 56, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(45, 168, 56, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(45, 168, 56, 0); }
+}
+
+@keyframes vote-glow-disagree {
+  0% { box-shadow: 0 0 0 0 rgba(217, 69, 53, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(217, 69, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 69, 53, 0); }
+}
+
+.vote-glow-agree {
+  animation: vote-glow-agree 0.8s ease-out;
+}
+
+.vote-glow-disagree {
+  animation: vote-glow-disagree 0.8s ease-out;
+}
+
+/* Celebration text reveal */
+@keyframes celebration-enter {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.celebration-enter {
+  animation: celebration-enter 0.5s var(--ease-out) forwards;
+}
+
+/* Dot progress pulse — current category dot */
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.dot-pulse {
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+/* Unchosen button fade out */
+@keyframes btn-fade-out {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.95); }
+}
+
+.btn-fade-out {
+  animation: btn-fade-out 0.3s var(--ease-out) forwards;
+}
+
+/* Chosen button celebrate */
+@keyframes btn-celebrate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn-celebrate {
+  animation: btn-celebrate 0.4s var(--ease-spring);
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .card-exit,
@@ -460,7 +526,13 @@ textarea:-webkit-autofill:focus {
   .bottom-sheet-exit,
   .bottom-sheet-backdrop,
   .hero-exit,
-  .hero-enter {
+  .hero-enter,
+  .vote-glow-agree,
+  .vote-glow-disagree,
+  .celebration-enter,
+  .dot-pulse,
+  .btn-fade-out,
+  .btn-celebrate {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

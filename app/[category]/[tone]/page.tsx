@@ -7,6 +7,9 @@ import StanceMachine from '@/components/StanceMachine'
 import { getFilteredHotTakes } from '@/lib/hot-takes'
 import Link from 'next/link'
 
+// ISR: revalidate every 10 minutes
+export const revalidate = 600
+
 interface CategoryToneConfig {
   categorySlug: string
   category: string
@@ -120,11 +123,11 @@ export default async function CategoryTonePage({
             {hotTakes.map((take, i) => (
               <li
                 key={take.id}
-                className="p-4"
+                className="surface-card p-4"
                 style={{
                   background: 'var(--bg-card)',
-                  border: '1px solid var(--border)',
                   borderRadius: 'var(--radius-md)',
+                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.4)',
                 }}
               >
                 <div className="flex gap-3">

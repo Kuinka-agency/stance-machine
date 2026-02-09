@@ -67,9 +67,10 @@ export function encodeStanceCard(entries: StanceEntry[]): string {
     .map((e) => `${e.take.id}.${e.stance === 'agree' ? 'a' : 'd'}`)
     .join('|')
 
-  // Simple base64url encoding
-  if (typeof Buffer !== 'undefined') {
-    return Buffer.from(payload).toString('base64url')
+  // Always use btoa in browser — Buffer polyfill may not support base64url
+  if (typeof window !== 'undefined') {
+    return btoa(payload).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
   }
-  return btoa(payload).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  // Server-side: use Buffer
+  return Buffer.from(payload).toString('base64url')
 }

@@ -33,40 +33,74 @@ function mapRow(row: any): HotTake {
   }
 }
 
+// ============================================
+// IN-MEMORY CACHE — load once, serve forever
+// ============================================
+
+let _cache: HotTake[] | null = null
+let _cachePromise: Promise<HotTake[]> | null = null
+const CACHE_TTL = 10 * 60 * 1000 // 10 minutes
+let _cacheTimestamp = 0
+
+async function getCachedHotTakes(): Promise<HotTake[]> {
+  const now = Date.now()
+
+  // Return cache if fresh
+  if (_cache && (now - _cacheTimestamp) < CACHE_TTL) {
+    return _cache
+  }
+
+  // Deduplicate concurrent loads
+  if (_cachePromise) return _cachePromise
+
+  _cachePromise = (async () => {
+    try {
+      const sql = getSQL()
+      const rows = await sql`SELECT * FROM hot_takes WHERE agree_reasons IS NOT NULL`
+      _cache = rows.map(mapRow)
+      _cacheTimestamp = Date.now()
+      console.log(`[hot-takes] Cached ${_cache.length} hot takes`)
+      return _cache
+    } finally {
+      _cachePromise = null
+    }
+  })()
+
+  return _cachePromise
+}
+
+function pickRandom<T>(arr: T[]): T | null {
+  if (arr.length === 0) return null
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
+// ============================================
+// PUBLIC API — all read from cache
+// ============================================
+
 export async function getAllHotTakes(): Promise<HotTake[]> {
-  const sql = getSQL()
-  const rows = await sql`SELECT * FROM hot_takes`
-  return rows.map(mapRow)
+  return getCachedHotTakes()
 }
 
 export async function getHotTakeById(id: string): Promise<HotTake | null> {
-  const sql = getSQL()
-  const rows = await sql`SELECT * FROM hot_takes WHERE id = ${id}`
-  if (rows.length === 0) return null
-  return mapRow(rows[0])
+  const all = await getCachedHotTakes()
+  return all.find(t => t.id === id) || null
 }
 
 export async function getHotTakesByCategory(category: string): Promise<HotTake[]> {
-  const sql = getSQL()
-  const rows = await sql`SELECT * FROM hot_takes WHERE category = ${category}`
-  return rows.map(mapRow)
+  const all = await getCachedHotTakes()
+  return all.filter(t => t.category === category)
 }
 
 export async function getRandomHotTake(
   category: string,
   excludeIds: string[] = []
 ): Promise<HotTake | null> {
-  const sql = getSQL()
-  const rows = await sql`
-    SELECT * FROM hot_takes
-    WHERE category = ${category}
-      AND id != ALL(${excludeIds})
-      AND agree_reasons IS NOT NULL
-    ORDER BY RANDOM()
-    LIMIT 1
-  `
-  if (rows.length === 0) return null
-  return mapRow(rows[0])
+  const all = await getCachedHotTakes()
+  const candidates = all.filter(
+    t => t.category === category && !excludeIds.includes(t.id)
+  )
+  return pickRandom(candidates)
 }
 
 export interface SpinResult {
@@ -100,52 +134,25 @@ export async function getFilteredHotTakes(options: {
   tone?: string
   limit?: number
 }): Promise<HotTake[]> {
-  const sql = getSQL()
-
-  if (options.category && options.tone) {
-    const rows = await sql`
-      SELECT * FROM hot_takes
-      WHERE category = ${options.category}
-        AND ${options.tone} = ANY(tone)
-        AND agree_reasons IS NOT NULL
-      LIMIT ${options.limit || 1000}
-    `
-    return rows.map(mapRow)
-  }
+  const all = await getCachedHotTakes()
+  let filtered = all
 
   if (options.category) {
-    const rows = await sql`
-      SELECT * FROM hot_takes
-      WHERE category = ${options.category}
-        AND agree_reasons IS NOT NULL
-      LIMIT ${options.limit || 1000}
-    `
-    return rows.map(mapRow)
+    filtered = filtered.filter(t => t.category === options.category)
   }
-
   if (options.tone) {
-    const rows = await sql`
-      SELECT * FROM hot_takes
-      WHERE ${options.tone} = ANY(tone)
-        AND agree_reasons IS NOT NULL
-      LIMIT ${options.limit || 1000}
-    `
-    return rows.map(mapRow)
+    filtered = filtered.filter(t => t.tone.includes(options.tone!))
+  }
+  if (options.limit) {
+    filtered = filtered.slice(0, options.limit)
   }
 
-  const rows = await sql`
-    SELECT * FROM hot_takes
-    WHERE agree_reasons IS NOT NULL
-    LIMIT ${options.limit || 1000}
-  `
-  return rows.map(mapRow)
+  return filtered
 }
 
 export async function getHotTakeBySlug(slug: string): Promise<HotTake | null> {
-  const sql = getSQL()
-  const rows = await sql`SELECT * FROM hot_takes WHERE slug = ${slug}`
-  if (rows.length === 0) return null
-  return mapRow(rows[0])
+  const all = await getCachedHotTakes()
+  return all.find(t => t.slug === slug) || null
 }
 
 export async function getHotTakesByIntensity(
@@ -153,37 +160,23 @@ export async function getHotTakesByIntensity(
   intensityMin: number,
   intensityMax: number
 ): Promise<HotTake[]> {
-  const sql = getSQL()
-  const rows = await sql`
-    SELECT * FROM hot_takes
-    WHERE category = ${category}
-      AND intensity BETWEEN ${intensityMin} AND ${intensityMax}
-  `
-  return rows.map(mapRow)
+  const all = await getCachedHotTakes()
+  return all.filter(
+    t => t.category === category &&
+    t.intensity !== undefined &&
+    t.intensity >= intensityMin &&
+    t.intensity <= intensityMax
+  )
 }
 
 export async function getIntensityDistribution(category?: string): Promise<Record<number, number>> {
-  const sql = getSQL()
-
-  const rows = category
-    ? await sql`
-        SELECT intensity, COUNT(*) as count
-        FROM hot_takes
-        WHERE category = ${category} AND agree_reasons IS NOT NULL
-        GROUP BY intensity
-        ORDER BY intensity
-      `
-    : await sql`
-        SELECT intensity, COUNT(*) as count
-        FROM hot_takes
-        WHERE agree_reasons IS NOT NULL
-        GROUP BY intensity
-        ORDER BY intensity
-      `
+  const all = await getCachedHotTakes()
+  const filtered = category ? all.filter(t => t.category === category) : all
 
   const distribution: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-  for (const row of rows) {
-    distribution[Number(row.intensity)] = Number(row.count)
+  for (const t of filtered) {
+    const intensity = t.intensity || 3
+    distribution[intensity] = (distribution[intensity] || 0) + 1
   }
   return distribution
 }
@@ -194,16 +187,13 @@ export async function getRandomHotTakeWithIntensity(
   intensityMax: number,
   excludeIds: string[] = []
 ): Promise<HotTake | null> {
-  const sql = getSQL()
-  const rows = await sql`
-    SELECT * FROM hot_takes
-    WHERE category = ${category}
-      AND id != ALL(${excludeIds})
-      AND intensity BETWEEN ${intensityMin} AND ${intensityMax}
-      AND agree_reasons IS NOT NULL
-    ORDER BY RANDOM()
-    LIMIT 1
-  `
-  if (rows.length === 0) return null
-  return mapRow(rows[0])
+  const all = await getCachedHotTakes()
+  const candidates = all.filter(
+    t => t.category === category &&
+    !excludeIds.includes(t.id) &&
+    t.intensity !== undefined &&
+    t.intensity >= intensityMin &&
+    t.intensity <= intensityMax
+  )
+  return pickRandom(candidates)
 }

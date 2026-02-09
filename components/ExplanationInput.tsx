@@ -3,29 +3,24 @@
 interface ExplanationInputProps {
   value: string
   onChange: (value: string) => void
-  maxLength?: number
 }
 
 export default function ExplanationInput({
   value,
   onChange,
-  maxLength = 280,
 }: ExplanationInputProps) {
-  const remaining = maxLength - value.length
-
   return (
-    <div className="space-y-2">
+    <div>
       <textarea
         id="explanation-input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Explain your reasoning... (optional)"
-        maxLength={maxLength}
+        placeholder="Say more... (optional)"
         className="w-full px-4 py-3.5 text-sm resize-none transition-all duration-200"
         style={{
-          background: 'var(--bg-inset)',
-          color: 'var(--text-primary)',
-          border: '1.5px solid var(--border)',
+          background: 'rgba(0, 0, 0, 0.04)',
+          color: '#1a1a1a',
+          border: '1.5px solid rgba(0, 0, 0, 0.12)',
           borderRadius: 'var(--radius-md)',
           minHeight: '80px',
           outline: 'none',
@@ -34,20 +29,10 @@ export default function ExplanationInput({
           e.currentTarget.style.borderColor = 'var(--accent)'
         }}
         onBlur={(e) => {
-          e.currentTarget.style.borderColor = 'var(--border)'
+          e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.12)'
         }}
         rows={3}
       />
-      <div className="flex justify-end">
-        <span
-          className="text-xs font-mono"
-          style={{
-            color: remaining < 20 ? 'var(--disagree)' : 'var(--text-muted)',
-          }}
-        >
-          {remaining} characters left
-        </span>
-      </div>
     </div>
   )
 }
