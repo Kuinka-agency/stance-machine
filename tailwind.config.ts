@@ -20,6 +20,11 @@ const config: Config = {
           tertiary: 'var(--text-tertiary)',
           muted: 'var(--text-muted)',
         },
+        onSurface: {
+          DEFAULT: 'var(--text-on-surface)',
+          secondary: 'var(--text-on-surface-secondary)',
+          muted: 'var(--text-on-surface-muted)',
+        },
         accent: {
           DEFAULT: 'var(--accent)',
           hover: 'var(--accent-hover)',
@@ -28,12 +33,14 @@ const config: Config = {
         border: {
           DEFAULT: 'var(--border)',
           strong: 'var(--border-strong)',
+          surface: 'var(--border-surface)',
         },
       },
       fontFamily: {
         display: ['var(--font-display)'],
         body: ['var(--font-body)'],
         mono: ['var(--font-mono)'],
+        quote: ['var(--font-quote)'],
       },
       borderRadius: {
         sm: 'var(--radius-sm)',

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { track } from '@/lib/analytics'
 
 interface ShareButtonProps {
   url: string
@@ -10,6 +11,7 @@ export default function ShareButton({ url }: ShareButtonProps) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
+    track('stance_card_shared', { method: 'copy_link' })
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)

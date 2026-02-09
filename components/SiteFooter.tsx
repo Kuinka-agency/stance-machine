@@ -11,10 +11,10 @@ export default function SiteFooter() {
               style={{ background: 'var(--text-primary)' }}
             >
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <rect x="1" y="1" width="6" height="6" rx="1" fill="#D4400E" />
-                <rect x="9" y="1" width="6" height="6" rx="1" fill="#F5F3EF" opacity="0.5" />
-                <rect x="1" y="9" width="6" height="6" rx="1" fill="#F5F3EF" opacity="0.5" />
-                <rect x="9" y="9" width="6" height="6" rx="1" fill="#D4400E" />
+                <rect x="1" y="1" width="6" height="6" rx="1" fill="var(--accent)" />
+                <rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
+                <rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
+                <rect x="9" y="9" width="6" height="6" rx="1" fill="var(--accent)" />
               </svg>
             </div>
             <span

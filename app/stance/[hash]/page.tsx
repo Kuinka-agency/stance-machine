@@ -21,8 +21,14 @@ export async function generateMetadata({ params }: { params: { hash: string } })
     title: 'My Stance Card — Stance Machine',
     description: `6 hills I will die on: ${stanceSummary.slice(0, 150)}...`,
     openGraph: {
-      title: 'My Stance Card',
-      description: `See where I stand on 6 hot takes.`,
+      title: 'My Stance Card — 6 hills I will die on',
+      description: `See where I stand on 6 hot takes. Do you agree?`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'My Stance Card — 6 hills I will die on',
+      description: `See where I stand on 6 hot takes. Do you agree?`,
     },
   }
 }

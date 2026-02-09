@@ -13,10 +13,10 @@ export default function SiteHeader() {
               style={{ background: 'var(--text-primary)' }}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect x="1" y="1" width="6" height="6" rx="1" fill="#E03E00" />
-                <rect x="9" y="1" width="6" height="6" rx="1" fill="#F7F5F0" opacity="0.5" />
-                <rect x="1" y="9" width="6" height="6" rx="1" fill="#F7F5F0" opacity="0.5" />
-                <rect x="9" y="9" width="6" height="6" rx="1" fill="#E03E00" />
+                <rect x="1" y="1" width="6" height="6" rx="1" fill="var(--accent)" />
+                <rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
+                <rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
+                <rect x="9" y="9" width="6" height="6" rx="1" fill="var(--accent)" />
               </svg>
             </div>
             <span

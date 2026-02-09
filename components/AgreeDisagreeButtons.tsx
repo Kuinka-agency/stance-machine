@@ -7,16 +7,19 @@ interface AgreeDisagreeButtonsProps {
   stance: Stance
   onStance: (stance: Stance) => void
   disabled?: boolean
+  locked?: boolean
 }
 
 export default function AgreeDisagreeButtons({
   stance,
   onStance,
   disabled,
+  locked,
 }: AgreeDisagreeButtonsProps) {
   const [lockAnim, setLockAnim] = useState<'agree' | 'disagree' | null>(null)
 
   const handleStance = (value: 'agree' | 'disagree') => {
+    if (locked) return
     const newStance = stance === value ? null : value
     onStance(newStance)
     if (newStance) {
@@ -25,11 +28,13 @@ export default function AgreeDisagreeButtons({
     }
   }
 
+  const isDisabled = disabled || locked
+
   return (
     <div className="flex gap-3">
       <button
         onClick={() => handleStance('agree')}
-        disabled={disabled}
+        disabled={isDisabled}
         className={`stance-btn flex-1 flex items-center justify-center gap-2 px-4 py-3.5 font-mono text-sm uppercase tracking-wider transition-all duration-200 ${
           stance === 'agree' ? 'agree-active' : ''
         } ${lockAnim === 'agree' ? 'stance-lock' : ''}`}
@@ -43,10 +48,11 @@ export default function AgreeDisagreeButtons({
             stance === 'agree' ? 'var(--agree)' : 'transparent',
           color:
             stance === 'agree' ? 'white' : 'var(--text-secondary)',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          opacity: disabled ? 0.5 : 1,
-          transform: stance === 'agree' ? 'scale(1.02)' : 'scale(1)',
+          cursor: isDisabled ? 'not-allowed' : 'pointer',
+          opacity: locked && stance !== 'agree' ? 0 : disabled ? 0.5 : 1,
+          transform: locked && stance !== 'agree' ? 'scale(0.95)' : stance === 'agree' ? 'scale(1.02)' : 'scale(1)',
           fontWeight: 500,
+          pointerEvents: locked && stance !== 'agree' ? 'none' : 'auto',
         }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -56,7 +62,7 @@ export default function AgreeDisagreeButtons({
       </button>
       <button
         onClick={() => handleStance('disagree')}
-        disabled={disabled}
+        disabled={isDisabled}
         className={`stance-btn flex-1 flex items-center justify-center gap-2 px-4 py-3.5 font-mono text-sm uppercase tracking-wider transition-all duration-200 ${
           stance === 'disagree' ? 'disagree-active' : ''
         } ${lockAnim === 'disagree' ? 'stance-lock' : ''}`}
@@ -70,10 +76,11 @@ export default function AgreeDisagreeButtons({
             stance === 'disagree' ? 'var(--disagree)' : 'transparent',
           color:
             stance === 'disagree' ? 'white' : 'var(--text-secondary)',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          opacity: disabled ? 0.5 : 1,
-          transform: stance === 'disagree' ? 'scale(1.02)' : 'scale(1)',
+          cursor: isDisabled ? 'not-allowed' : 'pointer',
+          opacity: locked && stance !== 'disagree' ? 0 : disabled ? 0.5 : 1,
+          transform: locked && stance !== 'disagree' ? 'scale(0.95)' : stance === 'disagree' ? 'scale(1.02)' : 'scale(1)',
           fontWeight: 500,
+          pointerEvents: locked && stance !== 'disagree' ? 'none' : 'auto',
         }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

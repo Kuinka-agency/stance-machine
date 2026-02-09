@@ -96,14 +96,16 @@ export default function IntensitySelector({
             <button
               key={`${preset.range[0]}-${preset.range[1]}`}
               onClick={() => onChange(preset.range)}
-              className="intensity-preset text-left p-5 rounded transition-all duration-200"
+              className={`intensity-preset surface-card text-left p-5 transition-all duration-200`}
               style={{
                 borderWidth: selected ? '3px' : '1.5px',
                 borderStyle: 'solid',
-                borderColor: selected ? 'var(--accent)' : 'var(--border)',
-                background: selected ? 'var(--accent-subtle)' : 'var(--bg-primary)',
+                borderColor: selected ? 'var(--accent)' : 'rgba(0,0,0,0.08)',
+                background: 'var(--bg-card)',
                 cursor: 'pointer',
                 transform: selected ? 'scale(1.01)' : 'scale(1)',
+                borderRadius: 'var(--radius-lg)',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.5)',
               }}
             >
               <div className="flex items-start gap-4">
