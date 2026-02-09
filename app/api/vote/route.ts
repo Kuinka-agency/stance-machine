@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createVote, getTakeStats } from '@/lib/db'
+import { createVote, updateVote, getTakeStats } from '@/lib/db'
+import { auth } from '@/auth'
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,12 +22,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (explanation && explanation.length > 280) {
-      return NextResponse.json(
-        { error: 'explanation must be <= 280 characters' },
-        { status: 400 }
-      )
-    }
+    // Check if user is authenticated — if so, attach user_id to vote
+    const session = await auth()
+    const userId = session?.user?.id
 
     // Create vote
     const vote = await createVote({
@@ -35,6 +33,7 @@ export async function POST(request: NextRequest) {
       reasonTags: reason_tags,
       explanation,
       sessionId: session_id,
+      userId,
     })
 
     // Get updated aggregate stats
@@ -50,6 +49,32 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('Vote API error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const { vote_id, reason_tags, explanation } = await request.json()
+
+    if (!vote_id) {
+      return NextResponse.json(
+        { error: 'vote_id is required' },
+        { status: 400 }
+      )
+    }
+
+    await updateVote(vote_id, {
+      reasonTags: reason_tags,
+      explanation,
+    })
+
+    return NextResponse.json({ ok: true })
+  } catch (error) {
+    console.error('Vote PATCH error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

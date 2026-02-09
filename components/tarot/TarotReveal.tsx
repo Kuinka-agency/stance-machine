@@ -6,6 +6,7 @@ import TarotSpread from './TarotSpread'
 import TarotSummaryCard from './TarotSummaryCard'
 import TarotCardModal from './TarotCardModal'
 import ShareButton from '../ShareButton'
+import SaveToCollectionButton from '../SaveToCollectionButton'
 
 interface TarotRevealProps {
   entries: StanceEntry[]
@@ -98,6 +99,7 @@ export default function TarotReveal({ entries, shareUrl, onStartOver }: TarotRev
       {/* Actions */}
       {showActions && (
         <div className={`flex flex-col items-center gap-4 ${prefersReducedMotion ? '' : 'reveal-up'}`} style={{ animationDelay: '0.2s' }}>
+          <SaveToCollectionButton stanceHash={shareUrl.split('/stance/')[1] || ''} />
           <ShareButton url={shareUrl} />
 
           <button

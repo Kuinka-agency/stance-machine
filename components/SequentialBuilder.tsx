@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { HotTake, Stance, getCategories } from '@/lib/categories'
+import { track } from '@/lib/analytics'
+import { getSessionId } from '@/lib/session'
 import IntensitySelector from './IntensitySelector'
 import IntroCard from './IntroCard'
 import HotTakeHero from './HotTakeHero'
@@ -37,9 +39,7 @@ export default function SequentialBuilder() {
     currentCategoryIndex: 0,
     completedCategories: [],
     stances: {},
-    sessionId: typeof window !== 'undefined'
-      ? window.crypto.randomUUID()
-      : '',
+    sessionId: getSessionId(),
     isComplete: false,
     intensityRange: [1, 5],
     intensitySelected: false,
@@ -143,6 +143,7 @@ export default function SequentialBuilder() {
   }, [loadHotTake, state.intensitySelected, state.introSeen])
 
   const handleSpinAgain = () => {
+    track('spin_again', { category: currentCategory?.name })
     setCurrentStance(null)
     setCurrentReasonTags([])
     setCurrentExplanation('')
@@ -153,6 +154,13 @@ export default function SequentialBuilder() {
   const handleVote = (stance: 'agree' | 'disagree') => {
     if (!currentHotTake || !currentCategory) return
 
+    track('vote', {
+      category: currentCategory.name,
+      stance,
+      take_id: currentHotTake.id,
+      intensity: currentHotTake.intensity,
+      step: state.completedCategories.length + 1,
+    })
     setCurrentStance(stance)
     setCelebrationPhase('celebrating')
     setState((prev) => ({
@@ -208,7 +216,16 @@ export default function SequentialBuilder() {
       }
     }
 
+    track('category_completed', {
+      category: currentCategory.name,
+      stance: currentStance,
+      reason_tags_count: currentReasonTags.length,
+      has_explanation: !!currentExplanation,
+      step: state.completedCategories.length + 1,
+    })
+
     // Save to local state for tarot reveal
+    const isCompleting = state.currentCategoryIndex + 1 >= categories.length
     setState((prev) => ({
       ...prev,
       stances: {
@@ -227,6 +244,13 @@ export default function SequentialBuilder() {
       currentVoteId: null,
     }))
 
+    if (isCompleting) {
+      track('stance_card_completed', {
+        intensity_min: state.intensityRange[0],
+        intensity_max: state.intensityRange[1],
+      })
+    }
+
     // Reset current state
     setCurrentStance(null)
     setCurrentReasonTags([])
@@ -235,6 +259,7 @@ export default function SequentialBuilder() {
   }
 
   const handleIntensitySelect = (range: [number, number]) => {
+    track('intensity_selected', { intensity_min: range[0], intensity_max: range[1] })
     setState((prev) => ({
       ...prev,
       intensityRange: range,
@@ -243,6 +268,7 @@ export default function SequentialBuilder() {
   }
 
   const handleIntroContinue = () => {
+    track('intro_seen')
     setState((prev) => ({
       ...prev,
       introSeen: true,
@@ -276,13 +302,12 @@ export default function SequentialBuilder() {
         entries={stanceEntries}
         shareUrl={shareUrl}
         onStartOver={() => {
+          track('start_over')
           setState({
             currentCategoryIndex: 0,
             completedCategories: [],
             stances: {},
-            sessionId: typeof window !== 'undefined'
-              ? window.crypto.randomUUID()
-              : '',
+            sessionId: getSessionId(),
             isComplete: false,
             intensityRange: [1, 5],
             intensitySelected: false,

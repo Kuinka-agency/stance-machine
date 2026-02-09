@@ -2,9 +2,9 @@
  * Database connection and helpers for Neon Postgres
  */
 
-import { neon, type NeonQueryFunction } from '@neondatabase/serverless'
+import { neon, Pool, type NeonQueryFunction } from '@neondatabase/serverless'
 
-// Lazy-load database connection to allow build without DATABASE_URL
+// Lazy-load HTTP driver for game routes (cheapest Neon option)
 let _sql: NeonQueryFunction<false, false> | null = null
 
 export function getSQL(): NeonQueryFunction<false, false> {
@@ -16,6 +16,20 @@ export function getSQL(): NeonQueryFunction<false, false> {
     _sql = neon(databaseUrl)
   }
   return _sql
+}
+
+// Lazy-load WebSocket Pool for Auth.js adapter (only used during sign-in/sign-up)
+let _pool: Pool | null = null
+
+export function getPool(): Pool {
+  if (!_pool) {
+    const databaseUrl = process.env.DATABASE_URL
+    if (!databaseUrl) {
+      throw new Error('DATABASE_URL environment variable is required')
+    }
+    _pool = new Pool({ connectionString: databaseUrl })
+  }
+  return _pool
 }
 
 /**
@@ -86,6 +100,7 @@ export interface Vote {
   reason_tags: string[] | null
   explanation: string | null
   session_id: string | null
+  user_id: string | null
   created_at: Date
 }
 
@@ -105,16 +120,18 @@ export async function createVote(params: {
   reasonTags?: string[]
   explanation?: string
   sessionId?: string
+  userId?: string
 }): Promise<Vote> {
   const sql = getSQL()
   const result = await sql`
-    INSERT INTO votes (take_id, stance, reason_tags, explanation, session_id)
+    INSERT INTO votes (take_id, stance, reason_tags, explanation, session_id, user_id)
     VALUES (
       ${params.takeId},
       ${params.stance},
       ${params.reasonTags || null},
       ${params.explanation || null},
-      ${params.sessionId || null}
+      ${params.sessionId || null},
+      ${params.userId || null}
     )
     RETURNING *
   `
@@ -172,9 +189,65 @@ export async function getSessionVotes(sessionId: string): Promise<Vote[]> {
 }
 
 /**
+ * Update an existing vote with context (reason tags + explanation)
+ */
+export async function updateVote(voteId: number, params: {
+  reasonTags?: string[]
+  explanation?: string
+}): Promise<void> {
+  const sql = getSQL()
+  await sql`
+    UPDATE votes
+    SET reason_tags = ${params.reasonTags || null},
+        explanation = ${params.explanation || null}
+    WHERE id = ${voteId}
+  `
+}
+
+/**
  * Refresh materialized view (call periodically via cron)
  */
 export async function refreshTakeStats(): Promise<void> {
   const sql = getSQL()
   await sql`REFRESH MATERIALIZED VIEW CONCURRENTLY take_stats`
+}
+
+/**
+ * Stitch anonymous votes to an authenticated user.
+ * Called after sign-in: links all votes from a session_id to a user_id.
+ */
+export async function stitchSessionToUser(sessionId: string, userId: string): Promise<number> {
+  const sql = getSQL()
+  const result = await sql`
+    UPDATE votes
+    SET user_id = ${userId}
+    WHERE session_id = ${sessionId} AND user_id IS NULL
+  `
+  return result.length
+}
+
+/**
+ * Save a stance card to user's collection
+ */
+export async function saveStanceCard(userId: string, stanceHash: string): Promise<void> {
+  const sql = getSQL()
+  await sql`
+    INSERT INTO saved_stance_cards (user_id, stance_hash)
+    VALUES (${userId}, ${stanceHash})
+    ON CONFLICT (user_id, stance_hash) DO NOTHING
+  `
+}
+
+/**
+ * Get all saved stance cards for a user
+ */
+export async function getUserStanceCards(userId: string): Promise<{ stance_hash: string; saved_at: Date }[]> {
+  const sql = getSQL()
+  const result = await sql`
+    SELECT stance_hash, saved_at
+    FROM saved_stance_cards
+    WHERE user_id = ${userId}
+    ORDER BY saved_at DESC
+  `
+  return result as { stance_hash: string; saved_at: Date }[]
 }
