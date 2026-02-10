@@ -181,8 +181,16 @@ jobs:
           # Protect .github directory
           git checkout HEAD -- .github/ 2>/dev/null || true
 
-          if git log origin/main..HEAD --oneline | grep -q .; then
-            git push origin "auto/issue-${{ github.event.issue.number }}"
+          # Fetch main to get origin/main ref (bare clone worktrees don't have it)
+          git fetch origin main:refs/remotes/origin/main 2>/dev/null || true
+
+          # Check if there are commits ahead of main
+          if git log origin/main..HEAD --oneline 2>/dev/null | grep -q .; then
+            git push --force origin "auto/issue-${{ github.event.issue.number }}"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          elif git diff --name-only HEAD~1 2>/dev/null | grep -q .; then
+            # Fallback: check if last commit has changes (for bare clone worktrees)
+            git push --force origin "auto/issue-${{ github.event.issue.number }}"
             echo "has_changes=true" >> $GITHUB_OUTPUT
           else
             echo "No changes were made"
@@ -289,8 +297,10 @@ jobs:
           fi
 
           PR_URL=$(gh pr create \
+            --repo ${{ github.repository }} \
             --title "Auto: ${{ github.event.issue.title }}" \
             --body-file "$PR_BODY_FILE" \
+            --head "auto/issue-${{ github.event.issue.number }}" \
             $LABELS)
           rm -f "$PR_BODY_FILE"
 
@@ -307,6 +317,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh issue comment ${{ github.event.issue.number }} \
+            --repo ${{ github.repository }} \
             --body "AutoDev analyzed this issue but determined no code changes were needed. Please review the issue description or add more details."
 
       - name: Post Implementation Summary
@@ -343,7 +354,7 @@ jobs:
             echo "*Duration: ${{ steps.usage.outputs.duration_min }} min | Cost: \$${{ steps.usage.outputs.total_cost }}*"
           } > "$COMMENT_FILE"
 
-          gh issue comment ${{ github.event.issue.number }} --body-file "$COMMENT_FILE"
+          gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} --body-file "$COMMENT_FILE"
           rm -f "$COMMENT_FILE"
 
       - name: Check for Merge Conflicts
@@ -360,7 +371,7 @@ jobs:
           sleep 5
 
           # Check mergeable status
-          MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable -q '.mergeable')
+          MERGEABLE=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json mergeable -q '.mergeable')
           echo "Mergeable status: $MERGEABLE"
 
           if [[ "$MERGEABLE" == "CONFLICTING" ]]; then
